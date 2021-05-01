@@ -4,7 +4,12 @@
       <p>Email:</p>
       <input type="email" placeholder="email" id="signUpEmail" />
       <p>username:</p>
-      <input type="text" placeholder="username" autocomplete="" id="signUpUsername" />
+      <input
+        type="text"
+        placeholder="username"
+        autocomplete=""
+        id="signUpUsername"
+      />
       <p>password</p>
       <input
         type="password"
@@ -21,12 +26,13 @@
       <br />
       <input type="submit" name="submitNewUser" @click="newUserSignUp" />
     </form>
-    <button @click="userList"></button>
+    <button @click="userList">User list</button>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import cookies from "vue-cookies";
 export default {
   name: "signup-form",
   methods: {
@@ -37,7 +43,7 @@ export default {
           url: "https://tweeterest.ml/api/users",
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": "xRlx789MAteFEj8KWmCnfcr2KIRY0ZvfoXENuAX6vrnqV",
+            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             email: document.getElementById("signUpEmail").value,
@@ -49,6 +55,9 @@ export default {
         })
         .then((res) => {
           console.log(res);
+          cookies.set("currentUser", res.data);
+          this.$router.push("/profile");
+          location.reload();
         })
         .catch((err) => {
           console.log(err);
@@ -61,7 +70,7 @@ export default {
           method: "GET",
           url: "https://tweeterest.ml/api/users",
           headers: {
-            "X-Api-Key": "xRlx789MAteFEj8KWmCnfcr2KIRY0ZvfoXENuAX6vrnqV",
+            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           //   data: {
           //     email: document.getElementById("signUpEmail").value,

@@ -5,11 +5,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    loginToken: cookies.get("token"),
     currentUser: cookies.get("currentUser"),
+    deleteAccountOptions: "false",
+    tweets: [],
   },
   mutations: {
-     
+    updateDeleteAccountOptions: function(state, data) {
+      state.deleteAccountOptions = data;
+    },
+    updateTweets: function(state, data) {
+      state.tweets = data;
+    },
   },
   actions: {
   },

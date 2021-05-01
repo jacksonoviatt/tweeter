@@ -37,7 +37,7 @@ export default {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": "xRlx789MAteFEj8KWmCnfcr2KIRY0ZvfoXENuAX6vrnqV",
+            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             email: document.getElementById("loginEmail").value,
@@ -49,8 +49,6 @@ export default {
             console.log(res.data);
           this.loginStatus = "you have logged in";
           cookies.set("currentUser", res.data)
-        //   this.$store.commit("updateCurrentUser", res.data);
-          cookies.set("token", res.data.loginToken);
           this.$router.push("/profile");
           location.reload();
             

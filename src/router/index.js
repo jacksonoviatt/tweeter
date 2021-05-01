@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Welcome from '../views/Welcome.vue'
 import Profile from '../views/Profile.vue'
-
+import Feed from '../views/Feed.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,6 +17,11 @@ const routes = [
     name: 'Profile',
     component: Profile
   },
+  {
+    path: '/feed',
+    name: 'Feed',
+    component: Feed
+  }
 ]
 
 const router = new VueRouter({
