@@ -1,7 +1,10 @@
 <template>
   <div>
-      <div></div>
-      <h2>@{{storeTweets}}</h2>
+      <div v-for="object in storeTweets" :key="object.string">
+          <h3>{{object.content}}</h3>
+          
+      </div>
+      
   </div>
 </template>
 
@@ -32,6 +35,7 @@ computed: {
         .then((res) => {
           console.log(res);
           this.$store.commit("updateTweets", res.data)
+        
         })
         .catch((err) => {
           console.log(err);
