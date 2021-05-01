@@ -18,20 +18,37 @@
       <!-- <router-link to="/welcome">Welcome</router-link> -->
     </div>
       <h3 @click="logOut">LOGOUT</h3>
+      <a src="#" @click="mutateDeleteOptions">Delete My Account</a>
+     <delete-account v-if="storeDeleteAccountOptions === true"></delete-account>
     </section>
   </div>
 </template>
 
 <script>
 import cookies from "vue-cookies";
+import DeleteAccount from './DeleteAccount.vue';
 export default {
+  components: { DeleteAccount },
   name: "side-bar",
   data() {
     return {
       isMenuOpen: false,
     };
   },
+   computed: {
+    storeCurrentUser() {
+      return this.$store.state.currentUser;
+    },
+    storeDeleteAccountOptions() {
+      return this.$store.state.deleteAccountOptions;
+    }
+  },
   methods: {
+    mutateDeleteOptions() {
+      console.log(this.storeDeleteAccountOptions);
+      this.$store.commit("updateDeleteAccountOptions", true);
+    },
+     
     logOut: function () {
       cookies.remove("currentUser");
       this.$router.push("/");

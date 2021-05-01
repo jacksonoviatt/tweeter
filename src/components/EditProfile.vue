@@ -14,17 +14,15 @@
       <br />
       <input type="submit" value="Save My Changes" @click="updateUserInfo" />
     </form>
-    <a src="#" @click="openDeleteAccount">Delete My Account</a>
-    <delete-account v-if="storeDeleteAccountOptions"></delete-account>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import DeleteAccount from './DeleteAccount.vue';
+// import DeleteAccount from './DeleteAccount.vue';
 export default {
   name: "edit-profile",
-  components: { DeleteAccount },
+  // components: { DeleteAccount },
  
   computed: {
     storeCurrentUser() {
@@ -35,9 +33,6 @@ export default {
     }
   },
   methods: {
-    openDeleteAccount() {
-      this.$store.commit("updateDeleteAccountOptions", true);
-    },
     updateUserInfo: function () {
       axios
         .request({

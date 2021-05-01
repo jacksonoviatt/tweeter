@@ -1,14 +1,14 @@
 <template>
   <div>
-    <the-tweet></the-tweet>
+    <get-tweets></get-tweets>
   </div>
 </template>
 
 <script>
-import TheTweet from "./TheTweet.vue";
+import GetTweets from "./GetTweets.vue";
 export default {
   name: "explore-page",
-  components: { TheTweet },
+  components: { GetTweets },
   computed: {
     storeTweets() {
       return this.$store.state.tweets;

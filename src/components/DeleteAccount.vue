@@ -3,7 +3,7 @@
     <div id="deleteContainer">
       <!-- if the user successfully inputs the password, the accountDeleted var will change to true and display the success message -->
       <h3 v-if="accountDeleted">Your account was successfully deleted.</h3>
-      <div v-if="!accountDeleted">
+      <div>
         <p>Are you sure you want to delete your account?</p>
         <div id="deleteButtons">
           <button @click="inputPassword = !inputPassword">Delete My Account</button>

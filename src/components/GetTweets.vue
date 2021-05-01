@@ -1,23 +1,23 @@
 <template>
   <div>
-      <div v-for="object in storeTweets" :key="object.string">
-          <h3>{{object.content}}</h3>
-          
-      </div>
-      
+    <div v-for="object in storeTweets.slice().reverse()" :key="object.string">
+      <h4>{{ object.username }}</h4>
+      <p>{{ object.content }}</p>
+      <img v-if="object.tweetImageUrl" :src="object.tweetImageUrl" :alt="object.content">
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
-  name: "the-tweet",
+  name: "get-tweet",
 
-computed: {
+  computed: {
     storeTweets() {
-        return this.$store.state.tweets; 
-    }
-},
+      return this.$store.state.tweets;
+    },
+  },
   mounted: function () {
     this.getAllTweets();
   },
@@ -34,8 +34,7 @@ computed: {
         })
         .then((res) => {
           console.log(res);
-          this.$store.commit("updateTweets", res.data)
-        
+          this.$store.commit("updateTweets", res.data);
         })
         .catch((err) => {
           console.log(err);

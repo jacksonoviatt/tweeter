@@ -8,6 +8,7 @@ export default new Vuex.Store({
     currentUser: cookies.get("currentUser"),
     deleteAccountOptions: "false",
     tweets: [],
+    userTweets: [],
   },
   mutations: {
     updateDeleteAccountOptions: function(state, data) {

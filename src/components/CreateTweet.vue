@@ -1,8 +1,11 @@
 <template>
   <div>
       <form action="javascript:void(0)" autocomplete="off">
-          <input type="text" id="tweetContent">
-          <input type="submit" value="Post!" @click="createTweet">
+          <input type="text" id="tweetContent" placeholder="tweet content">
+          <br>
+          <input type="text" id="userImage" placeholder="image url">
+<br>
+          <input type="submit" value="See tweet!" @click="createTweet">
       </form>
   </div>
 </template>
@@ -17,6 +20,9 @@ export default {
     },
   },
   methods: {
+    check: function(){
+      console.log(document.getElementById("tweetContent").value + this.storeCurrentUser.loginToken);
+    },
     createTweet: function () {
       axios
         .request({
@@ -27,14 +33,13 @@ export default {
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
-            loginToken: this.storeCurrentUser.loginToken,
-            content: document.getElementById("tweetContent").value
+            content: document.getElementById("tweetContent").value,
+            imageUrl: document.getElementById("userImage").value,
+            loginToken: this.storeCurrentUser.loginToken,         
           },
         })
         .then((res) => {
           console.log(res);
-          
-          
         })
         .catch((err) => {
           console.log(err);
