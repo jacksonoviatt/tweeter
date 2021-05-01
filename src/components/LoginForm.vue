@@ -3,7 +3,7 @@
     <h1>LOGIN</h1>
     <form action="javascript:void(0)">
       <p>Email:</p>
-      <input type="email" placeholder="email" id="loginEmail" autocomplete=""/>
+      <input type="email" placeholder="email" id="loginEmail" autocomplete="" />
       <p>password</p>
       <input
         type="password"
@@ -14,7 +14,7 @@
       />
       <br />
       <input type="submit" name="submitNewUser" @click="attemptLogin" />
-      <h3>{{loginStatus}}</h3>
+      <h3>{{ loginStatus }}</h3>
     </form>
   </div>
 </template>
@@ -25,9 +25,9 @@ import cookies from "vue-cookies";
 export default {
   name: "login-form",
   data() {
-      return {
-          loginStatus: "",
-      }
+    return {
+      loginStatus: "",
+    };
   },
   methods: {
     attemptLogin: function () {
@@ -44,14 +44,13 @@ export default {
             password: document.getElementById("loginPassword").value,
           },
         })
-       
+
         .then((res) => {
-            console.log(res.data);
+          console.log(res.data);
           this.loginStatus = "you have logged in";
-          cookies.set("currentUser", res.data)
-          this.$router.push("/profile");
+          cookies.set("currentUser", res.data);
+          this.$router.push("/feed");
           location.reload();
-            
         })
         // if the axios request fails, it will tell the user there was an error
         .catch((err) => {

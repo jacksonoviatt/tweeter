@@ -8,18 +8,26 @@ export default new Vuex.Store({
     currentUser: cookies.get("currentUser"),
     deleteAccountOptions: "false",
     tweets: [],
-    userTweets: [],
+    currentUserTweets: [],
   },
   mutations: {
-    updateDeleteAccountOptions: function(state, data) {
+    updateDeleteAccountOptions: function (state, data) {
       state.deleteAccountOptions = data;
     },
-    updateTweets: function(state, data) {
+    updateTweets: function (state, data) {
       state.tweets = data;
+    },
+    updateCurrentUserTweets: function (state, data) {
+      state.currentUserTweets = data;
     },
   },
   actions: {
   },
   getters: {
+    // getCurrentUserTweets: function (state) {
+    //   let userTweets =  state.tweets
+    //   // let userTweets = state.tweets.filter(currentUserTweets => (currentUserTweets.userId.includes(this.currentUser.userId)));
+    //   return userTweets;
+    // }
   }
 })
