@@ -42,7 +42,7 @@ export default {
   methods: {
     redirectAfterDelete() {
       cookies.remove("currentUser");
-      this.$router.push("/");
+      this.$router.push("/welcome");
       location.reload();
     },
     mutateDeleteAccountOptions() {

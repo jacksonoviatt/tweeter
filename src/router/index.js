@@ -9,8 +9,8 @@ const routes = [
   
   {
     path: '/',
-    name: 'Welcome',
-    component: Welcome
+    name: 'Feed',
+    component: Feed
   },
   {
     path: '/profile',
@@ -18,9 +18,9 @@ const routes = [
     component: Profile
   },
   {
-    path: '/feed',
-    name: 'Feed',
-    component: Feed
+    path: '/welcome',
+    name: 'Welcome',
+    component: Welcome
   }
 ]
 

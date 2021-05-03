@@ -43,7 +43,8 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.$store.commit("updateCurrentUserTweets", res.data)
+          let orderedUserTweets = res.data.sort(function(a, b){return new Date(a.createdAt) - new Date(b.createdAt)}).slice().reverse();
+          this.$store.commit("updateCurrentUserTweets", orderedUserTweets)
         })
         .catch((err) => {
           console.log(err);

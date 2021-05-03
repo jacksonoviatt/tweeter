@@ -12,9 +12,9 @@
         <div id="barThree"></div>
       </section>
      <div id="nav">
-      <router-link to="/">Welcome</router-link> |
+      <router-link to="/welcome">Welcome</router-link> |
       <router-link to="/profile">Profile</router-link> |
-      <router-link to="/feed">Feed</router-link> |
+      <router-link to="/">Feed</router-link> |
       <!-- <router-link to="/welcome">Welcome</router-link> -->
     </div>
       <h3 @click="logOut">LOGOUT</h3>
@@ -51,7 +51,7 @@ export default {
      
     logOut: function () {
       cookies.remove("currentUser");
-      this.$router.push("/");
+      this.$router.push("/welcome");
       location.reload();
     },
   },

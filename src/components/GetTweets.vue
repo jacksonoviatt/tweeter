@@ -6,6 +6,7 @@
       <friend-profile :otherUserId="object.userId" :otherUserName="object.username"></friend-profile>
       <!-- <h4 @click="openFriendsProfile(object.userId)">{{ object.username }}</h4> -->
       <p>{{ object.content }}</p>
+      
       <!-- <friend-profile v-if="openProfile === true"></friend-profile> -->
       <img v-if="object.tweetImageUrl" :src="object.tweetImageUrl" :alt="object.content">
     </div>
@@ -21,11 +22,7 @@ import FriendProfile from './FriendProfile.vue';
 export default {
   components: { EditTweet, FriendProfile },
   name: "get-tweet",
-  // data() {
-  //   return {
-  //     openProfile: false
-  //   }
-  // },
+ 
   computed: {
     storeTweets() {
       return this.$store.state.tweets;
@@ -41,11 +38,6 @@ export default {
     this.getAllTweets();
   },
   methods: {
-    // openFriendsProfile: function(userId) {
-    //   this.openProfile = !this.openProfile;
-    //   this.$store.commit("updateFriendsId", userId);
-    //   console.log(this.openProfile);
-    // },
     getAllTweets: function () {
       axios
         .request({
@@ -58,12 +50,15 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.$store.commit("updateTweets", res.data);
+          let orderedTweets = res.data.sort(function(a, b){return new Date(a.createdAt) - new Date(b.createdAt)}).slice().reverse();
+          this.$store.commit("updateTweets", orderedTweets);
         })
         .catch((err) => {
           console.log(err);
         });
     },
+    
+   
   },
 };
 </script>

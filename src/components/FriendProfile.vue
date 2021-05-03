@@ -1,13 +1,15 @@
 <template>
   <div>
     <h1 @click="getOtherUser">@{{ otherUserName }}</h1>
-    <section class="otherProfiles" v-if="openOtherProfile === true">
+    <section class="otherProfiles" v-if="openOtherProfile === true"> 
+        <div class="green"></div>
       <button @click="openOtherProfile = false">GO BACK</button>
-      <h3>{{ otherUserData.username }}</h3>
-      <p>{{ otherUserData.bio }}</p>
+      <h3 id="username">{{ otherUserData.username }}</h3>
+      <p>{{ otherUserData.bio }} </p>
       <friends-tweets :openOtherProfile="openOtherProfile"></friends-tweets>
-    {{otherUserData.userId}}
+  
     </section>
+   
   </div>
 </template>
 
@@ -27,13 +29,10 @@ export default {
     otherUserId: Number,
     otherUserName: String,
   },
-//    mounted: function() {
-//       this.$store.commit("updateFriendsId", this.otherUserId);
-      
-//   },
   methods: {
     
     getOtherUser: function () {
+        window.scrollTo(0, 0);
       this.$store.commit("updateFriendsId", this.otherUserId);
       this.openOtherProfile = !this.openOtherProfile;
       axios
@@ -63,12 +62,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#username {
+    font-size: 40px;
+}
 .otherProfiles {
     width: 100%;
-    height: 200vw;
+    height: 100%;
+    min-height: 100vh;
     position: absolute;
     top: 0;
     background: #294C60;
-    color: #F4F5F6;
+    color: #ADB6C4;
+    
+}
+.green {
+    width: 100px;
+    height: 100px;
+
 }
 </style>

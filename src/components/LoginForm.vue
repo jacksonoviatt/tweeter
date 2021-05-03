@@ -35,9 +35,9 @@ export default {
     }
   },
   mounted () {
-    if(this.storeCurrentUser.loginToken !== undefined) {
-      this.$router.push("/feed"); 
-    }
+    if(this.storeCurrentUser === null) {
+      console.log("please login");
+    } else if (this.storeCurrentUser){ this.$router.push("/"); }
   },
   methods: {
     attemptLogin: function () {

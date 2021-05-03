@@ -56,7 +56,7 @@ export default {
         .then((res) => {
           console.log(res);
           cookies.set("currentUser", res.data);
-          this.$router.push("/feed");
+          this.$router.push("/");
           location.reload();
         })
         .catch((err) => {
