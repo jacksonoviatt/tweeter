@@ -1,27 +1,51 @@
 <template>
   <div>
-    <div v-for="object in storeTweets.slice().reverse()" :key="object.string">
-      <h4>{{ object.username }}</h4>
+    <!-- loop through the array of tweet information -->
+    <div v-for="object in storeTweets" :key="object.string">
+      <edit-tweet v-if="storeCurrentUser.userId === object.userId" :editTweetId="object.tweetId"></edit-tweet>
+      <friend-profile :otherUserId="object.userId" :otherUserName="object.username"></friend-profile>
+      <!-- <h4 @click="openFriendsProfile(object.userId)">{{ object.username }}</h4> -->
       <p>{{ object.content }}</p>
+      <!-- <friend-profile v-if="openProfile === true"></friend-profile> -->
       <img v-if="object.tweetImageUrl" :src="object.tweetImageUrl" :alt="object.content">
     </div>
+
+    
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import EditTweet from './EditTweet.vue';
+import FriendProfile from './FriendProfile.vue';
 export default {
+  components: { EditTweet, FriendProfile },
   name: "get-tweet",
-
+  // data() {
+  //   return {
+  //     openProfile: false
+  //   }
+  // },
   computed: {
     storeTweets() {
       return this.$store.state.tweets;
     },
+    storeCurrentUser() {
+      return this.$store.state.currentUser;
+    },
+    // storeFriendsId() {
+    //   return this.$store.state.friendsId;
+    // }
   },
   mounted: function () {
     this.getAllTweets();
   },
   methods: {
+    // openFriendsProfile: function(userId) {
+    //   this.openProfile = !this.openProfile;
+    //   this.$store.commit("updateFriendsId", userId);
+    //   console.log(this.openProfile);
+    // },
     getAllTweets: function () {
       axios
         .request({
@@ -45,4 +69,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
 </style>

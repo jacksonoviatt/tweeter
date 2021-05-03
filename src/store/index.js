@@ -9,8 +9,12 @@ export default new Vuex.Store({
     deleteAccountOptions: "false",
     tweets: [],
     currentUserTweets: [],
+   friendsId: Number
   },
   mutations: {
+    updateFriendsId: function (state, data) {
+      state.friendsId = data;
+    },
     updateDeleteAccountOptions: function (state, data) {
       state.deleteAccountOptions = data;
     },

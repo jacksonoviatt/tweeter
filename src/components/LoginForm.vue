@@ -29,6 +29,16 @@ export default {
       loginStatus: "",
     };
   },
+  computed: {
+    storeCurrentUser() {
+      return this.$store.state.currentUser;
+    }
+  },
+  mounted () {
+    if(this.storeCurrentUser.loginToken !== undefined) {
+      this.$router.push("/feed"); 
+    }
+  },
   methods: {
     attemptLogin: function () {
       axios
@@ -49,7 +59,6 @@ export default {
           console.log(res.data);
           this.loginStatus = "you have logged in";
           cookies.set("currentUser", res.data);
-          this.$router.push("/feed");
           location.reload();
         })
         // if the axios request fails, it will tell the user there was an error

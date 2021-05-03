@@ -1,34 +1,45 @@
 <template>
   <div>
-    <div v-for="object in storeCurrentUserTweets" :key="object.string">
-        <edit-tweet :editTweetId="object.tweetId"></edit-tweet>
+    <div v-for="object in friendsTweets" :key="object.string">
+
       <h4>{{ object.username }}</h4>
       <p>{{ object.content }}</p>
       <img v-if="object.tweetImageUrl" :src="object.tweetImageUrl" :alt="object.content">
-    </div>
+    </div> 
+    
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import EditTweet from './EditTweet.vue';
+
 export default {
-  components: { EditTweet },
-  name: "user-tweets",
+  name: "friends-tweets",
+
+  data() {
+      return {
+          friendsTweets: [],
+
+      }
+  },
   computed: {
-      storeCurrentUser() {
-          return this.$store.state.currentUser;
-      },
-     storeCurrentUserTweets: function() {
-         return this.$store.state.currentUserTweets;
-     },
+      storeFriendsId() {
+          return this.$store.state.friendsId; 
+      }
   },
-  mounted: function() {
-      this.getUserTweets();
-      
+  props: {
+    //   friendsId: Number,
+      openOtherProfile: Boolean,
   },
+    mounted () {
+        this.getFriendsTweets();
+        // if (this.openOtherProfile === false) {
+        //     this.friendsTweets = [];
+        // }
+    },
   methods: {
-    getUserTweets: function () {
+    getFriendsTweets: function () {
+        // this.friendsTweets = cookies.remove("myFriendsTweets");
       axios
         .request({
           method: "GET",
@@ -38,12 +49,13 @@ export default {
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
          params: {
-              userId: this.storeCurrentUser.userId,
+              userId: this.storeFriendsId,
           }
         })
         .then((res) => {
           console.log(res);
-          this.$store.commit("updateCurrentUserTweets", res.data)
+        this.friendsTweets = res.data
+        
         })
         .catch((err) => {
           console.log(err);
