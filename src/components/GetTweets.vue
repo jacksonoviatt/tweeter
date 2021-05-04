@@ -29,6 +29,7 @@
         :alt="object.content"
       />
       <comment-section :commentTweetId="object.tweetId"></comment-section>
+      <like-tweet :tweetId="object.tweetId"></like-tweet>
     </div>
   </div>
 </template>
@@ -39,8 +40,9 @@ import EditTweet from "./EditTweet.vue";
 import FriendProfile from "./FriendProfile.vue";
 import CommentSection from "./CommentSection.vue";
 import CreatedAt from './CreatedAt.vue';
+import LikeTweet from "./LikeTweet.vue";
 export default {
-  components: { EditTweet, FriendProfile, CommentSection, CreatedAt },
+  components: { EditTweet, FriendProfile, CommentSection, CreatedAt, LikeTweet },
   name: "get-tweet",
 
   computed: {
