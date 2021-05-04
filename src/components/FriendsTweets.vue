@@ -5,6 +5,7 @@
       <h4>{{ object.username }}</h4>
       <p>{{ object.content }}</p>
       <img v-if="object.tweetImageUrl" :src="object.tweetImageUrl" :alt="object.content">
+      <comment-section :commentTweetId="object.tweetId"></comment-section>
     </div> 
     
   </div>
@@ -12,8 +13,10 @@
 
 <script>
 import axios from 'axios';
+import CommentSection from './CommentSection.vue';
 
 export default {
+  components: { CommentSection },
   name: "friends-tweets",
 
   data() {

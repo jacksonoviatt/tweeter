@@ -9,6 +9,7 @@
       
       <!-- <friend-profile v-if="openProfile === true"></friend-profile> -->
       <img v-if="object.tweetImageUrl" :src="object.tweetImageUrl" :alt="object.content">
+      <comment-section :commentTweetId="object.tweetId"></comment-section>
     </div>
 
     
@@ -19,8 +20,9 @@
 import axios from "axios";
 import EditTweet from './EditTweet.vue';
 import FriendProfile from './FriendProfile.vue';
+import CommentSection from './CommentSection.vue';
 export default {
-  components: { EditTweet, FriendProfile },
+  components: { EditTweet, FriendProfile, CommentSection },
   name: "get-tweet",
  
   computed: {

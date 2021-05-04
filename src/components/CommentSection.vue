@@ -1,15 +1,111 @@
 <template>
-    <div>
-    <img src="https://www.flaticon.com/svg/vstatic/svg/2462/2462719.svg?token=exp=1620082665~hmac=5b881cf16d9bb9369b3bd07b771ceaa8" alt="comments">
-    </div>
+  <div>
+    <img
+      @click="viewComments"
+      src="https://www.flaticon.com/svg/vstatic/svg/2462/2462719.svg?token=exp=1620082665~hmac=5b881cf16d9bb9369b3bd07b771ceaa8"
+      alt="comments"
+    />
+    <section v-if="isCommentsOpen === true">
+      <img src='https://www.flaticon.com/svg/vstatic/svg/359/359574.svg?token=exp=1620088891~hmac=24698fe5be15b0cddefc53a0fd53a7dd' alt="refresh" @click="getComments">
+      <div v-for="object in tweetComments" :key="object.id">
+        <p>{{ object.username }}</p>
+        <p>{{ object.content }}</p>
+        <edit-comment :editCommentId="object.commentId"></edit-comment>
+      </div>
+      <form action="javascript:void(0)" autocomplete="off">
+        <input
+          type="text"
+          placeholder="Make a comment"
+          autocomplete="null"
+          id="makeAComment"
+        />
+        <br />
+        <input type="submit" value="Save My Changes" @click="postComment" />
+      </form>
+    </section>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+import axios from "axios";
+import EditComment from "./EditComment.vue";
+export default {
+  components: { EditComment },
+  name: "comment-section",
+  data() {
+    return {
+      isCommentsOpen: false,
+      tweetComments: [],
+    };
+  },
+  computed: {
+    storeCurrentUser() {
+      return this.$store.state.currentUser;
+    },
+  },
+  props: {
+    commentTweetId: Number,
+  },
+  methods: {
+    viewComments: function () {
+      if (this.isCommentsOpen === false) {
+        this.getComments();
+        this.isCommentsOpen = !this.isCommentsOpen;
+      } else {
+        this.isCommentsOpen = !this.isCommentsOpen;
+      }
+    },
+    postComment: function () {
+      axios
+        .request({
+          method: "POST",
+          url: "https://tweeterest.ml/api/comments",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+          },
+          data: {
+            content: document.getElementById("makeAComment").value,
+            loginToken: this.storeCurrentUser.loginToken,
+            tweetId: this.commentTweetId,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          //   location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    getComments: function () {
+      axios
+        .request({
+          method: "GET",
+          url: "https://tweeterest.ml/api/comments",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+          },
+          params: {
+            tweetId: this.commentTweetId,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          this.tweetComments = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
+img {
+  width: 20px;
+}
 </style>

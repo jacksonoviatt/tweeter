@@ -5,15 +5,18 @@
       <h4>{{ object.username }}</h4>
       <p>{{ object.content }}</p>
       <img v-if="object.tweetImageUrl" :src="object.tweetImageUrl" :alt="object.content">
+    <comment-section :commentTweetId="object.tweetId"></comment-section>
     </div>
+    
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import CommentSection from "./CommentSection"
 import EditTweet from './EditTweet.vue';
 export default {
-  components: { EditTweet },
+  components: { EditTweet, CommentSection},
   name: "user-tweets",
   computed: {
       storeCurrentUser() {

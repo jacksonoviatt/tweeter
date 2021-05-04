@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h3>welcome</h3>
+  <div id="welcome">
+    <h3>login to tweeter</h3>
     <login-form v-if="signMeUp === false"></login-form>
     <p v-if="signMeUp === false">Don't have an account? <a href="#" @click="signMeUp = true">Sign up now</a>
         </p>
@@ -27,4 +27,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#welcome {
+  background: linear-gradient(#001B2E, #294C60);
+  // background: magenta;
+  height: 100vh;
+  width: 100%;
+  color: #ADB6C4;
+  display: grid;
+  place-items: center;
+}
 </style>

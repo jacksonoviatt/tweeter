@@ -1,10 +1,9 @@
 <template>
   <div>
-    <h1>LOGIN</h1>
     <form action="javascript:void(0)">
-      <p>Email:</p>
+      
       <input type="email" placeholder="email" id="loginEmail" autocomplete="" />
-      <p>password</p>
+
       <input
         type="password"
         name="password"
@@ -12,8 +11,8 @@
         autocomplete=""
         id="loginPassword"
       />
-      <br />
-      <input type="submit" name="submitNewUser" @click="attemptLogin" />
+   
+      <input type="submit" name="submitNewUser" id="loginButton" @click="attemptLogin" />
       <h3>{{ loginStatus }}</h3>
     </form>
   </div>
@@ -59,6 +58,7 @@ export default {
           console.log(res.data);
           this.loginStatus = "you have logged in";
           cookies.set("currentUser", res.data);
+          // add a mutations here please
           location.reload();
         })
         // if the axios request fails, it will tell the user there was an error
@@ -72,4 +72,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+form {
+  display: grid;
+  place-items: center;
+  gap: 30px;
+}
+#loginButton {
+  border: #ADB6C4 3px solid;
+  border-radius: 10%;
+  width: 100px;
+  height: 30px;
+}
 </style>
