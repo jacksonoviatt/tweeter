@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="feed">
     <button @click="goBackToLogin" v-if="storeCurrentUser === undefined">You need to log in</button>
     <section v-if="storeCurrentUser !== undefined">
       <create-tweet></create-tweet>
@@ -40,4 +40,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+* {
+  background: #E0E8D9;
+}
 </style>

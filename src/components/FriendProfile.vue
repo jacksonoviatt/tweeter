@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 @click="getOtherUser">@{{ otherUserName }}</h1>
+    <h3 class="username" @click="getOtherUser">{{ otherUserName }}</h3>
     <section class="otherProfiles" v-if="openOtherProfile === true"> 
         <div class="green"></div>
       <button @click="openOtherProfile = false">GO BACK</button>
@@ -79,5 +79,9 @@ export default {
     width: 100px;
     height: 100px;
 
+}
+.username {
+  text-align: left;
+  margin: 10px 15px;
 }
 </style>

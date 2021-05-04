@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img @click="editTweetClicked = !editTweetClicked"
+    <img class="editTweet" @click="editTweetClicked = !editTweetClicked"
       src="https://www.flaticon.com/svg/vstatic/svg/1159/1159876.svg?token=exp=1619905929~hmac=877dd4d104f6474015cf5d003e8eb352"
       alt="edit tweet icons"
     />
@@ -84,7 +84,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img {
-  width: 30px;
+.editTweet {
+  width: 20px;
+  position: absolute;
+  margin: 20px;
+  margin-left: 90px;
+  
 }
 </style>

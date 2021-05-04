@@ -28,11 +28,11 @@ export default {
 
 <style lang="scss" scoped>
 #welcome {
-  background: linear-gradient(#001B2E, #294C60);
+  background: linear-gradient(#A1AE98, #5A6751, );
   // background: magenta;
   height: 100vh;
   width: 100%;
-  color: #ADB6C4;
+  color: #E8EEE3;
   display: grid;
   place-items: center;
 }

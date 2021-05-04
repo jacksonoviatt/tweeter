@@ -9,7 +9,6 @@
       <section id="xBars" @click="isMenuOpen = !isMenuOpen">
         <div id="barOne"></div>
         <div id="barTwo"></div>
-        <div id="barThree"></div>
       </section>
      <div id="nav">
       <router-link to="/welcome">Welcome</router-link> |
@@ -67,19 +66,20 @@ export default {
     
     width: 40px;
     height: 5px;
-    background: #703d57;
+    background: #8B745F;
     margin: 10px 0;
   }
 }
 #sideBarContainer {
   width: 70vw;
   height: 100vh;
-  background-color: #adb6c4;
+  background-color: #C6C3BC;
   position: fixed;
   top: 0;
   left: 0;
   display: grid;
   place-items: center;
+  color: #282E24;
 }
 #xBars {
   width: 50px;
@@ -92,12 +92,12 @@ export default {
   div {
     width: 50px;
     height: 5px;
-    background: #ffefd3;
+    background: #829376 ;
     position: absolute;
     // top: 40px;
     // left: 50vw;
 
-    box-shadow: #001b2e 0px 0px 3px;
+    // box-shadow: #829376 0px 0px 3px;
   }
   #barOne {
     transform: rotate(135deg);
@@ -107,11 +107,8 @@ export default {
 
     // margin-bottom: -20px;
   }
-  #barThree {
-    transform: rotate(135deg);
+ 
 
-    z-index: 10;
-    box-shadow: none;
-  }
+  
 }
 </style>

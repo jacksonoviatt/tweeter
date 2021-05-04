@@ -1,12 +1,20 @@
 <template>
   <div>
-    <img
-      @click="viewComments"
-      src="https://www.flaticon.com/svg/vstatic/svg/2462/2462719.svg?token=exp=1620082665~hmac=5b881cf16d9bb9369b3bd07b771ceaa8"
-      alt="comments"
-    />
+    <div @click="viewComments">
+      <img
+        
+        src="https://www.flaticon.com/svg/vstatic/svg/2462/2462719.svg?token=exp=1620082665~hmac=5b881cf16d9bb9369b3bd07b771ceaa8"
+        alt="comments"
+      />
+      <p class="numberofcomments">{{ tweetComments.length }}</p>
+    </div>
+    
     <section v-if="isCommentsOpen === true">
-      <img src='https://www.flaticon.com/svg/vstatic/svg/359/359574.svg?token=exp=1620088891~hmac=24698fe5be15b0cddefc53a0fd53a7dd' alt="refresh" @click="getComments">
+      <img
+        src="https://www.flaticon.com/svg/vstatic/svg/359/359574.svg?token=exp=1620088891~hmac=24698fe5be15b0cddefc53a0fd53a7dd"
+        alt="refresh"
+        @click="getComments"
+      />
       <div v-for="object in tweetComments" :key="object.id">
         <p>{{ object.username }}</p>
         <p>{{ object.content }}</p>
@@ -43,13 +51,15 @@ export default {
       return this.$store.state.currentUser;
     },
   },
+  mounted() {
+    this.getComments();
+  },
   props: {
     commentTweetId: Number,
   },
   methods: {
     viewComments: function () {
       if (this.isCommentsOpen === false) {
-        this.getComments();
         this.isCommentsOpen = !this.isCommentsOpen;
       } else {
         this.isCommentsOpen = !this.isCommentsOpen;
@@ -107,5 +117,11 @@ export default {
 <style lang="scss" scoped>
 img {
   width: 20px;
+  z-index: 5;
+}
+.numberofcomments {
+  margin-top: -23px;
+  font-size: 10px;
+  
 }
 </style>

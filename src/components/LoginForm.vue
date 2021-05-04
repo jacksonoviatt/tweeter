@@ -2,7 +2,7 @@
   <div>
     <form action="javascript:void(0)">
       
-      <input type="email" placeholder="email" id="loginEmail" autocomplete="" />
+      <input type="email" placeholder="email" id="loginEmail" autocomplete="" class="loginInput"/>
 
       <input
         type="password"
@@ -10,9 +10,10 @@
         placeholder="password"
         autocomplete=""
         id="loginPassword"
+        class="loginInput"
       />
    
-      <input type="submit" name="submitNewUser" id="loginButton" @click="attemptLogin" />
+      <input class="loginInput" type="submit" value="login" name="submitNewUser" id="loginButton" @click="attemptLogin" />
       <h3>{{ loginStatus }}</h3>
     </form>
   </div>
@@ -39,6 +40,9 @@ export default {
     } else if (this.storeCurrentUser){ this.$router.push("/"); }
   },
   methods: {
+    boxShadow: function(){
+      document
+    },
     attemptLogin: function () {
       axios
         .request({
@@ -78,9 +82,19 @@ form {
   gap: 30px;
 }
 #loginButton {
-  border: #ADB6C4 3px solid;
+  border: #ADB6C4 3px;
   border-radius: 10%;
   width: 100px;
-  height: 30px;
+ 
+}
+.loginInput {
+  background-color: #C6C3BC;
+  color: #000000;
+  padding: 5px 10px;
+  border: none;
+  box-shadow: #505B4833 3px 3px 5px, #505B4833 -3px 3px 5px, #505B4833 3px -3px 5px, #505B4833 -3px -3px 4px;
+ ::placeholder {
+   color: #E8EEE3;
+ }
 }
 </style>
