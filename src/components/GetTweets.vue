@@ -14,11 +14,11 @@
         :otherUserId="object.userId"
         :otherUserName="object.username"
       ></friend-profile>
-     <div class="line"></div>
-  
-        <created-at class="createdAt" :createdAt="object.createdAt"></created-at>
-        <!-- <p>{{ object.createdAt }}</p> -->
-   
+      <div class="line"></div>
+
+      <created-at class="createdAt" :createdAt="object.createdAt"></created-at>
+      <!-- <p>{{ object.createdAt }}</p> -->
+
       <p class="content">{{ object.content }}</p>
 
       <!-- <friend-profile v-if="openProfile === true"></friend-profile> -->
@@ -27,9 +27,9 @@
         v-if="object.tweetImageUrl"
         :src="object.tweetImageUrl"
         :alt="object.content"
-      />
+      /><like-tweet :tweetId="object.tweetId"></like-tweet>
       <comment-section :commentTweetId="object.tweetId"></comment-section>
-      <like-tweet :tweetId="object.tweetId"></like-tweet>
+      
     </div>
   </div>
 </template>
@@ -39,10 +39,16 @@ import axios from "axios";
 import EditTweet from "./EditTweet.vue";
 import FriendProfile from "./FriendProfile.vue";
 import CommentSection from "./CommentSection.vue";
-import CreatedAt from './CreatedAt.vue';
+import CreatedAt from "./CreatedAt.vue";
 import LikeTweet from "./LikeTweet.vue";
 export default {
-  components: { EditTweet, FriendProfile, CommentSection, CreatedAt, LikeTweet },
+  components: {
+    EditTweet,
+    FriendProfile,
+    CommentSection,
+    CreatedAt,
+    LikeTweet,
+  },
   name: "get-tweet",
 
   computed: {
@@ -100,9 +106,9 @@ export default {
   // border: cornflowerblue 2px solid;
   height: 100%;
   width: 250px;
-  background: #F6F7F3;
-  box-shadow: #88997C 2px 2px 2px;
-  color: #282E24;
+  background: #f6f7f3;
+  box-shadow: #88997c 2px 2px 2px;
+  color: #282e24;
   .tweetImage {
     width: 100px;
   }
@@ -119,9 +125,8 @@ export default {
   .line {
     width: 70%;
     height: 1px;
-    background: #282E24;
+    background: #282e24;
     margin: 10px 10px;
-  
   }
   .content {
     text-align: left;

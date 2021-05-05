@@ -1,25 +1,25 @@
 <template>
   <div>
-    <div v-for="object in thisTweetsLikes" :key="object.id">
+    <div v-for="object in thisCommentsLikes" :key="object.id">
       <img
-      class="unlikeTweet"
-        @click="unlikeTweet"
+      class="unlikeComment"
+        @click="unlikeComment"
         v-if="object.userId === storeCurrentUser.userId"
         src="../assets/liked.png"
         alt="liked"
       />
     </div>
     <img
-      class="likeTweet"
-      @click="likeTweet"
+      class="likeComment"
+      @click="likeComment"
       src="../assets/like.png"
       alt="like"
     />
     <div class="showWhoLiked" @click="showWhoLiked = !showWhoLiked">
-      <p>{{ thisTweetsLikes.length }}</p>
+      <p>{{ thisCommentsLikes.length }}</p>
     </div>
     <section v-if="showWhoLiked === true">
-      <div v-for="object in thisTweetsLikes" :key="object.id">
+      <div v-for="object in thisCommentsLikes" :key="object.id">
         <p>{{ object.username }}</p>
         <p>{{ object.userId }}</p>
       </div>
@@ -30,13 +30,12 @@
 <script>
 import axios from "axios";
 export default {
-  name: "like-tweet",
+  name: "like-Comment",
   data() {
     return {
       liked: false,
-      thisTweetsLikes: [],
+      thisCommentsLikes: [],
       showWhoLiked: false,
-
     };
   },
   computed: {
@@ -45,66 +44,66 @@ export default {
     },
   },
   props: {
-    tweetId: Number,
+    commentId: Number,
   },
   mounted() {
-    this.getTweetLikes();
-    //   console.log(this.thisTweetsLikes.userId);
-    //   for(this.i=0; this.i<this.thisTweetsLikes; this.i++) {
-    //       if(this.thisTweetsLikes[this.i].userId === this.storeCurrentUser.userId) {
+    this.getCommentLikes();
+    //   console.log(this.thisCommentsLikes.userId);
+    //   for(this.i=0; this.i<this.thisCommentsLikes; this.i++) {
+    //       if(this.thisCommentsLikes[this.i].userId === this.storeCurrentUser.userId) {
     //     //   this.liked = true;
-    //     console.log(this.thisTweetsLikes[this.i].userId);
+    //     console.log(this.thisCommentsLikes[this.i].userId);
     //   }
     //   }
   },
   methods: {
-    likeTweet: function () {
+    likeComment: function () {
       this.liked = true;
       axios
         .request({
           method: "POST",
-          url: "https://tweeterest.ml/api/tweet-likes",
+          url: "https://tweeterest.ml/api/comment-likes",
           headers: {
             "Content-Type": "application/json",
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             loginToken: this.storeCurrentUser.loginToken,
-            tweetId: this.tweetId,
+            commentId: this.commentId,
           },
         })
         .then((res) => {
           console.log(res.data);
-          this.getTweetLikes();
+          this.getCommentLikes();
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    getTweetLikes: function () {
+    getCommentLikes: function () {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/tweet-likes",
+          url: "https://tweeterest.ml/api/comment-likes",
           headers: {
             "Content-Type": "application/json",
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           params: {
-            tweetId: this.tweetId,
+            commentId: this.commentId,
           },
         })
         .then((res) => {
-          this.thisTweetsLikes = res.data;
+          this.thisCommentsLikes = res.data;
           
-        //   this.thisTweetsLikes = resultData.filter(
-        //     (resultData) => resultData.tweetId === this.tweetId
+        //   this.thisCommentsLikes = resultData.filter(
+        //     (resultData) => resultData.CommentId === this.CommentId
         //   );
-        //   console.log(this.thisTweetsLikes);
-          // this.userLiked = this.thisTweetsLikes.userId.filter(thisTweetsLikes => thisTweetsLikes.userId === this.storeCurrentUser.userId);
-        //   for (this.i = 0; this.i < this.thisTweetsLikes; this.i++) {
-            // if (this.thisTweetsLikes[this.i].userId ===) {
-            // console.log(this.thisTweetsLikes[this.i].userId);
+        //   console.log(this.thisCommentsLikes);
+          // this.userLiked = this.thisCommentsLikes.userId.filter(thisCommentsLikes => thisCommentsLikes.userId === this.storeCurrentUser.userId);
+        //   for (this.i = 0; this.i < this.thisCommentsLikes; this.i++) {
+            // if (this.thisCommentsLikes[this.i].userId ===) {
+            // console.log(this.thisCommentsLikes[this.i].userId);
             // }
         //   }
         })
@@ -112,30 +111,30 @@ export default {
           console.log(err);
         });
     },
-    unlikeTweet: function () {
+    unlikeComment: function () {
       this.liked = false;
       axios
         .request({
           method: "DELETE",
-          url: "https://tweeterest.ml/api/tweet-likes",
+          url: "https://tweeterest.ml/api/comment-likes",
           headers: {
             "Content-Type": "application/json",
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             loginToken: this.storeCurrentUser.loginToken,
-            tweetId: this.tweetId,
+            commentId: this.commentId,
           },
         })
         .then((res) => {
           console.log(res.data);
-          this.getTweetLikes();
+          this.getCommentLikes();
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    // filterTweets: function(){
+    // filterComments: function(){
 
     // }
   },
@@ -144,14 +143,14 @@ export default {
 
 <style lang="scss" scoped>
 img {
-  width: 20px;
+  width: 10px;
   position: absolute;
 
   margin-left: -90px;
 //   margin-top: -45px;
 margin-top: -10px;
 }
-.unlikeTweet {
+.unlikeComment {
     z-index: 2;
 }
 

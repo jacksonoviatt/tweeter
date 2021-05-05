@@ -14,6 +14,7 @@
         <p>{{ object.username }}</p>
         <p>{{ object.content }}</p>
         <edit-comment :editCommentId="object.commentId"></edit-comment>
+        <like-comment :commentId="object.commentId"></like-comment>
       </div>
       <form action="javascript:void(0)" autocomplete="off">
         <input
@@ -32,8 +33,9 @@
 <script>
 import axios from "axios";
 import EditComment from "./EditComment.vue";
+import LikeComment from './LikeComment.vue';
 export default {
-  components: { EditComment },
+  components: { EditComment, LikeComment },
   name: "comment-section",
   data() {
     return {
