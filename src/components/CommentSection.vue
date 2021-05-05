@@ -46,9 +46,9 @@ export default {
       return this.$store.state.currentUser;
     },
   },
-  mounted() {
-    this.getComments();
-  },
+  // mounted() {
+  //   this.getComments();
+  // },
   props: {
     commentTweetId: Number,
   },
