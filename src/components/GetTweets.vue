@@ -126,6 +126,8 @@ export default {
   .content {
     text-align: left;
     margin-left: 10px;
+    width: 70%;
+    padding-bottom: 20px;
   }
 }
 </style>

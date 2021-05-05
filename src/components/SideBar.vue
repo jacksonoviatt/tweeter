@@ -80,6 +80,7 @@ export default {
   display: grid;
   place-items: center;
   color: #282E24;
+  z-index: 3;
 }
 #xBars {
   width: 50px;

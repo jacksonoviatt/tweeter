@@ -145,12 +145,20 @@ export default {
 img {
   width: 20px;
   position: absolute;
+
+  margin-left: -90px;
+//   margin-top: -45px;
+margin-top: -10px;
 }
 .unlikeTweet {
-    z-index: 5;
+    z-index: 2;
 }
 
 .showWhoLiked {
-    padding-top: 40px;
+    margin-top: -10px;
+    margin-right: -100px;
+    position: absolute;
+    margin-left: 18px;
+    margin-top: -10px;
 }
 </style>

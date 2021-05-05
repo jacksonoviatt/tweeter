@@ -46,9 +46,9 @@ export default {
       return this.$store.state.currentUser;
     },
   },
-  // mounted() {
-  //   this.getComments();
-  // },
+  mounted() {
+    this.getComments();
+  },
   props: {
     commentTweetId: Number,
   },
@@ -112,7 +112,9 @@ export default {
 
 <style lang="scss" scoped>
 .comments {
-  margin-left: 160px;
+  margin-left: 200px;
+  margin-bottom: -15px;
+  padding-bottom: 10px;
    img {
     width: 20px;
     z-index: 5;
