@@ -13,7 +13,7 @@
       <div v-for="object in tweetComments" :key="object.id">
         <p>{{ object.username }}</p>
         <p>{{ object.content }}</p>
-        <edit-comment :editCommentId="object.commentId"></edit-comment>
+        <edit-comment v-if="storeCurrentUser.userId === object.userId" :editCommentId="object.commentId"></edit-comment>
         <like-comment :commentId="object.commentId"></like-comment>
       </div>
       <form action="javascript:void(0)" autocomplete="off">

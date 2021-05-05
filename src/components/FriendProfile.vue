@@ -1,23 +1,26 @@
 <template>
   <div>
     <h3 class="username" @click="getOtherUser">{{ otherUserName }}</h3>
-    <section class="otherProfiles" v-if="openOtherProfile === true"> 
-        <div class="green"></div>
+    <follow-someone :followId="otherUserId"></follow-someone>
+    
+    <section class="otherProfiles" v-if="openOtherProfile === true">
+      <user-follows :userId="otherUserId"></user-follows>
+      <div class="green"></div>
       <button @click="openOtherProfile = false">GO BACK</button>
       <h3 id="username">{{ otherUserData.username }}</h3>
-      <p>{{ otherUserData.bio }} </p>
+      <p>{{ otherUserData.bio }}</p>
       <friends-tweets :openOtherProfile="openOtherProfile"></friends-tweets>
-  
     </section>
-   
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import FriendsTweets from './FriendsTweets.vue';
+import FriendsTweets from "./FriendsTweets.vue";
+import FollowSomeone from "./FollowSomeone.vue";
+import UserFollows from "./UserFollows.vue";
 export default {
-  components: { FriendsTweets },
+  components: { FriendsTweets, FollowSomeone, UserFollows },
   name: "friend-profile",
   data() {
     return {
@@ -30,9 +33,8 @@ export default {
     otherUserName: String,
   },
   methods: {
-    
     getOtherUser: function () {
-        window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
       this.$store.commit("updateFriendsId", this.otherUserId);
       this.openOtherProfile = !this.openOtherProfile;
       axios
@@ -53,32 +55,27 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-        
     },
-
- },
-  
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 #username {
-    font-size: 40px;
+  font-size: 40px;
 }
 .otherProfiles {
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    position: absolute;
-    top: 0;
-    background: #294C60;
-    color: #ADB6C4;
-    
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  background: #294c60;
+  color: #adb6c4;
 }
 .green {
-    width: 100px;
-    height: 100px;
-
+  width: 100px;
+  height: 100px;
 }
 .username {
   text-align: left;
