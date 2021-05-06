@@ -1,15 +1,19 @@
 <template>
   <div>
     <h3 class="username" @click="getOtherUser">{{ otherUserName }}</h3>
-    <follow-someone
-      
-      :followId="otherUserId"
-    ></follow-someone>
-<!-- @updateFollowStatus="handleFollowStatus" -->
+    <follow-someone :followId="otherUserId"></follow-someone>
+    <!-- @updateFollowStatus="handleFollowStatus" -->
     <section class="otherProfiles" v-if="openOtherProfile === true">
+      <div class="banner">
+        <p>This Image is Not Available</p>
+        <img :src="otherUserData.bannerUrl" alt="imageBanner" />
+      </div>
       <user-follows :userId="otherUserId"></user-follows>
       <button @click="getAllTweetsOnGoBack">GO BACK</button>
-      <h3 id="username">{{ otherUserData.username }}</h3>
+      <div>
+        <h3 id="username">{{ otherUserData.username }}</h3>
+        <img class="profileImg" :src="otherUserData.imageUrl" />
+      </div>
       <p>{{ otherUserData.bio }}</p>
 
       <friends-tweets :openOtherProfile="openOtherProfile"></friends-tweets>
@@ -28,7 +32,6 @@ export default {
     FriendsTweets,
     FollowSomeone,
     UserFollows,
-
   },
   name: "friend-profile",
   data() {
@@ -102,7 +105,6 @@ export default {
         });
       this.openOtherProfile = false;
     },
-
   },
 };
 </script>
@@ -119,12 +121,29 @@ export default {
   top: 0;
   left: 0;
 
-  background: #f6f7f3;
+  background: #ecefe6;
   // color: #adb6c4;
   z-index: 8;
 }
 .username {
   text-align: left;
   margin: 10px 15px;
+}
+.banner {
+  display: grid;
+  place-items: center;
+  background: #c6c3bc;
+  height: 150px;
+  width: 100%;
+  img {
+    object-fit: cover;
+    height: 150px;
+    width: 100%;
+  }
+  p {
+    position: absolute;
+    z-index: -1;
+  }
+  
 }
 </style>

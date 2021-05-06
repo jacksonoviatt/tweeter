@@ -1,8 +1,6 @@
 <template>
   <div id="friendsTweets">
     <div class="friendsTweetContainer" v-for="object in friendsTweets" :key="object.string">
-
-      <h4>{{ object.username }}</h4>
       <div class="line"></div>
       <created-at class="createdAt" :createdAt="object.createdAt"></created-at>
       <p class="content">{{ object.content }}</p>
@@ -73,7 +71,7 @@ export default {
   display: grid;
   place-items: center;
   margin-top: 30px;
-  gap: 20px;
+  gap: 60px;
 }
 .friendsTweetContainer {
   margin: 10px;
@@ -84,6 +82,7 @@ export default {
   box-shadow: #88997c 2px 2px 2px;
   color: #282e24;
   display: grid;
+  padding: 0px 0 20px;
   // place-items: center;
   .tweetImage {
     width: 100px;
@@ -102,7 +101,7 @@ export default {
     width: 70%;
     height: 1px;
     background: #282e24;
-    margin: 10px 10px;
+    margin: 20px 10px -10px;
   }
   .content {
     text-align: left;
@@ -111,5 +110,6 @@ export default {
     padding-bottom: 20px;
     color: red;
   }
+ 
   }
 </style>
