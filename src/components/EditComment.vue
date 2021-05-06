@@ -18,11 +18,10 @@
       />
       <br />
       <input type="submit" value="Save My Changes" @click="postEditedComment" />
-   
-    </form> 
-    
+    </form>
+
     <button v-if="editCommentClicked === true" @click="deleteTheComment">
-     Delete Comment
+      Delete Comment
     </button>
   </div>
 </template>
@@ -42,17 +41,18 @@ export default {
     },
   },
   props: {
-    editCommentId: Number
+    editCommentId: Number,
+    getTheComments: Function,
   },
   methods: {
-      postEditedComment: function() {
-          this.patchComment();
-          this.editCommentClicked = !this.editCommentClicked;
-      },
-      deleteTheComment: function() {
-          this.deleteComment();
-          this.editCommentClicked = !this.editCommentClicked;
-      },
+    postEditedComment: function () {
+      this.patchComment();
+      this.editCommentClicked = !this.editCommentClicked;
+    },
+    deleteTheComment: function () {
+      this.deleteComment();
+      this.editCommentClicked = !this.editCommentClicked;
+    },
     patchComment: function () {
       axios
         .request({
@@ -70,13 +70,13 @@ export default {
         })
         .then((res) => {
           console.log(res);
-        //   location.reload();
+          this.getTheComments();
         })
         .catch((err) => {
           console.log(err);
         });
     },
-     deleteComment: function () {
+    deleteComment: function () {
       axios
         .request({
           method: "DELETE",
@@ -92,6 +92,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
+          this.getTheComments();
         })
         .catch((err) => {
           console.log(err);

@@ -60,7 +60,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           this.friendsTweets = res.data
             .sort(function (a, b) {
               return new Date(a.createdAt) - new Date(b.createdAt);

@@ -13,7 +13,7 @@
       <friend-profile
         :otherUserId="object.userId"
         :otherUserName="object.username"
-        @updateFollowStatusAgain="handleFollowStatusAgain"
+      
       ></friend-profile>
       <div class="line"></div>
 
@@ -89,7 +89,7 @@ export default {
         
         })
         .then((res) => {
-          console.log(res);
+          // console.log(rses);
           let orderedTweets = res.data
             .sort(function (a, b) {
               return new Date(a.createdAt) - new Date(b.createdAt);

@@ -1,15 +1,28 @@
 <template>
   <div>
-    <img class="editTweet" @click="editTweetClicked = !editTweetClicked"
+    <img
+      class="editTweet"
+      @click="editTweetClicked = !editTweetClicked"
       src="https://www.flaticon.com/svg/vstatic/svg/1159/1159876.svg?token=exp=1619905929~hmac=877dd4d104f6474015cf5d003e8eb352"
       alt="edit tweet icons"
     />
-    <form v-if="editTweetClicked === true" action="javascript:void(0)" autocomplete="off">
-      <input type="text" placeholder="edit your tweet" autocomplete="null" id="editTweet" />
+    <form
+      v-if="editTweetClicked === true"
+      action="javascript:void(0)"
+      autocomplete="off"
+    >
+      <input
+        type="text"
+        placeholder="edit your tweet"
+        autocomplete="null"
+        id="editTweet"
+      />
       <br />
       <input type="submit" value="Save My Changes" @click="patchTweet" />
     </form>
-    <button v-if="editTweetClicked === true" @click="deleteTweet">Delete Tweet</button>
+    <button v-if="editTweetClicked === true" @click="deleteTweet">
+      Delete Tweet
+    </button>
   </div>
 </template>
 
@@ -23,15 +36,15 @@ export default {
     };
   },
   computed: {
-      storeCurrentUser() {
-          return this.$store.state.currentUser;
-      }
+    storeCurrentUser() {
+      return this.$store.state.currentUser;
+    },
   },
   props: {
-      editTweetId: Number,
+    editTweetId: Number,
   },
   methods: {
-      patchTweet: function () {
+    patchTweet: function () {
       axios
         .request({
           method: "PATCH",
@@ -47,14 +60,14 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
-          location.reload();
+          console.log(res.data);
+          this.getAllTweets();
         })
         .catch((err) => {
           console.log(err);
         });
     },
-  deleteTweet() {
+    deleteTweet() {
       axios
         .request({
           method: "DELETE",
@@ -69,17 +82,38 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
-          location.reload();
+          console.log(res.data);
+          this.getAllTweets();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getAllTweets: function () {
+      axios
+        .request({
+          method: "GET",
+          url: "https://tweeterest.ml/api/tweets",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+          },
+        })
+        .then((res) => {
+          // console.log(res);
+          let orderedTweets = res.data
+            .sort(function (a, b) {
+              return new Date(a.createdAt) - new Date(b.createdAt);
+            })
+            .slice()
+            .reverse();
+          this.$store.commit("updateTweets", orderedTweets);
         })
         .catch((err) => {
           console.log(err);
         });
     },
   },
-
-
-
 };
 </script>
 
@@ -89,6 +123,5 @@ export default {
   position: absolute;
   margin: 20px;
   margin-left: 90px;
-  
 }
 </style>

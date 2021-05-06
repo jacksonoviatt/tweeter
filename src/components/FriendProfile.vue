@@ -85,7 +85,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.otherUserData = res.data[0];
         })
         .catch((err) => {
@@ -103,7 +103,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           let orderedTweets = res.data
             .sort(function (a, b) {
               return new Date(a.createdAt) - new Date(b.createdAt);

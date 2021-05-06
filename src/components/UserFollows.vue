@@ -50,7 +50,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.numberOfFollowers = res.data;
         })
         .catch((err) => {
@@ -71,7 +71,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           this.numberOfFollows = res.data;
         })
         .catch((err) => {

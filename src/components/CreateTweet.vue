@@ -1,12 +1,12 @@
 <template>
   <div>
-      <form action="javascript:void(0)" autocomplete="off">
-          <input type="text" id="tweetContent" placeholder="tweet content">
-          <br>
-          <input type="text" id="userImage" placeholder="image url">
-<br>
-          <input type="submit" value="See tweet!" @click="createTweet">
-      </form>
+    <form action="javascript:void(0)" autocomplete="off">
+      <input type="text" id="tweetContent" placeholder="tweet content" />
+      <br />
+      <input type="text" id="userImage" placeholder="image url" />
+      <br />
+      <input type="submit" value="See tweet!" @click="createTweet" />
+    </form>
   </div>
 </template>
 
@@ -20,8 +20,11 @@ export default {
     },
   },
   methods: {
-    check: function(){
-      console.log(document.getElementById("tweetContent").value + this.storeCurrentUser.loginToken);
+    check: function () {
+      console.log(
+        document.getElementById("tweetContent").value +
+          this.storeCurrentUser.loginToken
+      );
     },
     createTweet: function () {
       axios
@@ -35,12 +38,36 @@ export default {
           data: {
             content: document.getElementById("tweetContent").value,
             imageUrl: document.getElementById("userImage").value,
-            loginToken: this.storeCurrentUser.loginToken,         
+            loginToken: this.storeCurrentUser.loginToken,
+          },
+        })
+        .then((res)  => {
+          console.log(res.data + " create tweet");
+          this.getAllTweets();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getAllTweets: function () {
+      axios
+        .request({
+          method: "GET",
+          url: "https://tweeterest.ml/api/tweets",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
         })
         .then((res) => {
-          console.log(res);
-          location.reload();
+          // console.log(res);
+          let orderedTweets = res.data
+            .sort(function (a, b) {
+              return new Date(a.createdAt) - new Date(b.createdAt);
+            })
+            .slice()
+            .reverse();
+          this.$store.commit("updateTweets", orderedTweets);
         })
         .catch((err) => {
           console.log(err);
