@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <div v-for="object in friendsTweets" :key="object.string">
+  <div id="friendsTweets">
+    <div class="friendsTweetContainer" v-for="object in friendsTweets" :key="object.string">
 
       <h4>{{ object.username }}</h4>
-      <p>{{ object.content }}</p>
-      <img v-if="object.tweetImageUrl" :src="object.tweetImageUrl" :alt="object.content">
+      <div class="line"></div>
+      <created-at class="createdAt" :createdAt="object.createdAt"></created-at>
+      <p class="content">{{ object.content }}</p>
+      <img class="tweetImage" v-if="object.tweetImageUrl" :src="object.tweetImageUrl" :alt="object.content">
       <comment-section :commentTweetId="object.tweetId"></comment-section>
     </div> 
     
@@ -14,9 +16,10 @@
 <script>
 import axios from 'axios';
 import CommentSection from './CommentSection.vue';
+import CreatedAt from './CreatedAt.vue';
 
 export default {
-  components: { CommentSection },
+  components: { CommentSection, CreatedAt },
   name: "friends-tweets",
 
   data() {
@@ -66,5 +69,47 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+#friendsTweets {
+  display: grid;
+  place-items: center;
+  margin-top: 30px;
+  gap: 20px;
+}
+.friendsTweetContainer {
+  margin: 10px;
+  // border: cornflowerblue 2px solid;
+  height: 100%;
+  width: 250px;
+  background: #f6f7f3;
+  box-shadow: #88997c 2px 2px 2px;
+  color: #282e24;
+  display: grid;
+  // place-items: center;
+  .tweetImage {
+    width: 100px;
+  }
+  .createdAt {
+    text-align: left;
+    margin: 10px;
+    font-size: 10px;
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+  }
+  .dateButton {
+    width: 10px;
+  }
+  .line {
+    width: 70%;
+    height: 1px;
+    background: #282e24;
+    margin: 10px 10px;
+  }
+  .content {
+    text-align: left;
+    margin-left: 10px;
+    width: 70%;
+    padding-bottom: 20px;
+    color: red;
+  }
+  }
 </style>

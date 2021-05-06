@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     likeTweet: function () {
-      this.liked = true;
+      // this.liked = true;
       axios
         .request({
           method: "POST",
@@ -113,7 +113,7 @@ export default {
         });
     },
     unlikeTweet: function () {
-      this.liked = false;
+      // this.liked = false;
       axios
         .request({
           method: "DELETE",

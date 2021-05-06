@@ -42,6 +42,7 @@ import CommentSection from "./CommentSection.vue";
 import CreatedAt from "./CreatedAt.vue";
 import LikeTweet from "./LikeTweet.vue";
 export default {
+  name: "get-tweets",
   components: {
     EditTweet,
     FriendProfile,
@@ -49,8 +50,7 @@ export default {
     CreatedAt,
     LikeTweet,
   },
-  name: "get-tweet",
-
+  
   computed: {
     storeTweets() {
       return this.$store.state.tweets;
@@ -58,9 +58,7 @@ export default {
     storeCurrentUser() {
       return this.$store.state.currentUser;
     },
-    // storeFriendsId() {
-    //   return this.$store.state.friendsId;
-    // }
+
   },
   mounted: function () {
     this.getAllTweets();
@@ -75,6 +73,7 @@ export default {
             "Content-Type": "application/json",
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
+        
         })
         .then((res) => {
           console.log(res);
@@ -119,9 +118,9 @@ export default {
     display: grid;
     grid-template-columns: 1fr 8fr;
   }
-  .dateButton {
-    width: 10px;
-  }
+  // .dateButton {
+  //   width: 10px;
+  // }
   .line {
     width: 70%;
     height: 1px;
@@ -134,5 +133,6 @@ export default {
     width: 70%;
     padding-bottom: 20px;
   }
+  
 }
 </style>
