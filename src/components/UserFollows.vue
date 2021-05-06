@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section v-if="storeCurrentUser.userId !== userId">
+    <section>
       <h3>Follows: {{ numberOfFollows.length }}</h3>
       <div v-for="object in numberOfFollows" :key="object.id">
         {{ object.username }}

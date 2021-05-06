@@ -21,6 +21,16 @@
       <br />
       <p>bio</p>
       <input type="text" name="bio" placeholder="bio" id="signUpBio" />
+       <br />
+       <p>Image</p>
+     
+       <input type="text" placeholder="New Profile Image" id="signUpImageUrl" />
+      <br />
+      <p>Banner:</p>
+    
+      <input type="text" placeholder="New Banner Image" id="signUpBannerUrl" />
+
+      <br />
       <p>birthday</p>
       <input type="date" name="birthday" id="signUpBirthday" />
       <br />
@@ -51,6 +61,9 @@ export default {
             password: document.getElementById("signUpPassword").value,
             bio: document.getElementById("signUpBio").value,
             birthdate: document.getElementById("signUpBirthday").value,
+            bannerUrl: document.getElementById("signUpBannerUrl").value,
+            imageUrl: document.getElementById("signUpImageUrl").value,
+            
           },
         })
         .then((res) => {
