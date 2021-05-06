@@ -1,14 +1,17 @@
 <template>
   <div>
     <h3 class="username" @click="getOtherUser">{{ otherUserName }}</h3>
-    <follow-someone :followId="otherUserId"></follow-someone>
-
+    <follow-someone
+      
+      :followId="otherUserId"
+    ></follow-someone>
+<!-- @updateFollowStatus="handleFollowStatus" -->
     <section class="otherProfiles" v-if="openOtherProfile === true">
       <user-follows :userId="otherUserId"></user-follows>
       <button @click="getAllTweetsOnGoBack">GO BACK</button>
       <h3 id="username">{{ otherUserData.username }}</h3>
       <p>{{ otherUserData.bio }}</p>
-      
+
       <friends-tweets :openOtherProfile="openOtherProfile"></friends-tweets>
     </section>
   </div>
@@ -32,13 +35,25 @@ export default {
     return {
       openOtherProfile: false,
       otherUserData: [{}],
+      updateFollows: false,
     };
   },
   props: {
     otherUserId: Number,
     otherUserName: String,
   },
+  // mounted () {
+  //   if(this.updateFollows === true){
+  //     // this.getFollowInformation();
+  //     this.$forceUpdate();
+  //     console.log("forced update");
+  //   }
+  // },
   methods: {
+    // handleFollowStatus: function (data) {
+    //   this.updateFollows = data;
+    //   this.$emit('updateFollowStatusAgain', this.updateFollows);
+    // },
     getOtherUser: function () {
       window.scrollTo(0, 0);
       this.$store.commit("updateFriendsId", this.otherUserId);
@@ -63,7 +78,6 @@ export default {
         });
     },
     getAllTweetsOnGoBack: function () {
-      
       axios
         .request({
           method: "GET",
@@ -86,9 +100,9 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-     this.openOtherProfile = false   
+      this.openOtherProfile = false;
     },
-    
+
   },
 };
 </script>
@@ -99,7 +113,7 @@ export default {
 }
 .otherProfiles {
   width: 100%;
-height: 1000%;
+  height: 1000%;
 
   position: absolute;
   top: 0;
@@ -108,7 +122,6 @@ height: 1000%;
   background: #f6f7f3;
   // color: #adb6c4;
   z-index: 8;
-  
 }
 .username {
   text-align: left;

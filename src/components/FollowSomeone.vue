@@ -32,6 +32,7 @@ export default {
     this.getUserFollows();
   },
   methods: {
+  
     followFriend: function () {
       axios
         .request({
@@ -49,6 +50,8 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.getUserFollows();
+          location.reload();
+          // this.$emit('updateFollowStatus', true);
         })
         .catch((err) => {
           console.log(err);
@@ -73,12 +76,16 @@ export default {
           console.log(res.data);
           console.log("hello");
           this.getUserFollows();
+          location.reload();
+          // this.$emit('updateFollowStatus', true);
         })
         .catch((err) => {
           console.log(err);
         });
+        
     },
     getUserFollows() {
+      
       axios
         .request({
           method: "GET",
@@ -94,6 +101,7 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.getAllFollows = res.data;
+          
           //   console.log(this.thisTweetsLikes.userId);
         })
         .catch((err) => {
@@ -115,6 +123,5 @@ button {
 }
 .unfollowUser {
   z-index: 2;
- 
 }
 </style>

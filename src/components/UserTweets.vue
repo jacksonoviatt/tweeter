@@ -3,6 +3,7 @@
     <div v-for="object in storeCurrentUserTweets" :key="object.string">
         <edit-tweet :editTweetId="object.tweetId"></edit-tweet>
       <h4>{{ object.username }}</h4>
+      <created-at></created-at>
       <p>{{ object.content }}</p>
       <img v-if="object.tweetImageUrl" :src="object.tweetImageUrl" :alt="object.content">
     <comment-section :commentTweetId="object.tweetId"></comment-section>
@@ -15,8 +16,9 @@
 import axios from 'axios';
 import CommentSection from "./CommentSection"
 import EditTweet from './EditTweet.vue';
+import CreatedAt from './CreatedAt.vue';
 export default {
-  components: { EditTweet, CommentSection},
+  components: { EditTweet, CommentSection, CreatedAt},
   name: "user-tweets",
   computed: {
       storeCurrentUser() {
@@ -58,4 +60,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 </style>

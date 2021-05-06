@@ -13,6 +13,7 @@
       <friend-profile
         :otherUserId="object.userId"
         :otherUserName="object.username"
+        @updateFollowStatusAgain="handleFollowStatusAgain"
       ></friend-profile>
       <div class="line"></div>
 
@@ -50,7 +51,11 @@ export default {
     CreatedAt,
     LikeTweet,
   },
-  
+  data() {
+    return {
+      refreshFollows: false,
+    }
+  },
   computed: {
     storeTweets() {
       return this.$store.state.tweets;
@@ -64,6 +69,14 @@ export default {
     this.getAllTweets();
   },
   methods: {
+    handleFollowStatusAgain: function(data){
+      // this.updateFollows = data;
+      this.refreshFollows = data;
+      //  if(this.refreshFollows === true) {
+        this.$forceUpdate();
+      // }
+      
+    },
     getAllTweets: function () {
       axios
         .request({
