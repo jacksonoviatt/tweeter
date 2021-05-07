@@ -1,38 +1,77 @@
 <template>
   <div id="getTweets">
-    
     <!-- loop through the array of tweet information -->
-    <div
-      class="tweetContainer"
-      v-for="object in storeTweets"
-      :key="object.string"
-    >
-      <edit-tweet
-        v-if="storeCurrentUser.userId === object.userId"
-        :editTweetId="object.tweetId"
-      ></edit-tweet>
-      <friend-profile
-        :otherUserId="object.userId"
-        :otherUserName="object.username"
-        :getTweetsFunction="getAllTweets"
-      ></friend-profile>
-      <div class="line"></div>
+    <section v-if="seeFollowsTweets === false">
+      <div
+        class="tweetContainer"
+        v-for="object in storeTweets"
+        :key="object.string"
+      >
+        <edit-tweet
+          v-if="storeCurrentUser.userId === object.userId"
+          :editTweetId="object.tweetId"
+        ></edit-tweet>
+        <friend-profile
+          :otherUserId="object.userId"
+          :otherUserName="object.username"
+          :getTweetsFunction="getAllTweets"
+        ></friend-profile>
+        <div class="line"></div>
 
-      <created-at class="createdAt" :createdAt="object.createdAt"></created-at>
-      <!-- <p>{{ object.createdAt }}</p> -->
+        <created-at
+          class="createdAt"
+          :createdAt="object.createdAt"
+        ></created-at>
+        <!-- <p>{{ object.createdAt }}</p> -->
 
-      <p  class="content">{{ object.content }}</p>
+        <p class="content">{{ object.content }}</p>
 
-      <!-- <friend-profile v-if="openProfile === true"></friend-profile> -->
-      <img
-        class="tweetImage"
-        v-if="object.tweetImageUrl"
-        :src="object.tweetImageUrl"
-        :alt="object.content"
-      /><like-tweet :tweetId="object.tweetId"></like-tweet>
-      <comment-section :commentTweetId="object.tweetId"></comment-section>
-      
-    </div>
+        <!-- <friend-profile v-if="openProfile === true"></friend-profile> -->
+        <img
+          class="tweetImage"
+          v-if="object.tweetImageUrl"
+          :src="object.tweetImageUrl"
+          :alt="object.content"
+        /><like-tweet :tweetId="object.tweetId"></like-tweet>
+        <comment-section :commentTweetId="object.tweetId"></comment-section>
+      </div>
+    </section>
+    <section v-if="seeFollowsTweets === true">
+      <div class="tweetContainer" v-for="tweet in storeTweets" :key="tweet.id">
+        <div v-for="object in userFollows" :key="object.id">
+        
+          <div v-if="object.userId === tweet.userId">
+            <edit-tweet
+              v-if="storeCurrentUser.userId === tweet.userId"
+              :editTweetId="tweet.tweetId"
+            ></edit-tweet>
+            <friend-profile
+              :otherUserId="tweet.userId"
+              :otherUserName="tweet.username"
+              :getTweetsFunction="getAllTweets"
+            ></friend-profile>
+            <div class="line"></div>
+
+            <created-at
+              class="createdAt"
+              :createdAt="tweet.createdAt"
+            ></created-at>
+            <!-- <p>{{ object.createdAt }}</p> -->
+
+            <p class="content">{{ tweet.content }}</p>
+
+            <!-- <friend-profile v-if="openProfile === true"></friend-profile> -->
+            <img
+              class="tweetImage"
+              v-if="tweet.tweetImageUrl"
+              :src="tweet.tweetImageUrl"
+              :alt="tweet.content"
+            /><like-tweet :tweetId="tweet.tweetId"></like-tweet>
+            <comment-section :commentTweetId="tweet.tweetId"></comment-section>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -52,7 +91,14 @@ export default {
     CreatedAt,
     LikeTweet,
   },
-
+  data() {
+    return {
+      // tweets: [],
+      seeFollowsTweets: true,
+      userFollow: [],
+      userFollows: [],
+    };
+  },
   computed: {
     storeTweets() {
       return this.$store.state.tweets;
@@ -60,10 +106,10 @@ export default {
     storeCurrentUser() {
       return this.$store.state.currentUser;
     },
-
   },
   mounted: function () {
     this.getAllTweets();
+    this.getUserFollows();
   },
   methods: {
     getAllTweets: function () {
@@ -75,24 +121,37 @@ export default {
             "Content-Type": "application/json",
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
-        
         })
         .then((res) => {
-          // console.log(rses);
           let orderedTweets = res.data
             .sort(function (a, b) {
               return new Date(a.createdAt) - new Date(b.createdAt);
             })
             .slice()
             .reverse();
+          // if (this.seeFollowsTweets === false) {
           this.$store.commit("updateTweets", orderedTweets);
+          // this.tweets = orderedTweets;
+          // console.log(this.tweets);
+          // } else if (this.seeFollowsTweets === true) {
+          //   let friendsTweets = this.userFollows.filter(
+          //     (userFollows) =>
+          //       userFollows.userId === this.storeCurrentUser.userId
+          //   );
+          //   console.log(friendsTweets);
+
+          //   for (this.i = 0; this.i < this.userFollow.length; this.i++) {
+          //     this.tweets = orderedTweets.filter(
+          //       (orderedTweets) => orderedTweets.username === this.userFollow[this.i].username
+          //     );
+          // }
+          // }
         })
         .catch((err) => {
           console.log(err);
         });
     },
-       getUserFollows() {
-      
+    getUserFollows() {
       axios
         .request({
           method: "GET",
@@ -101,11 +160,17 @@ export default {
             "Content-Type": "application/json",
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
+          params: {
+            userId: this.storeCurrentUser.userId,
+          },
         })
         .then((res) => {
-          console.log(res.data);
-          this.$store.commit("updateGetAllFollows", res.data)
-          
+          // console.log(res.data);
+          this.userFollows = res.data;
+          console.log(this.userFollows);
+          //  this.userFollow = res.data;
+          //     console.log(this.userFollow[0] + "userFollow");
+
           //   console.log(this.thisTweetsLikes.userId);
         })
         .catch((err) => {
@@ -124,7 +189,7 @@ export default {
   gap: 20px;
 }
 .tweetContainer {
-  margin: 10px;
+  margin: 50px 10px;
   // border: cornflowerblue 2px solid;
   height: 100%;
   width: 250px;
@@ -156,6 +221,5 @@ export default {
     width: 70%;
     padding-bottom: 20px;
   }
-  
 }
 </style>

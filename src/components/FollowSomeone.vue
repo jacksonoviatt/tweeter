@@ -18,10 +18,7 @@
         <h4>{{ numberOfFollows}}</h4>
         <h6>Follows</h6>
       </span>
-      <!-- <div v-for="object in numberOfFollows" :key="object.id">
-         {{ object.username }} 
-         
-      </div> -->
+     
       <span>
         <h4>{{ numberOfFollowers.length }}</h4>
         <h6>Followers</h6>
