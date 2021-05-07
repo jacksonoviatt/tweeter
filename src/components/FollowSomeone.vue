@@ -1,21 +1,21 @@
 <template>
   <div>
     <section v-if="storeCurrentUser.userId !== followId"> 
-      <div v-for="object in getAllFollows" :key="object.id">
-        <button
+      <div v-for="object in numberOfFollowers" :key="object.string">
+         <button
           @click="unfollowFriend"
           v-if="storeCurrentUser.username === object.username"
           class="unfollowUser"
-        >
-          Unfollow
+        >    Unfollow
         </button>
-      </div>
+      </div> 
+        
 
       <button class="followFriend" @click="followFriend">Follow</button>
     </section>
     <section class="followNumbers">
       <span>
-        <h4>{{ numberOfFollows.length }}</h4>
+        <h4>{{ numberOfFollows}}</h4>
         <h6>Follows</h6>
       </span>
       <!-- <div v-for="object in numberOfFollows" :key="object.id">
@@ -43,6 +43,7 @@ export default {
       getAllFollows: [],
       numberOfFollows: Number,
       numberOfFollowers: Number,
+    
     };
   },
   computed: {
@@ -127,7 +128,7 @@ export default {
         })
         .then((res) => {
           // console.log(res.data);
-          this.numberOfFollowers = res.data.length;
+          this.numberOfFollowers = res.data;
         })
         .catch((err) => {
           console.log(err);
@@ -148,8 +149,9 @@ export default {
         })
         .then((res) => {
           console.log(res.data.length);
-          // this.getAllFollows = res.data;
+          // userFollows = res.data;
           this.numberOfFollows = res.data.length;
+    
         })
         .catch((err) => {
           console.log(err);
