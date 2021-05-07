@@ -14,6 +14,7 @@ export default {
       return this.$store.state.tweets;
     },
   },
+  
 };
 </script>
 

@@ -7,7 +7,18 @@
     </div>
     
     <button class="followFriend" @click="followFriend">Follow</button>
+  <section>
+      <h3>Follows: {{ numberOfFollows.length }}</h3>
+      <div v-for="object in numberOfFollows" :key="object.id">
+        {{ object.username }}
+      </div>
+      <h3>Followers: {{ numberOfFollowers.length }}</h3>
+      <div v-for="object in numberOfFollowers" :key="object.id">
+        {{ object.username }}
+      </div>
+    </section>
   </div>
+  
 </template>
 
 <script>
@@ -18,18 +29,25 @@ export default {
     return {
       doesUserFollow: false,
       getAllFollows: [],
+      numberOfFollows: [],
+      numberOfFollowers: []
     };
   },
   computed: {
     storeCurrentUser() {
       return this.$store.state.currentUser;
     },
+    storeGetAllFollows() {
+      return this.$store.state.getAllFollows;
+    }
   },
   props: {
     followId: Number,
+    getTweetsFunction: Function
   },
   mounted() {
     this.getUserFollows();
+    this.getUserFollowers();
   },
   methods: {
   
@@ -50,7 +68,8 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.getUserFollows();
-          location.reload();
+          this.getUserFollowers();
+          // getTweetsFunction();
           // this.$emit('updateFollowStatus', true);
         })
         .catch((err) => {
@@ -76,7 +95,8 @@ export default {
           console.log(res.data);
           console.log("hello");
           this.getUserFollows();
-          location.reload();
+          this.getUserFollowers();
+          // location.reload();
           // this.$emit('updateFollowStatus', true);
         })
         .catch((err) => {
@@ -84,8 +104,29 @@ export default {
         });
         
     },
+    getUserFollowers: function () {
+      axios
+        .request({
+          method: "GET",
+          url: "https://tweeterest.ml/api/followers",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+          },
+          params: {
+            userId: this.followId,
+          },
+        })
+        .then((res) => {
+          // console.log(res.data);
+          this.numberOfFollowers = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     getUserFollows() {
-      
+
       axios
         .request({
           method: "GET",
@@ -117,11 +158,20 @@ img {
   width: 40px;
 }
 button {
-  width: 100px;
+  width: 80px;
+  height: 20px;
   position: absolute;
-  margin-top: -30px;
+  top: 105px;
+  left: 110px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #829376;
+  background:  #D9DFCD;
+  border-radius: 10px;
 }
 .unfollowUser {
   z-index: 2;
+  color: #D9DFCD;
+  background: #829376;
 }
 </style>

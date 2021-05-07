@@ -1,5 +1,6 @@
 <template>
   <div id="getTweets">
+    
     <!-- loop through the array of tweet information -->
     <div
       class="tweetContainer"
@@ -13,14 +14,14 @@
       <friend-profile
         :otherUserId="object.userId"
         :otherUserName="object.username"
-      
+        :getTweetsFunction="getAllTweets"
       ></friend-profile>
       <div class="line"></div>
 
       <created-at class="createdAt" :createdAt="object.createdAt"></created-at>
       <!-- <p>{{ object.createdAt }}</p> -->
 
-      <p class="content">{{ object.content }}</p>
+      <p  class="content">{{ object.content }}</p>
 
       <!-- <friend-profile v-if="openProfile === true"></friend-profile> -->
       <img
@@ -51,11 +52,7 @@ export default {
     CreatedAt,
     LikeTweet,
   },
-  data() {
-    return {
-      refreshFollows: false,
-    }
-  },
+
   computed: {
     storeTweets() {
       return this.$store.state.tweets;
@@ -69,14 +66,6 @@ export default {
     this.getAllTweets();
   },
   methods: {
-    handleFollowStatusAgain: function(data){
-      // this.updateFollows = data;
-      this.refreshFollows = data;
-      //  if(this.refreshFollows === true) {
-        this.$forceUpdate();
-      // }
-      
-    },
     getAllTweets: function () {
       axios
         .request({
@@ -97,6 +86,27 @@ export default {
             .slice()
             .reverse();
           this.$store.commit("updateTweets", orderedTweets);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+       getUserFollows() {
+      
+      axios
+        .request({
+          method: "GET",
+          url: "https://tweeterest.ml/api/follows",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          this.$store.commit("updateGetAllFollows", res.data)
+          
+          //   console.log(this.thisTweetsLikes.userId);
         })
         .catch((err) => {
           console.log(err);
