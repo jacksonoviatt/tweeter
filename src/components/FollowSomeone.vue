@@ -1,24 +1,36 @@
 <template>
-  <div v-if="storeCurrentUser.userId !== followId">
-      
-    <div v-for="object in getAllFollows" :key="object.id">
+  <div>
+    <section v-if="storeCurrentUser.userId !== followId"> 
+      <div v-for="object in getAllFollows" :key="object.id">
+        <button
+          @click="unfollowFriend"
+          v-if="storeCurrentUser.username === object.username"
+          class="unfollowUser"
+        >
+          Unfollow
+        </button>
+      </div>
 
-      <button @click="unfollowFriend" v-if="storeCurrentUser.username === object.username" class="unfollowUser">Unfollow</button>
-    </div>
-    
-    <button class="followFriend" @click="followFriend">Follow</button>
-  <section>
-      <h3>Follows: {{ numberOfFollows.length }}</h3>
-      <div v-for="object in numberOfFollows" :key="object.id">
+      <button class="followFriend" @click="followFriend">Follow</button>
+    </section>
+    <section class="followNumbers">
+      <span>
+        <h4>{{ numberOfFollows.length }}</h4>
+        <h6>Follows</h6>
+      </span>
+      <!-- <div v-for="object in numberOfFollows" :key="object.id">
+         {{ object.username }} 
+         
+      </div> -->
+      <span>
+        <h4>{{ numberOfFollowers.length }}</h4>
+        <h6>Followers</h6>
+      </span>
+      <!-- <div v-for="object in numberOfFollowers" :key="object.id">
         {{ object.username }}
-      </div>
-      <h3>Followers: {{ numberOfFollowers.length }}</h3>
-      <div v-for="object in numberOfFollowers" :key="object.id">
-        {{ object.username }}
-      </div>
+      </div> -->
     </section>
   </div>
-  
 </template>
 
 <script>
@@ -29,28 +41,27 @@ export default {
     return {
       doesUserFollow: false,
       getAllFollows: [],
-      numberOfFollows: [],
-      numberOfFollowers: []
+      numberOfFollows: Number,
+      numberOfFollowers: Number,
     };
   },
   computed: {
     storeCurrentUser() {
       return this.$store.state.currentUser;
     },
-    storeGetAllFollows() {
-      return this.$store.state.getAllFollows;
-    }
+    // storeGetAllFollows() {
+    //   return this.$store.state.getAllFollows;
+    // },
   },
   props: {
     followId: Number,
-    getTweetsFunction: Function
+    getTweetsFunction: Function,
   },
   mounted() {
     this.getUserFollows();
     this.getUserFollowers();
   },
   methods: {
-  
     followFriend: function () {
       axios
         .request({
@@ -96,13 +107,10 @@ export default {
           console.log("hello");
           this.getUserFollows();
           this.getUserFollowers();
-          // location.reload();
-          // this.$emit('updateFollowStatus', true);
         })
         .catch((err) => {
           console.log(err);
         });
-        
     },
     getUserFollowers: function () {
       axios
@@ -119,18 +127,17 @@ export default {
         })
         .then((res) => {
           // console.log(res.data);
-          this.numberOfFollowers = res.data;
+          this.numberOfFollowers = res.data.length;
         })
         .catch((err) => {
           console.log(err);
         });
     },
     getUserFollows() {
-
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/followers",
+          url: "https://tweeterest.ml/api/follows",
           headers: {
             "Content-Type": "application/json",
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
@@ -140,10 +147,9 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data);
-          this.getAllFollows = res.data;
-          
-          //   console.log(this.thisTweetsLikes.userId);
+          console.log(res.data.length);
+          // this.getAllFollows = res.data;
+          this.numberOfFollows = res.data.length;
         })
         .catch((err) => {
           console.log(err);
@@ -166,12 +172,20 @@ button {
   font-size: 12px;
   font-weight: 600;
   color: #829376;
-  background:  #D9DFCD;
+  background: #d9dfcd;
   border-radius: 10px;
 }
 .unfollowUser {
   z-index: 2;
-  color: #D9DFCD;
+  color: #d9dfcd;
   background: #829376;
+}
+.followNumbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  position: absolute;
+  top: 175px;
+  right: 40px;
 }
 </style>

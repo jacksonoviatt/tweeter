@@ -1,17 +1,21 @@
 <template>
   <div>
     <h3 class="username" @click="getOtherUser">{{ otherUserName }}</h3>
-    
-    <!-- @updateFollowStatus="handleFollowStatus" -->
+
     <section class="otherProfiles" v-if="openOtherProfile === true">
       <div class="banner">
-     
-        <img v-if="otherUserData.bannerUrl"
+        <img
+          v-if="otherUserData.bannerUrl"
           :src="otherUserData.bannerUrl"
           alt="imageBanner"
           class="bannerImg"
         />
-        <img class="bannerImg" v-if="otherUserData.bannerUrl === null" src="https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="banner not available">
+        <img
+          class="bannerImg"
+          v-if="otherUserData.bannerUrl === null"
+          src="https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          alt="banner not available"
+        />
         <div class="userIdentity">
           <img class="profileImage" :src="otherUserData.imageUrl" />
           <img
@@ -25,12 +29,13 @@
         </div>
         <div class="goBack" @click="getAllTweetsOnGoBack">
           <img src="../assets/backArrow.svg" alt="back arrow" />
-        </div>   
-             <follow-someone :getUser="getOtherUser" :followId="otherUserId"></follow-someone>
+        </div>
+        <follow-someone
+          :getUser="getOtherUser"
+          :followId="otherUserId"
+        ></follow-someone>
       </div>
       <section class="profileBody">
-
-        <user-follows :userId="otherUserId"></user-follows>
 
         <p>{{ otherUserData.bio }}</p>
 
@@ -44,13 +49,15 @@
 import axios from "axios";
 import FriendsTweets from "./FriendsTweets.vue";
 import FollowSomeone from "./FollowSomeone.vue";
-import UserFollows from "./UserFollows.vue";
+// import EditProfile from "./EditProfile.vue";
+// import UserFollows from "./UserFollows.vue";
 
 export default {
   components: {
     FriendsTweets,
     FollowSomeone,
-    UserFollows,
+    // EditProfile,
+    // UserFollows,
   },
   name: "friend-profile",
   data() {
@@ -58,6 +65,7 @@ export default {
       openOtherProfile: false,
       otherUserData: [{}],
       updateFollows: false,
+      openEditProfile: false,
     };
   },
   props: {
@@ -109,9 +117,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#username {
-  font-size: 40px;
-}
 .otherProfiles {
   width: 100%;
   height: 1000%;
@@ -189,9 +194,9 @@ export default {
 }
 
 .goBack {
-  width: 40px;
-  height: 40px;
-  background: #cbd2c6;
+  width: 20px;
+  height: 20px;
+  background: #cbd2c699;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -202,7 +207,7 @@ export default {
     #97a58d -2px -2px 0px;
 
   img {
-    width: 25px;
+    width: 15px;
   }
 }
 </style>

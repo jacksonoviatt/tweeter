@@ -42,8 +42,9 @@ export default {
   methods: {
     redirectAfterDelete() {
       cookies.remove("currentUser");
+        this.$store.commit("updateCurrentUser", null);
       this.$router.push("/welcome");
-      location.reload();
+ 
     },
     mutateDeleteAccountOptions() {
       console.log(this.storeDeleteAccountOptions);

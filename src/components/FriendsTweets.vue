@@ -118,7 +118,6 @@ export default {
     margin-left: 10px;
     width: 70%;
     padding-bottom: 20px;
-    color: red;
   }
 }
 </style>

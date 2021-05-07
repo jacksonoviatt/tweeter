@@ -13,6 +13,9 @@ export default new Vuex.Store({
     // getAllFollows: []
   },
   mutations: {
+    updateCurrentUser: function(state, data) {
+      state.currentUser = data;
+    },
     updateFriendsId: function (state, data) {
       state.friendsId = data;
     },
@@ -25,6 +28,7 @@ export default new Vuex.Store({
     updateCurrentUserTweets: function (state, data) {
       state.currentUserTweets = data;
     },
+
   },
   actions: {
   },

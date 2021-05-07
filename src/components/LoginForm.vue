@@ -62,8 +62,9 @@ export default {
           console.log(res.data);
           this.loginStatus = "you have logged in";
           cookies.set("currentUser", res.data);
-          // add a mutations here please
-          location.reload();
+          this.$store.commit("updateCurrentUser", res.data)
+          this.$router.push("/");
+
         })
         // if the axios request fails, it will tell the user there was an error
         .catch((err) => {

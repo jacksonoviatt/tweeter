@@ -78,7 +78,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data + "comment succesfully posted");
         })
         .catch((err) => {
           console.log(err);
@@ -87,7 +87,6 @@ export default {
     },
 
     getComments: function () {
-      console.log("YOU PASSED A FUNCTION");
       axios
         .request({
           method: "GET",
@@ -101,14 +100,13 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data);
           this.tweetComments = res.data;
         })
         .catch((err) => {
           console.log(err);
         });
     },
-  },
+ },
 };
 </script>
 
