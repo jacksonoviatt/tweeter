@@ -113,6 +113,7 @@ export default {
         })
         .then((res) => {
           this.tweetComments = res.data;
+          this.showMakeComment = false;
         })
         .catch((err) => {
           console.log(err);
@@ -143,6 +144,7 @@ export default {
 padding: 20px 15px;
   // text-align: left;
   // padding: 15px;
+  margin-top: 10px;
 }
 .commenterUsername {
   font-weight: 550;
@@ -167,11 +169,14 @@ padding: 20px 15px;
   margin-bottom: -10px;
 
 }
+form {
+  margin-bottom: 20px;
+}
 .commentInput {
  width: 60%;
  padding: 5px 15px;
  word-break: break-word;
- margin: 10px;
+ margin-right: 10px;
 }
 .submitAComment {
   opacity: 0;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section id="fafaBars" @click="openSideMenu">
+    <section id="fafaBars" @click="openSideMenu" v-if="isMenuOpen === false">
       <div></div>
       <div></div>
       <div></div>
@@ -10,22 +10,24 @@
         <div id="barOne"></div>
         <div id="barTwo"></div>
       </section>
-     <nav>
-      <router-link to="/welcome">Welcome</router-link> 
-      <router-link to="/profile">Profile</router-link> 
-      <router-link to="/">Feed</router-link> 
-      <!-- <router-link to="/welcome">Welcome</router-link> -->
-    </nav>
+      <nav>
+        <router-link to="/welcome">Welcome</router-link>
+        <router-link to="/profile">Profile</router-link>
+        <router-link to="/">Feed</router-link>
+        <!-- <router-link to="/welcome">Welcome</router-link> -->
+      </nav>
       <h3 @click="logOut">LOGOUT</h3>
       <a src="#" @click="mutateDeleteOptions">Delete My Account</a>
-     <delete-account v-if="storeDeleteAccountOptions === true"></delete-account>
+      <delete-account
+        v-if="storeDeleteAccountOptions === true"
+      ></delete-account>
     </section>
   </div>
 </template>
 
 <script>
 import cookies from "vue-cookies";
-import DeleteAccount from './DeleteAccount.vue';
+import DeleteAccount from "./DeleteAccount.vue";
 export default {
   components: { DeleteAccount },
   name: "side-bar",
@@ -34,36 +36,36 @@ export default {
       isMenuOpen: false,
     };
   },
-   computed: {
+  computed: {
     storeCurrentUser() {
       return this.$store.state.currentUser;
     },
     storeDeleteAccountOptions() {
       return this.$store.state.deleteAccountOptions;
-    }
+    },
   },
 
-    methods: {
-      openSideMenu: function() {
-        this.isMenuOpen = true;
-        document.getElementById('sideBarContainer').style.left = "0";
-      },
-      closeSideMenu: function() {
-        document.getElementById('sideBarContainer').style.left = "-70vw";
-      },
-   
+  methods: {
+    openSideMenu: function () {
+      this.isMenuOpen = true;
+      document.getElementById("sideBarContainer").style.left = "0";
+    },
+    closeSideMenu: function () {
+      document.getElementById("sideBarContainer").style.left = "-70vw";
+    this.isMenuOpen = false;
+    },
+
     mutateDeleteOptions() {
       console.log(this.storeDeleteAccountOptions);
       this.$store.commit("updateDeleteAccountOptions", true);
     },
-     
+
     logOut: function () {
       cookies.remove("currentUser");
       this.$router.push("/welcome");
       location.reload();
     },
   },
-  
 };
 </script>
 
@@ -71,12 +73,13 @@ export default {
 #fafaBars {
   position: absolute;
   top: 20px;
-  left: 30px;
+  right: 30px;
   div {
-    
+  text-shadow: #ffffff 2px 2px 0px, #ffffff -2px 2px 0px, #ffffff 2px -2px 0px,
+      #ffffff -2px -2px 0px;
     width: 30px;
     height: 3px;
-    background: #A1AE98;
+    background: #a1ae98;
     margin: 10px 0;
   }
 }
@@ -84,13 +87,13 @@ export default {
   transition: ease-in 0.5s all;
   width: 70vw;
   height: 100vh;
-  background-color: #D9DFCD;
+  background-color: #d9dfcd;
   position: fixed;
   top: 0;
   left: -70vw;
   display: grid;
   place-items: center;
-  color: #282E24;
+  color: #282e24;
   z-index: 3;
 }
 #xBars {
@@ -105,7 +108,7 @@ export default {
   div {
     width: 50px;
     height: 5px;
-    background: #829376 ;
+    background: #829376;
     position: absolute;
     // top: 40px;
     // left: 50vw;
@@ -120,15 +123,12 @@ export default {
 
     // margin-bottom: -20px;
   }
-  
 }
 nav {
   display: grid;
   a {
     font-size: 18px;
-    color: #282E24;
-    
+    color: #282e24;
   }
 }
-
 </style>

@@ -1,13 +1,11 @@
 <template>
     <div class="container">
-        <h3>Welcome {{storeCurrentUser.username}}</h3>
-        <p>{{storeCurrentUser.bio}}</p>
-        <p>{{storeCurrentUser.birthdate}}</p>
-        <p @click="editProfileClicked = !editProfileClicked">Edit Profile</p>
+        
         <side-bar></side-bar>
-        <edit-profile v-if="editProfileClicked === true"></edit-profile>
         <user-tweets></user-tweets>
-        <create-tweet></create-tweet>
+        <edit-profile v-if="editProfileClicked === true"></edit-profile>
+         <p @click="editProfileClicked = !editProfileClicked">Edit Profile</p>
+         <create-tweet></create-tweet>
     </div>
 </template>
 

@@ -49,6 +49,7 @@
 import axios from "axios";
 import FriendsTweets from "./FriendsTweets.vue";
 import FollowSomeone from "./FollowSomeone.vue";
+
 // import EditProfile from "./EditProfile.vue";
 // import UserFollows from "./UserFollows.vue";
 
@@ -56,6 +57,7 @@ export default {
   components: {
     FriendsTweets,
     FollowSomeone,
+  
     // EditProfile,
     // UserFollows,
   },
