@@ -23,7 +23,7 @@ export default {
     CreateTweet,
     ExplorePage,
   },
- mounted () {
+ created () {
     if(this.storeCurrentUser === null) {
       this.$router.push("/welcome");
     } 

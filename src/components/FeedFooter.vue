@@ -20,15 +20,20 @@ import CreateTweet from './CreateTweet.vue';
 export default {
   components: { CreateTweet },
   name: "feed-footer",
-  // props: {
-  //     whichFeed: Boolean,
-  // },
+  props: {
+      getTweetsFunction: Function,
+      getUserFollowsFunction: Function
+  },
   methods: {
     openExploreFeed: function () {
       this.$emit("openExploreFeed", "explore");
+      this.getUserFollowsFunction();
+      this.getTweetsFunction();
     },
     openFriendFeed: function () {
       this.$emit("openFriendFeed", "friends");
+      this.getUserFollowsFunction();
+       this.getTweetsFunction();
     },
   },
 };
@@ -44,6 +49,7 @@ export default {
   display: grid;
   place-items: center;
   grid-template-columns: 1fr 1fr 1fr;
+  z-index: 2;
   img {
     height: 40px;
   }

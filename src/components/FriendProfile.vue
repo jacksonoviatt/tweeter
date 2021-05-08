@@ -78,6 +78,7 @@ export default {
     otherUserId: Number,
     otherUserName: String,
     getTweetsFunction: Function,
+    getUserFollowsFunction: Function
   },
 
   methods: {
@@ -110,6 +111,7 @@ export default {
     },
     getAllTweetsOnGoBack: function () {
       this.getTweetsFunction();
+      this.getUserFollowsFunction();
       this.openOtherProfile = false;
     },
   },

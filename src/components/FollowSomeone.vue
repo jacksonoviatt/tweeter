@@ -78,7 +78,7 @@ export default {
           console.log(res.data);
           this.getUserFollows();
           this.getUserFollowers();
-          // getTweetsFunction();
+          this.getTweetsFunction();
           // this.$emit('updateFollowStatus', true);
         })
         .catch((err) => {
@@ -105,6 +105,7 @@ export default {
           console.log("hello");
           this.getUserFollows();
           this.getUserFollowers();
+          this.getTweetsFunction();
         })
         .catch((err) => {
           console.log(err);

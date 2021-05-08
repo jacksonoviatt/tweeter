@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div id="signUpForm">
+    <section class="formContainer">
     <form action="javascript:void(0)">
       <p>Email:</p>
       <input type="email" placeholder="email" id="signUpEmail" />
@@ -36,8 +37,8 @@
       <br />
       <input type="submit" name="submitNewUser" @click="newUserSignUp" />
     </form>
-    <button @click="userList">User list</button>
-  </div>
+ </section> 
+ </div>
 </template>
 
 <script>
@@ -106,4 +107,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.formContainer {
+  color: #282E24;
+  width: 72vw;
+  background: #D0D7C1;
+  border: #A1AE98 3px ridge;
+  padding: 20px 0;
+  input {
+    padding: 5px;
+    
+  }
+}
 </style>

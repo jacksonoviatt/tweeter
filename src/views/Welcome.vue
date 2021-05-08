@@ -36,4 +36,7 @@ export default {
   display: grid;
   place-items: center;
 }
+img {
+  width: 70%;
+}
 </style>

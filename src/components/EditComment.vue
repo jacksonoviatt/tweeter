@@ -5,6 +5,16 @@
       src="https://www.flaticon.com/svg/vstatic/svg/1159/1159876.svg?token=exp=1619905929~hmac=877dd4d104f6474015cf5d003e8eb352"
       alt="edit comment"
     />
+     <img
+
+        class="deleteComment"
+         v-if="editCommentClicked === true" @click="deleteTheComment"
+        src="https://image.flaticon.com/icons/png/128/109/109602.png"
+        alt="delete comment"
+      />
+    <!-- <button v-if="editCommentClicked === true" @click="deleteTheComment">
+      Delete Comment
+    </button> -->
     <form
       v-if="editCommentClicked === true"
       action="javascript:void(0)"
@@ -19,10 +29,6 @@
       <br />
       <input type="submit" value="Save My Changes" @click="postEditedComment" />
     </form>
-
-    <button v-if="editCommentClicked === true" @click="deleteTheComment">
-      Delete Comment
-    </button>
   </div>
 </template>
 
@@ -105,5 +111,25 @@ export default {
 <style lang="scss" scoped>
 img {
   width: 15px;
+}
+.deleteComment {
+  width: 10px;
+  position: absolute;
+  left: 24vw;
+  margin-top: -28px;
+}
+button {
+  margin-top: 3px;
+  padding-top: 2px;
+  width: 80px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #829376;
+  background: #d9dfcd;
+  border-radius: 10px;
+  input {
+    opacity: 0;
+  }  
 }
 </style>

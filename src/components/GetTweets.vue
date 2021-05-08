@@ -14,6 +14,7 @@
           :editTweetId="object.tweetId"
         ></edit-tweet>
         <friend-profile
+            :getUserFollowsFunction="getUserFollows"
           :otherUserId="object.userId"
           :otherUserName="object.username"
           :getTweetsFunction="getAllTweets"
@@ -50,6 +51,7 @@
               :editTweetId="tweet.tweetId"
             ></edit-tweet>
             <friend-profile
+                :getUserFollowsFunction="getUserFollows"
               :otherUserId="tweet.userId"
               :otherUserName="tweet.username"
               :getTweetsFunction="getAllTweets"
@@ -77,6 +79,8 @@
       </div>
     </section>
     <feed-footer
+    :getTweetsFunction="getAllTweets"
+    :getUserFollowsFunction="getUserFollows"
       @openExploreFeed="handleOpenExploreFeed"
       @openFriendFeed="handleOpenFriendsFeed"
     ></feed-footer>
