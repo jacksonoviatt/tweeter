@@ -8,11 +8,17 @@
       <p class="numberofcomments">{{ tweetComments.length }}</p>
     </div>
 
-    <section v-if="isCommentsOpen === true">
+    <section v-if="isCommentsOpen === true" class="commentSection"> 
       
-      <div v-for="object in tweetComments" :key="object.id">
-        <p>{{ object.username }}</p>
-        <p>{{ object.content }}</p>
+      <div class="aComment" v-for="object in tweetComments" :key="object.id">
+        <friend-profile
+          :otherUserId="object.userId"
+          :otherUserName="object.username"
+          :getTweetsFunction="getComments"
+     
+        ></friend-profile>
+        <div class="line"></div>
+        <p class="commentContent">{{ object.content }}</p>
         <edit-comment v-if="storeCurrentUser.userId === object.userId" :editCommentId="object.commentId" :getTheComments="getComments"></edit-comment>
         <like-comment :commentId="object.commentId"></like-comment>
       </div>
@@ -32,10 +38,11 @@
 
 <script>
 import axios from "axios";
+import FriendProfile from "./FriendProfile.vue";
 import EditComment from "./EditComment.vue";
 import LikeComment from './LikeComment.vue';
 export default {
-  components: { EditComment, LikeComment },
+  components: { EditComment, LikeComment, FriendProfile },
   name: "comment-section",
   data() {
     return {
@@ -56,6 +63,7 @@ export default {
   },
   methods: {
     viewComments: function () {
+
       if (this.isCommentsOpen === false) {
         this.isCommentsOpen = !this.isCommentsOpen;
       } else {
@@ -123,5 +131,27 @@ export default {
     margin-top: -23px;
     font-size: 10px;
   }
+}
+
+.commentSection {
+  height: 100%;
+box-shadow: #88997c 0px 0px 2px, #88997c 0px 0px 4px, #88997c 2px 2px 2px;
+padding: 20px 15px;
+  // text-align: left;
+  // padding: 15px;
+}
+.commenterUsername {
+  font-weight: 550;
+  margin-left: -120px;
+  
+}
+.commentContent {
+  font-size: 14px;
+  text-align: left;
+  padding: 0px 0px 15px 30px;
+}
+
+.aComment {
+  padding: 15px 0;
 }
 </style>

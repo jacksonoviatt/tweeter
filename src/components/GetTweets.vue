@@ -1,13 +1,13 @@
 <template>
   <div id="getTweets">
     <!-- loop through the array of tweet information -->
-    <button @click="seeFollowsTweets = !seeFollowsTweets">change view</button>
-    <section v-if="seeFollowsTweets === false">
+    <section v-if="seeFollowsTweets === 'explore'">
       <div
         class="tweetContainer"
         v-for="object in storeTweets"
         :key="object.string"
       >
+      <div class="spacing"></div>
         <edit-tweet
           v-if="storeCurrentUser.userId === object.userId"
           :editTweetId="object.tweetId"
@@ -37,10 +37,11 @@
         <comment-section :commentTweetId="object.tweetId"></comment-section>
       </div>
     </section>
-    <section v-if="seeFollowsTweets === true">
+    <section v-if="seeFollowsTweets === 'friends'">
       <div class="tweetContainer" v-for="tweet in storeTweets" :key="tweet.id">
         <div v-for="object in userFollows" :key="object.id">
           <div v-if="object.userId === tweet.userId">
+            <div class="spacing"></div>
             <edit-tweet
               v-if="storeCurrentUser.userId === tweet.userId"
               :editTweetId="tweet.tweetId"
@@ -49,6 +50,7 @@
               :otherUserId="tweet.userId"
               :otherUserName="tweet.username"
               :getTweetsFunction="getAllTweets"
+          
             ></friend-profile>
             <div class="line"></div>
 
@@ -97,7 +99,7 @@ export default {
   data() {
     return {
       // tweets: [],
-      seeFollowsTweets: true,
+      seeFollowsTweets: "friends",
       userFollow: [],
       userFollows: [],
     };
@@ -198,12 +200,13 @@ export default {
   gap: 20px;
 }
 .tweetContainer {
+  
   margin: 50px 10px;
-  // border: cornflowerblue 2px solid;
+
   height: 100%;
   width: 250px;
   background: #f6f7f3;
-  box-shadow: #88997c 2px 2px 2px;
+  box-shadow: #88997c 0px 0px 2px, #88997c 0px 0px 4px, #88997c 2px 2px 2px,;
   color: #282e24;
   .tweetImage {
     width: 100px;
@@ -230,5 +233,8 @@ export default {
     width: 70%;
     padding-bottom: 20px;
   }
+}
+.spacing {
+  height: 15px;
 }
 </style>

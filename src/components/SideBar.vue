@@ -1,12 +1,12 @@
 <template>
   <div>
-    <section v-if="!isMenuOpen" id="fafaBars" @click="isMenuOpen = !isMenuOpen">
+    <section id="fafaBars" @click="openSideMenu">
       <div></div>
       <div></div>
       <div></div>
     </section>
-    <section id="sideBarContainer" v-else>
-      <section id="xBars" @click="isMenuOpen = !isMenuOpen">
+    <section id="sideBarContainer">
+      <section id="xBars" @click="closeSideMenu">
         <div id="barOne"></div>
         <div id="barTwo"></div>
       </section>
@@ -42,7 +42,16 @@ export default {
       return this.$store.state.deleteAccountOptions;
     }
   },
-  methods: {
+
+    methods: {
+      openSideMenu: function() {
+        this.isMenuOpen = true;
+        document.getElementById('sideBarContainer').style.left = "0";
+      },
+      closeSideMenu: function() {
+        document.getElementById('sideBarContainer').style.left = "-70vw";
+      },
+   
     mutateDeleteOptions() {
       console.log(this.storeDeleteAccountOptions);
       this.$store.commit("updateDeleteAccountOptions", true);
@@ -54,6 +63,7 @@ export default {
       location.reload();
     },
   },
+  
 };
 </script>
 
@@ -71,12 +81,13 @@ export default {
   }
 }
 #sideBarContainer {
+  transition: ease-in 0.5s all;
   width: 70vw;
   height: 100vh;
   background-color: #C6C3BC;
   position: fixed;
   top: 0;
-  left: 0;
+  left: -70vw;
   display: grid;
   place-items: center;
   color: #282E24;

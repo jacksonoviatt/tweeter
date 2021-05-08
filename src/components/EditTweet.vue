@@ -62,6 +62,7 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.getAllTweets();
+          this.editTweetClicked = false;
         })
         .catch((err) => {
           console.log(err);
@@ -84,6 +85,7 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.getAllTweets();
+          this.editTweetClicked = false;
         })
         .catch((err) => {
           console.log(err);

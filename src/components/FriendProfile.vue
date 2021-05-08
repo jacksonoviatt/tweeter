@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="username" @click="getOtherUser">{{ otherUserName }}</h3>
+    <h3 class="username" @click="getOtherUser">@{{ otherUserName }}</h3>
 
     <section class="otherProfiles" v-if="openOtherProfile === true">
       <div class="banner">
@@ -72,14 +72,9 @@ export default {
     otherUserId: Number,
     otherUserName: String,
     getTweetsFunction: Function,
+
   },
-  // mounted () {
-  //   if(this.updateFollows === true){
-  //     // this.getFollowInformation();
-  //     this.$forceUpdate();
-  //     console.log("forced update");
-  //   }
-  // },
+ 
   methods: {
     // handleFollowStatus: function (data) {
     //   this.updateFollows = data;
@@ -132,6 +127,7 @@ export default {
 .username {
   text-align: left;
   margin: 10px 15px;
+  font-size: 18px;
 }
 .profileBody {
   margin-top: 250px;
