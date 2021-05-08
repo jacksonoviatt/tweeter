@@ -1,6 +1,7 @@
 <template>
   <div id="getTweets">
     <!-- loop through the array of tweet information -->
+    <button @click="seeFollowsTweets = !seeFollowsTweets">change view</button>
     <section v-if="seeFollowsTweets === false">
       <div
         class="tweetContainer"
@@ -39,7 +40,6 @@
     <section v-if="seeFollowsTweets === true">
       <div class="tweetContainer" v-for="tweet in storeTweets" :key="tweet.id">
         <div v-for="object in userFollows" :key="object.id">
-        
           <div v-if="object.userId === tweet.userId">
             <edit-tweet
               v-if="storeCurrentUser.userId === tweet.userId"
@@ -72,6 +72,7 @@
         </div>
       </div>
     </section>
+    <feed-footer @openExploreFeed="handleOpenExploreFeed" @openFriendFeed="handleOpenFriendsFeed"></feed-footer>
   </div>
 </template>
 
@@ -82,6 +83,7 @@ import FriendProfile from "./FriendProfile.vue";
 import CommentSection from "./CommentSection.vue";
 import CreatedAt from "./CreatedAt.vue";
 import LikeTweet from "./LikeTweet.vue";
+import FeedFooter from "./FeedFooter.vue";
 export default {
   name: "get-tweets",
   components: {
@@ -90,6 +92,7 @@ export default {
     CommentSection,
     CreatedAt,
     LikeTweet,
+    FeedFooter,
   },
   data() {
     return {
@@ -112,6 +115,12 @@ export default {
     this.getUserFollows();
   },
   methods: {
+    handleOpenExploreFeed: function (data) {
+      this.seeFollowsTweets = data;
+    },
+    handleOpenFriendsFeed: function (data) {
+      this.seeFollowsTweets = data;
+    },
     getAllTweets: function () {
       axios
         .request({
