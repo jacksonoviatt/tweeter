@@ -24,10 +24,10 @@
 import axios from "axios";
 // import CommentSection from "./CommentSection.vue";
 import CreatedAt from "./CreatedAt.vue";
-import CommentSection from './CommentSection.vue';
+// import CommentSection from './CommentSection.vue';
 
 export default {
-  components: { CreatedAt, CommentSection },
+  components: { CreatedAt, CommentSection: () => import('./CommentSection.vue') },
   name: "friends-tweets",
 
   data() {

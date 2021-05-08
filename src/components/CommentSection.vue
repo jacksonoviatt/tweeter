@@ -10,7 +10,7 @@
 
     <section v-if="isCommentsOpen === true" class="commentSection"> 
       <form class="newComment" action="javascript:void(0)" autocomplete="off">
-        <input v-if="showMakeComment === true"
+        <input 
           type="text"
           placeholder="Make a comment"
           autocomplete="null"
@@ -18,8 +18,8 @@
           class="commentInput"
         >
      
-        <img src="../assets/send.png" @click="showMakeComment = true"  alt="send comment" class="sendComment">
-        <input  v-if="showMakeComment === true" type="submit" value="send" @click="postComment" id="submitAComment" class="submitAComment"/>
+        <img src="../assets/send.png"  alt="send comment" class="sendComment">
+        <input type="submit" value="send" @click="postComment" id="submitAComment" class="submitAComment"/>
       </form>
       <div class="aComment" v-for="object in tweetComments" :key="object.id">
         <like-comment :commentId="object.commentId">

@@ -82,7 +82,7 @@
 import axios from "axios";
 import EditTweet from "./EditTweet.vue";
 import FriendProfile from "./FriendProfile.vue";
-import CommentSection from "./CommentSection.vue";
+// import CommentSection from "./CommentSection.vue";
 import CreatedAt from "./CreatedAt.vue";
 import LikeTweet from "./LikeTweet.vue";
 import FeedFooter from "./FeedFooter.vue";
@@ -91,7 +91,8 @@ export default {
   components: {
     EditTweet,
     FriendProfile,
-    CommentSection,
+    // Recursive Component
+    CommentSection: () => import('./CommentSection.vue'),
     CreatedAt,
     LikeTweet,
     FeedFooter,
