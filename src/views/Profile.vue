@@ -4,13 +4,12 @@
         <side-bar></side-bar>
         <user-tweets></user-tweets>
         <edit-profile></edit-profile>
-        
-         <create-tweet></create-tweet>
+      
     </div>
 </template>
 
 <script>
-import CreateTweet from '../components/CreateTweet.vue';
+// import CreateTweet from '../components/CreateTweet.vue';
 import EditProfile from '../components/EditProfile.vue';
 import SideBar from "../components/SideBar.vue";
 import UserTweets from '../components/UserTweets.vue';
@@ -21,13 +20,19 @@ export default {
     SideBar,
     EditProfile,
     UserTweets,
-    CreateTweet   
+    // CreateTweet   
   },
   computed: {
  storeCurrentUser() {
       return this.$store.state.currentUser;
     },
   },
+
+mounted () { 
+    if(this.storeCurrentUser === null) {
+      this.$router.push("/welcome");
+    } 
+},
 };
 </script>
 

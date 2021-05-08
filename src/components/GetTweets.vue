@@ -8,7 +8,7 @@
         v-for="object in storeTweets"
         :key="object.string"
       >
-      <div class="spacing"></div>
+        <div class="spacing"></div>
         <edit-tweet
           v-if="storeCurrentUser.userId === object.userId"
           :editTweetId="object.tweetId"
@@ -38,6 +38,7 @@
         <comment-section :commentTweetId="object.tweetId"></comment-section>
       </div>
     </section>
+    
     <section v-if="seeFollowsTweets === 'friends'">
       <h3>Friends</h3>
       <div class="tweetContainer" v-for="tweet in storeTweets" :key="tweet.id">
@@ -52,7 +53,6 @@
               :otherUserId="tweet.userId"
               :otherUserName="tweet.username"
               :getTweetsFunction="getAllTweets"
-          
             ></friend-profile>
             <div class="line"></div>
 
@@ -76,7 +76,10 @@
         </div>
       </div>
     </section>
-    <feed-footer @openExploreFeed="handleOpenExploreFeed" @openFriendFeed="handleOpenFriendsFeed"></feed-footer>
+    <feed-footer
+      @openExploreFeed="handleOpenExploreFeed"
+      @openFriendFeed="handleOpenFriendsFeed"
+    ></feed-footer>
   </div>
 </template>
 
@@ -93,7 +96,7 @@ export default {
     EditTweet,
     FriendProfile,
     // Recursive Component
-    CommentSection: () => import('./CommentSection.vue'),
+    CommentSection: () => import("./CommentSection.vue"),
     CreatedAt,
     LikeTweet,
     FeedFooter,
@@ -178,9 +181,10 @@ export default {
           },
         })
         .then((res) => {
-          // console.log(res.data);
-          this.userFollows = res.data;
-          console.log(this.userFollows);
+         this.userFollows = res.data;
+        this.userFollows.push(this.storeCurrentUser);
+         console.log(this.userFollows);
+      
           //  this.userFollow = res.data;
           //     console.log(this.userFollow[0] + "userFollow");
 
@@ -200,47 +204,8 @@ export default {
   place-items: center;
   margin-top: 30px;
   gap: 20px;
-} 
-  section {
-    margin-bottom: 100px;
-  }
-
-// .tweetContainer {
-  
-//   margin: 50px 10px;
-
-//   height: 100%;
-//   width: 250px;
-//   background: #f6f7f3;
-//   box-shadow: #88997c 0px 0px 2px, #88997c 0px 0px 4px, #88997c 2px 2px 2px,;
-//   color: #282e24;
-//   .tweetImage {
-//     width: 100px;
-//   }
-//   .createdAt {
-//     text-align: left;
-//     margin: 10px;
-//     font-size: 10px;
-//     display: grid;
-//     grid-template-columns: 1fr 8fr;
-//   }
-//   // .dateButton {
-//   //   width: 10px;
-//   // }
-//   .line {
-//     width: 70%;
-//     height: 1px;
-//     background: #282e24;
-//     margin: 10px 10px;
-//   }
-//   .content {
-//     text-align: left;
-//     margin-left: 10px;
-//     width: 70%;
-//     padding-bottom: 20px;
-//   }
-// }
-// .spacing {
-//   height: 15px;
-// }
+}
+section {
+  margin-bottom: 100px;
+}
 </style>

@@ -1,14 +1,22 @@
 <template>
   <div>
-    <img  src="../assets/create.png" alt="create tweet">
-   <section v-if="createAnewTweet === true">
-    <form action="javascript:void(0)" autocomplete="off">
-      <input type="text" id="tweetContent" placeholder="tweet content" />
-      <br />
-      <input type="text" id="userImage" placeholder="image url" />
-      <br />
-      <input type="submit" value="See tweet!" @click="createTweet" />
-    </form></section>
+    <img
+      class="idea"
+      src="../assets/create.png"
+      alt="create tweet"
+      @click="createAnewTweet = true"
+    />
+    <section v-if="createAnewTweet === true">
+      <div class="goBack" @click="createAnewTweet = false">
+        <img src="../assets/backArrow.svg" alt="back arrow" />
+      </div>
+      <form action="javascript:void(0)" autocomplete="off">
+        <input type="text" id="tweetContent" placeholder="tweet content" />
+        <input type="text" id="userImage" placeholder="image url" />
+        <input type="submit" value="Post tweet!" @click="createTweet" />
+      </form>
+      <!-- @click="createTweet" -->
+    </section>
   </div>
 </template>
 
@@ -19,7 +27,7 @@ export default {
   data() {
     return {
       createAnewTweet: false,
-    }
+    };
   },
   computed: {
     storeCurrentUser() {
@@ -48,8 +56,9 @@ export default {
             loginToken: this.storeCurrentUser.loginToken,
           },
         })
-        .then((res)  => {
+        .then((res) => {
           console.log(res.data + " create tweet");
+          this.createAnewTweet = false;
           this.getAllTweets();
         })
         .catch((err) => {
@@ -85,10 +94,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img {
+.idea {
   width: 45px;
   // position: fixed;
-  // bottom: 70px; 
+  // bottom: 70px;
   // right: 10px;
+}
+.goBack {
+  margin-top: 10px;
+  margin-left: -5px;
+}
+section {
+  border: #b6c0af solid 5px;
+  margin: 20vh 10vw;
+  width: 80vw;
+  height: 300px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #97a58d;
+  display: grid;
+  place-items: center;
+  input {
+    padding: 5px;
+    margin: 10px;
+  }
 }
 </style>

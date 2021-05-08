@@ -58,7 +58,9 @@ export default {
 
     logOut: function () {
       cookies.remove("currentUser");
-      this.$router.push("/welcome");
+      this.$store.commit("updateCurrentUser", cookies.remove("currentUser"))
+      location.reload();
+      // this.$router.push("/welcome");
     },
   },
 };

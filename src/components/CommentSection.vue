@@ -91,6 +91,7 @@ export default {
         })
         .then((res) => {
           console.log(res.data + "comment succesfully posted");
+          document.getElementById('makeAComment').value = null;
         })
         .catch((err) => {
           console.log(err);
