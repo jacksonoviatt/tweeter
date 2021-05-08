@@ -11,11 +11,14 @@
       src="../assets/explore.png"
       alt="Explore Page"
     />
+    <create-tweet></create-tweet>
   </div>
 </template>
 
 <script>
+import CreateTweet from './CreateTweet.vue';
 export default {
+  components: { CreateTweet },
   name: "feed-footer",
   // props: {
   //     whichFeed: Boolean,
@@ -40,7 +43,7 @@ export default {
   width: 100%;
   display: grid;
   place-items: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   img {
     height: 40px;
   }

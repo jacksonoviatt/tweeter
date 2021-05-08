@@ -1,12 +1,14 @@
 <template>
   <div>
+    <img  src="../assets/create.png" alt="create tweet">
+   <section v-if="createAnewTweet === true">
     <form action="javascript:void(0)" autocomplete="off">
       <input type="text" id="tweetContent" placeholder="tweet content" />
       <br />
       <input type="text" id="userImage" placeholder="image url" />
       <br />
       <input type="submit" value="See tweet!" @click="createTweet" />
-    </form>
+    </form></section>
   </div>
 </template>
 
@@ -14,6 +16,11 @@
 import axios from "axios";
 export default {
   name: "create-tweet",
+  data() {
+    return {
+      createAnewTweet: false,
+    }
+  },
   computed: {
     storeCurrentUser() {
       return this.$store.state.currentUser;
@@ -78,4 +85,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+img {
+  width: 45px;
+  // position: fixed;
+  // bottom: 70px; 
+  // right: 10px;
+}
 </style>

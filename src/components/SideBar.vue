@@ -17,9 +17,7 @@
         <!-- <router-link to="/welcome">Welcome</router-link> -->
       </nav>
       <h3 @click="logOut">LOGOUT</h3>
-      <a src="#" @click="mutateDeleteOptions">Delete My Account</a>
       <delete-account
-        v-if="storeDeleteAccountOptions === true"
       ></delete-account>
     </section>
   </div>
@@ -40,9 +38,9 @@ export default {
     storeCurrentUser() {
       return this.$store.state.currentUser;
     },
-    storeDeleteAccountOptions() {
-      return this.$store.state.deleteAccountOptions;
-    },
+    // storeDeleteAccountOptions() {
+    //   return this.$store.state.deleteAccountOptions;
+    // },
   },
 
   methods: {
@@ -55,10 +53,10 @@ export default {
     this.isMenuOpen = false;
     },
 
-    mutateDeleteOptions() {
-      console.log(this.storeDeleteAccountOptions);
-      this.$store.commit("updateDeleteAccountOptions", true);
-    },
+    // mutateDeleteOptions() {
+    //   console.log(this.storeDeleteAccountOptions);
+    //   this.$store.commit("updateDeleteAccountOptions", true);
+    // },
 
     logOut: function () {
       cookies.remove("currentUser");

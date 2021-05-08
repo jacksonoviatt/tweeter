@@ -3,8 +3,8 @@
         
         <side-bar></side-bar>
         <user-tweets></user-tweets>
-        <edit-profile v-if="editProfileClicked === true"></edit-profile>
-         <p @click="editProfileClicked = !editProfileClicked">Edit Profile</p>
+        <edit-profile></edit-profile>
+        
          <create-tweet></create-tweet>
     </div>
 </template>
@@ -16,11 +16,7 @@ import SideBar from "../components/SideBar.vue";
 import UserTweets from '../components/UserTweets.vue';
 export default {
   name: "Profile",
-  data() {
-    return {
-      editProfileClicked: false,
-    }
-  },
+
   components: {
     SideBar,
     EditProfile,

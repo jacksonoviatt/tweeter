@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentUser: cookies.get("currentUser"),
-    deleteAccountOptions: "false",
+    // deleteAccountOptions: "false",
     tweets: [],
     currentUserTweets: [],
     friendsId: Number,
@@ -18,9 +18,9 @@ export default new Vuex.Store({
     updateFriendsId: function (state, data) {
       state.friendsId = data;
     },
-    updateDeleteAccountOptions: function (state, data) {
-      state.deleteAccountOptions = data;
-    },
+    // updateDeleteAccountOptions: function (state, data) {
+    //   state.deleteAccountOptions = data;
+    // },
     updateTweets: function (state, data) {
       state.tweets = data;
     },

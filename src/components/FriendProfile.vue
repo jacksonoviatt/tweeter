@@ -139,22 +139,7 @@ export default {
   margin-top: 300px;
 }
 
-.goBack {
-  position: absolute;
-  top: 20px;
-  left: 40px;
-  width: 20px;
-  height: 20px;
-  background: #cbd2c6;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  box-shadow: #97a58d 2px 2px 0px, #97a58d -2px 2px 0px, #97a58d 2px -2px 0px,
-    #97a58d -2px -2px 0px;
- img {
-   width: 15px;
- }
-}
+
 // .banner {
 //   position: fixed;
 //   display: grid;

@@ -2,6 +2,7 @@
   <div id="getTweets">
     <!-- loop through the array of tweet information -->
     <section v-if="seeFollowsTweets === 'explore'">
+      <h3>Explore</h3>
       <div
         class="tweetContainer"
         v-for="object in storeTweets"
@@ -38,6 +39,7 @@
       </div>
     </section>
     <section v-if="seeFollowsTweets === 'friends'">
+      <h3>Friends</h3>
       <div class="tweetContainer" v-for="tweet in storeTweets" :key="tweet.id">
         <div v-for="object in userFollows" :key="object.id">
           <div v-if="object.userId === tweet.userId">
@@ -82,7 +84,6 @@
 import axios from "axios";
 import EditTweet from "./EditTweet.vue";
 import FriendProfile from "./FriendProfile.vue";
-// import CommentSection from "./CommentSection.vue";
 import CreatedAt from "./CreatedAt.vue";
 import LikeTweet from "./LikeTweet.vue";
 import FeedFooter from "./FeedFooter.vue";
@@ -199,7 +200,11 @@ export default {
   place-items: center;
   margin-top: 30px;
   gap: 20px;
-}
+} 
+  section {
+    margin-bottom: 100px;
+  }
+
 // .tweetContainer {
   
 //   margin: 50px 10px;
