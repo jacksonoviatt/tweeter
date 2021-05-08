@@ -11,23 +11,21 @@
         <div id="barTwo"></div>
       </section>
       <nav>
-        <router-link to="/welcome">Welcome</router-link>
         <router-link to="/profile">Profile</router-link>
         <router-link to="/">Feed</router-link>
         <!-- <router-link to="/welcome">Welcome</router-link> -->
       </nav>
       <h3 @click="logOut">LOGOUT</h3>
-      <delete-account
-      ></delete-account>
+     
     </section>
   </div>
 </template>
 
 <script>
 import cookies from "vue-cookies";
-import DeleteAccount from "./DeleteAccount.vue";
+
 export default {
-  components: { DeleteAccount },
+
   name: "side-bar",
   data() {
     return {
@@ -61,7 +59,6 @@ export default {
     logOut: function () {
       cookies.remove("currentUser");
       this.$router.push("/welcome");
-      location.reload();
     },
   },
 };

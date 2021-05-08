@@ -44,11 +44,17 @@
           v-for="object in storeCurrentUserTweets"
           :key="object.string"
         >
-          <!-- <p class="username">{{storeCurrentUser.username}}</p> -->
+        <!-- <div class="userTweetName"> -->
+          <h4 class="usersname">@{{storeCurrentUser.username}}</h4>
+          <div class="line"></div>
           <edit-tweet :editTweetId="object.tweetId"></edit-tweet>
           <!-- <h4>{{ object.username }}</h4> -->
-          <created-at></created-at>
+          <created-at
+              class="createdAt"
+              :createdAt="object.createdAt"
+            ></created-at>
           <p class="content">{{ object.content }}</p>
+        <!-- </div> -->
           <img
             class="tweetImage"
             v-if="object.tweetImageUrl"
@@ -124,6 +130,14 @@ export default {
   gap: 20px;
   // z-index: ;
 }
+.usersname {
+  text-align: left;
+  margin: 15px 20px 0;
+}
+// .userTweetName {
+//   text-align: left;
+//   margin: 20px 20px 0;
+// }
 // .banner {
 //   z-index: 5;
 //   position: fixed;

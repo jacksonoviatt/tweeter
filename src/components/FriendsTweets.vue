@@ -6,6 +6,8 @@
       :key="object.string"
     >
       <!-- <div class="line"></div> -->
+         <h4 class="usersname">@{{object.username}}</h4>
+         <div class="line"></div>
       <created-at class="createdAt" :createdAt="object.createdAt"></created-at>
       <p class="content">{{ object.content }}</p>
       <img
@@ -89,6 +91,10 @@ export default {
   .content {
     margin-left: 30px;
   }
+}
+.usersname {
+  text-align: left;
+  margin: 15px 20px 0;
 }
 // .friendsTweetContainer {
 //   margin: 10px;

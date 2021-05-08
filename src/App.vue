@@ -137,6 +137,7 @@ select:-webkit-autofill:focus {
   position: fixed;
   top: 0;
   z-index: 6;
+  box-shadow: #97a58d 0px 1px 4px;
   .birdLogo {
     height: 40px;
     margin: 10px;
