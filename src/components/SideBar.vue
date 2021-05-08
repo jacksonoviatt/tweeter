@@ -10,12 +10,12 @@
         <div id="barOne"></div>
         <div id="barTwo"></div>
       </section>
-     <div id="nav">
-      <router-link to="/welcome">Welcome</router-link> |
-      <router-link to="/profile">Profile</router-link> |
-      <router-link to="/">Feed</router-link> |
+     <nav>
+      <router-link to="/welcome">Welcome</router-link> 
+      <router-link to="/profile">Profile</router-link> 
+      <router-link to="/">Feed</router-link> 
       <!-- <router-link to="/welcome">Welcome</router-link> -->
-    </div>
+    </nav>
       <h3 @click="logOut">LOGOUT</h3>
       <a src="#" @click="mutateDeleteOptions">Delete My Account</a>
      <delete-account v-if="storeDeleteAccountOptions === true"></delete-account>
@@ -71,12 +71,12 @@ export default {
 #fafaBars {
   position: absolute;
   top: 20px;
-  left: 20px;
+  left: 30px;
   div {
     
-    width: 40px;
-    height: 5px;
-    background: #8B745F;
+    width: 30px;
+    height: 3px;
+    background: #A1AE98;
     margin: 10px 0;
   }
 }
@@ -84,7 +84,7 @@ export default {
   transition: ease-in 0.5s all;
   width: 70vw;
   height: 100vh;
-  background-color: #C6C3BC;
+  background-color: #D9DFCD;
   position: fixed;
   top: 0;
   left: -70vw;
@@ -94,13 +94,14 @@ export default {
   z-index: 3;
 }
 #xBars {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   //   margin-bottom: -20px;
   display: grid;
   place-items: center;
-  position: relative;
-  margin: -100px 0 0 45vw;
+  position: absolute;
+  top: 20px;
+  left: 53vw;
   div {
     width: 50px;
     height: 5px;
@@ -119,8 +120,15 @@ export default {
 
     // margin-bottom: -20px;
   }
- 
-
   
 }
+nav {
+  display: grid;
+  a {
+    font-size: 18px;
+    color: #282E24;
+    
+  }
+}
+
 </style>

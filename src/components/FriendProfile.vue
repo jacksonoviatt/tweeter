@@ -125,6 +125,7 @@ export default {
   z-index: 8;
 }
 .username {
+  max-width: 70px;
   text-align: left;
   margin: 10px 15px;
   font-size: 18px;
@@ -158,6 +159,7 @@ export default {
     // gap: 10px;
     // grid-template-columns: 1fr 1fr;
     h3 {
+      
       position: absolute;
       top: 60px;
       left: 110px;

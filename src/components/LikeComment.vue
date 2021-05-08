@@ -145,20 +145,21 @@ export default {
 img {
   width: 10px;
   position: absolute;
+  right: 25vw;
+  // right: 28vw;
+  // margin-top: -18%;
 
-  margin-left: -90px;
-//   margin-top: -45px;
-margin-top: -10px;
+
 }
 .unlikeComment {
     z-index: 2;
 }
 
 .showWhoLiked {
-    margin-top: -10px;
-    margin-right: -100px;
-    position: absolute;
-    margin-left: 18px;
-    margin-top: -10px;
+  // margin-right: -40vw;
+  position: absolute;
+ 
+  right: 31vw;
+  margin-top: -5px;
 }
 </style>

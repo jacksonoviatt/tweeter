@@ -9,9 +9,21 @@
     </div>
 
     <section v-if="isCommentsOpen === true" class="commentSection"> 
-      
+      <form class="newComment" action="javascript:void(0)" autocomplete="off">
+        <input v-if="showMakeComment === true"
+          type="text"
+          placeholder="Make a comment"
+          autocomplete="null"
+          id="makeAComment"
+          class="commentInput"
+        >
+     
+        <img src="../assets/send.png" @click="showMakeComment = true"  alt="send comment" class="sendComment">
+        <input  v-if="showMakeComment === true" type="submit" value="send" @click="postComment" id="submitAComment" class="submitAComment"/>
+      </form>
       <div class="aComment" v-for="object in tweetComments" :key="object.id">
-        <friend-profile
+        <like-comment :commentId="object.commentId">
+          </like-comment><friend-profile
           :otherUserId="object.userId"
           :otherUserName="object.username"
           :getTweetsFunction="getComments"
@@ -20,18 +32,9 @@
         <div class="line"></div>
         <p class="commentContent">{{ object.content }}</p>
         <edit-comment v-if="storeCurrentUser.userId === object.userId" :editCommentId="object.commentId" :getTheComments="getComments"></edit-comment>
-        <like-comment :commentId="object.commentId"></like-comment>
+        
       </div>
-      <form action="javascript:void(0)" autocomplete="off">
-        <input
-          type="text"
-          placeholder="Make a comment"
-          autocomplete="null"
-          id="makeAComment"
-        />
-        <br />
-        <input type="submit" value="Save My Changes" @click="postComment" />
-      </form>
+      
     </section>
   </div>
 </template>
@@ -48,6 +51,7 @@ export default {
     return {
       isCommentsOpen: false,
       tweetComments: [],
+      showMakeComment: false,
     };
   },
   computed: {
@@ -135,7 +139,7 @@ export default {
 
 .commentSection {
   height: 100%;
-box-shadow: #88997c 0px 0px 2px, #88997c 0px 0px 4px, #88997c 2px 2px 2px;
+
 padding: 20px 15px;
   // text-align: left;
   // padding: 15px;
@@ -149,9 +153,28 @@ padding: 20px 15px;
   font-size: 14px;
   text-align: left;
   padding: 0px 0px 15px 30px;
+  width: 33vw;
 }
 
 .aComment {
   padding: 15px 0;
+  box-shadow: #88997c 0px 0px 2px;
+}
+.sendComment {
+  width: 30px;
+  margin-right: -30px;
+
+  margin-bottom: -10px;
+
+}
+.commentInput {
+ width: 60%;
+ padding: 5px 15px;
+ word-break: break-word;
+ margin: 10px;
+}
+.submitAComment {
+  opacity: 0;
+  height: 35px;
 }
 </style>
