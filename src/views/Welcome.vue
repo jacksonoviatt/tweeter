@@ -1,6 +1,6 @@
 <template>
   <div id="welcome">
-    <h3>login to tweeter</h3>
+     <img src="../assets/tweeterLogo.png" alt="tweeter logo">
     <login-form v-if="signMeUp === false"></login-form>
     <p v-if="signMeUp === false">Don't have an account? <a href="#" @click="signMeUp = true">Sign up now</a>
         </p>

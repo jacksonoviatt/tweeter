@@ -208,4 +208,7 @@ export default {
 section {
   margin-bottom: 100px;
 }
+.tweetContainer {
+  margin: 30px 0;
+}
 </style>

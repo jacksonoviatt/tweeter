@@ -6,23 +6,29 @@
       src="https://www.flaticon.com/svg/vstatic/svg/1159/1159876.svg?token=exp=1619905929~hmac=877dd4d104f6474015cf5d003e8eb352"
       alt="edit tweet icons"
     />
-    <form
-      v-if="editTweetClicked === true"
-      action="javascript:void(0)"
-      autocomplete="off"
-    >
-      <input
-        type="text"
-        placeholder="edit your tweet"
-        autocomplete="null"
-        id="editTweet"
+    <img
+        class="deleteComment"
+        @click="yesDeleteTweet = !yesDeleteTweet"
+        src="https://image.flaticon.com/icons/png/128/109/109602.png"
+        alt="delete comment"
       />
-      <br />
-      <input type="submit" value="Save My Changes" @click="patchTweet" />
-    </form>
-    <button v-if="editTweetClicked === true" @click="deleteTweet">
+      <button @click="deleteTweet" v-if="yesDeleteTweet === true">Delete</button>
+    <section v-if="editTweetClicked === true" class="editTweetContainer">
+      
+      <form action="javascript:void(0)" autocomplete="off">
+        <input
+          type="text"
+          placeholder="Edit Your Tweet"
+          autocomplete="null"
+          id="editTweet"
+        />
+        <br />
+        <button>Edit Tweet<input type="submit" value="Edit   Tweet" @click="patchTweet" /></button>
+      </form>
+    </section>
+    <!-- <button v-if="editTweetClicked === true" @click="deleteTweet">
       Delete Tweet
-    </button>
+    </button> -->
   </div>
 </template>
 
@@ -33,6 +39,7 @@ export default {
   data() {
     return {
       editTweetClicked: false,
+      yesDeleteTweet: false,
     };
   },
   computed: {
@@ -123,7 +130,34 @@ export default {
 .editTweet {
   width: 20px;
   position: absolute;
-  margin: 20px;
   margin-left: 90px;
 }
+#editTweet {
+  padding: 5px;
+  margin: 5px;
+  margin-top: -10px;
+}
+
+.deleteComment {
+  width: 10px;
+  position: absolute;
+  margin-left: 95px;
+  margin-top: 30px;
+}
+button {
+  margin-top: 3px;
+  padding-top: 2px;
+  width: 80px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #829376;
+  background: #d9dfcd;
+  border-radius: 10px;
+  position: absolute;
+  input {
+    opacity: 0;
+  }
+}
+
 </style>

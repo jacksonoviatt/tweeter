@@ -10,13 +10,18 @@
         <div id="barOne"></div>
         <div id="barTwo"></div>
       </section>
+      <img
+        id="sideBarLogo"
+        src="../assets/tweeterLogo.png"
+        alt="tweeter logo"
+      />
       <nav>
+        <p>Hello {{ storeCurrentUser.username }}</p>
         <router-link to="/profile">Profile</router-link>
         <router-link to="/">Feed</router-link>
         <!-- <router-link to="/welcome">Welcome</router-link> -->
       </nav>
       <h3 @click="logOut">LOGOUT</h3>
-     
     </section>
   </div>
 </template>
@@ -25,7 +30,6 @@
 import cookies from "vue-cookies";
 
 export default {
-
   name: "side-bar",
   data() {
     return {
@@ -48,7 +52,7 @@ export default {
     },
     closeSideMenu: function () {
       document.getElementById("sideBarContainer").style.left = "-70vw";
-    this.isMenuOpen = false;
+      this.isMenuOpen = false;
     },
 
     // mutateDeleteOptions() {
@@ -58,7 +62,7 @@ export default {
 
     logOut: function () {
       cookies.remove("currentUser");
-      this.$store.commit("updateCurrentUser", cookies.remove("currentUser"))
+      this.$store.commit("updateCurrentUser", cookies.remove("currentUser"));
       location.reload();
       // this.$router.push("/welcome");
     },
@@ -73,7 +77,7 @@ export default {
   left: 40px;
   z-index: 6;
   div {
-  text-shadow: #ffffff 2px 2px 0px, #ffffff -2px 2px 0px, #ffffff 2px -2px 0px,
+    text-shadow: #ffffff 2px 2px 0px, #ffffff -2px 2px 0px, #ffffff 2px -2px 0px,
       #ffffff -2px -2px 0px;
     width: 30px;
     height: 3px;
@@ -122,9 +126,19 @@ export default {
     // margin-bottom: -20px;
   }
 }
+#sideBarLogo {
+  width: 60%;
+  margin-top: -70px;
+}
 nav {
   display: grid;
+  margin-top: -100px;
+  p {
+    margin-bottom: 10px;
+    font-size: 22px;
+  }
   a {
+    margin: 10px;
     font-size: 18px;
     color: #282e24;
   }

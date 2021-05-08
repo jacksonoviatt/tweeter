@@ -81,6 +81,7 @@ form {
   display: grid;
   place-items: center;
   gap: 30px;
+  margin-top: -70px;
 }
 #loginButton {
   border: #ADB6C4 3px;
@@ -89,7 +90,7 @@ form {
  
 }
 .loginInput {
-  background-color: #C6C3BC;
+  background-color: #d9dfcd;
   color: #000000;
   padding: 5px 10px;
   border: none;

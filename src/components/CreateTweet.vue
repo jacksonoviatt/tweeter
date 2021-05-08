@@ -13,7 +13,7 @@
       <form action="javascript:void(0)" autocomplete="off">
         <input type="text" id="tweetContent" placeholder="tweet content" />
         <input type="text" id="userImage" placeholder="image url" />
-        <input type="submit" value="Post tweet!" @click="createTweet" />
+        <input id="submitNewTweet" type="submit" value="Post tweet!" @click="createTweet" />
       </form>
       <!-- @click="createTweet" -->
     </section>
@@ -102,7 +102,14 @@ export default {
 }
 .goBack {
   margin-top: 10px;
+  width: 30px;
+  height: 30px;
   margin-left: -5px;
+  background: #d9dfcd;
+   border: #b6c0af solid 2px;
+  img {
+    width: 20px;
+  }
 }
 section {
   border: #b6c0af solid 5px;
@@ -115,9 +122,26 @@ section {
   background: #97a58d;
   display: grid;
   place-items: center;
+  form {
+    display: grid;
+  }
   input {
     padding: 5px;
     margin: 10px;
   }
+}
+#submitNewTweet {
+  width: 60%;
+  margin: 10px 20%;
+  height: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #829376;
+  background: #d9dfcd;
+  border-radius: 20px;
+
+  display: grid;
+  place-items: center;
+  
 }
 </style>
