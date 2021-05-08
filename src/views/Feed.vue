@@ -1,5 +1,8 @@
 <template>
   <div id="feed">
+    <header class="profileHeader">
+      <img class="birdLogo" src="../assets/birdLogo.png" alt="">
+    </header>
     <button @click="goBackToLogin" v-if="storeCurrentUser === undefined">You need to log in</button>
     <section v-if="storeCurrentUser !== undefined">
       <create-tweet></create-tweet>

@@ -3,6 +3,12 @@
     <h3 class="username" @click="getOtherUser">@{{ otherUserName }}</h3>
 
     <section class="otherProfiles" v-if="openOtherProfile === true">
+      <div class="profileHeader">
+             <div class="goBack" @click="getAllTweetsOnGoBack">
+          <img src="../assets/backArrow.svg" alt="back arrow" />
+        </div>
+      <img class="birdLogo" src="../assets/birdLogo.png" alt="bird logo" />
+      </div>
       <div class="banner">
         <img
           v-if="otherUserData.bannerUrl"
@@ -27,18 +33,16 @@
             <h3 class="profileName">{{ otherUserData.username }}</h3>
           </div>
         </div>
-        <div class="goBack" @click="getAllTweetsOnGoBack">
-          <img src="../assets/backArrow.svg" alt="back arrow" />
-        </div>
+      </div>
+      <div class="bio">
+        <img src="../assets/profile.png" alt="profile icon" />
+        <p>{{ otherUserData.bio }}</p>
         <follow-someone
           :getUser="getOtherUser"
           :followId="otherUserId"
         ></follow-someone>
       </div>
       <section class="profileBody">
-
-        <p>{{ otherUserData.bio }}</p>
-
         <friends-tweets :openOtherProfile="openOtherProfile"></friends-tweets>
       </section>
     </section>
@@ -57,7 +61,7 @@ export default {
   components: {
     FriendsTweets,
     FollowSomeone,
-  
+
     // EditProfile,
     // UserFollows,
   },
@@ -74,9 +78,8 @@ export default {
     otherUserId: Number,
     otherUserName: String,
     getTweetsFunction: Function,
-
   },
- 
+
   methods: {
     // handleFollowStatus: function (data) {
     //   this.updateFollows = data;
@@ -133,81 +136,98 @@ export default {
   font-size: 18px;
 }
 .profileBody {
-  margin-top: 250px;
-}
-.banner {
-  position: fixed;
-  display: grid;
-  place-items: center;
-  background: #ecefe6;
-  height: 250px;
-  width: 100%;
-  .bannerImg {
-    object-fit: cover;
-    height: 150px;
-    width: 100%;
-    position: absolute;
-    top: 0;
-  }
-  p {
-    position: absolute;
-    z-index: -1;
-  }
-  .userIdentity {
-    z-index: 6;
-    // margin: -105px 0 0 -190px;
-    // display: grid;
-    // align-items: center;
-    // gap: 10px;
-    // grid-template-columns: 1fr 1fr;
-    h3 {
-      
-      position: absolute;
-      top: 60px;
-      left: 110px;
-      font-size: 32px;
-      color: #ffffff;
-      text-shadow: #97a58d 2px 2px 0px, #97a58d -2px 2px 0px,
-        #97a58d 2px -2px 0px, #97a58d -2px -2px 0px;
-      padding-bottom: 10px;
-      margin-bottom: -20px;
-    }
-  }
-}
-
-.profileImage {
-  height: 70px;
-  width: 70px;
-  border: #b6c0af 3px solid;
-  position: absolute;
-  top: 55px;
-  left: 20px;
-}
-.imageNotAvailable {
-  z-index: 15;
-  height: 70px;
-  width: 70px;
-  border: #b6c0af 3px solid;
-  position: absolute;
-  top: 55px;
-  left: 20px;
+  margin-top: 300px;
 }
 
 .goBack {
+  position: absolute;
+  top: 20px;
+  left: 40px;
   width: 20px;
   height: 20px;
-  background: #cbd2c699;
+  background: #cbd2c6;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  position: absolute;
-  top: 170px;
-  left: 40px;
   box-shadow: #97a58d 2px 2px 0px, #97a58d -2px 2px 0px, #97a58d 2px -2px 0px,
     #97a58d -2px -2px 0px;
-
-  img {
-    width: 15px;
-  }
+ img {
+   width: 15px;
+ }
 }
+// .banner {
+//   position: fixed;
+//   display: grid;
+//   place-items: center;
+//   background: #ecefe6;
+//   height: 250px;
+//   width: 100%;
+//   .bannerImg {
+//     object-fit: cover;
+//     height: 150px;
+//     width: 100%;
+//     position: absolute;
+//     top: 0;
+//   }
+//   p {
+//     position: absolute;
+//     z-index: -1;
+//   }
+//   .userIdentity {
+//     z-index: 6;
+//     // margin: -105px 0 0 -190px;
+//     // display: grid;
+//     // align-items: center;
+//     // gap: 10px;
+//     // grid-template-columns: 1fr 1fr;
+//     h3 {
+
+//       position: absolute;
+//       top: 60px;
+//       left: 110px;
+//       font-size: 32px;
+//       color: #ffffff;
+//       text-shadow: #97a58d 2px 2px 0px, #97a58d -2px 2px 0px,
+//         #97a58d 2px -2px 0px, #97a58d -2px -2px 0px;
+//       padding-bottom: 10px;
+//       margin-bottom: -20px;
+//     }
+//   }
+// }
+
+// .profileImage {
+//   height: 70px;
+//   width: 70px;
+//   border: #b6c0af 3px solid;
+//   position: absolute;
+//   top: 55px;
+//   left: 20px;
+// }
+// .imageNotAvailable {
+//   z-index: 15;
+//   height: 70px;
+//   width: 70px;
+//   border: #b6c0af 3px solid;
+//   position: absolute;
+//   top: 55px;
+//   left: 20px;
+// }
+
+// .goBack {
+//   width: 20px;
+//   height: 20px;
+//   background: #cbd2c699;
+//   border-radius: 50%;
+//   display: grid;
+//   place-items: center;
+//   position: absolute;
+//   top: 170px;
+//   left: 40px;
+//   box-shadow: #97a58d 2px 2px 0px, #97a58d -2px 2px 0px, #97a58d 2px -2px 0px,
+//     #97a58d -2px -2px 0px;
+
+//   img {
+//     width: 15px;
+//   }
+// }
 </style>

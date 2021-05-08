@@ -200,42 +200,42 @@ export default {
   margin-top: 30px;
   gap: 20px;
 }
-.tweetContainer {
+// .tweetContainer {
   
-  margin: 50px 10px;
+//   margin: 50px 10px;
 
-  height: 100%;
-  width: 250px;
-  background: #f6f7f3;
-  box-shadow: #88997c 0px 0px 2px, #88997c 0px 0px 4px, #88997c 2px 2px 2px,;
-  color: #282e24;
-  .tweetImage {
-    width: 100px;
-  }
-  .createdAt {
-    text-align: left;
-    margin: 10px;
-    font-size: 10px;
-    display: grid;
-    grid-template-columns: 1fr 8fr;
-  }
-  // .dateButton {
-  //   width: 10px;
-  // }
-  .line {
-    width: 70%;
-    height: 1px;
-    background: #282e24;
-    margin: 10px 10px;
-  }
-  .content {
-    text-align: left;
-    margin-left: 10px;
-    width: 70%;
-    padding-bottom: 20px;
-  }
-}
-.spacing {
-  height: 15px;
-}
+//   height: 100%;
+//   width: 250px;
+//   background: #f6f7f3;
+//   box-shadow: #88997c 0px 0px 2px, #88997c 0px 0px 4px, #88997c 2px 2px 2px,;
+//   color: #282e24;
+//   .tweetImage {
+//     width: 100px;
+//   }
+//   .createdAt {
+//     text-align: left;
+//     margin: 10px;
+//     font-size: 10px;
+//     display: grid;
+//     grid-template-columns: 1fr 8fr;
+//   }
+//   // .dateButton {
+//   //   width: 10px;
+//   // }
+//   .line {
+//     width: 70%;
+//     height: 1px;
+//     background: #282e24;
+//     margin: 10px 10px;
+//   }
+//   .content {
+//     text-align: left;
+//     margin-left: 10px;
+//     width: 70%;
+//     padding-bottom: 20px;
+//   }
+// }
+// .spacing {
+//   height: 15px;
+// }
 </style>

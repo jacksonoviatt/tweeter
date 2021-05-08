@@ -71,9 +71,10 @@ export default {
 
 <style lang="scss" scoped>
 #fafaBars {
-  position: absolute;
-  top: 20px;
-  right: 30px;
+  position: fixed;
+  top: 5px;
+  left: 40px;
+  z-index: 6;
   div {
   text-shadow: #ffffff 2px 2px 0px, #ffffff -2px 2px 0px, #ffffff 2px -2px 0px,
       #ffffff -2px -2px 0px;
@@ -94,7 +95,7 @@ export default {
   display: grid;
   place-items: center;
   color: #282e24;
-  z-index: 3;
+  z-index: 7;
 }
 #xBars {
   width: 40px;

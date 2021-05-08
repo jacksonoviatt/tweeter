@@ -165,17 +165,18 @@ img {
 button {
   width: 80px;
   height: 20px;
-  position: absolute;
-  top: 105px;
+  position: fixed;
+  top: 140px;
   left: 110px;
   font-size: 12px;
   font-weight: 600;
   color: #829376;
   background: #d9dfcd;
   border-radius: 10px;
+  z-index: 5;
 }
 .unfollowUser {
-  z-index: 2;
+  z-index: 6;
   color: #d9dfcd;
   background: #829376;
 }
@@ -183,8 +184,8 @@ button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 25px;
-  position: absolute;
-  top: 175px;
-  right: 40px;
+  // position: absolute;
+  // top: 175px;
+  // right: 40px;
 }
 </style>
