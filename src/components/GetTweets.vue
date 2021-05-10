@@ -194,15 +194,15 @@ export default {
     searchUsers: function () {
       this.searchValue = document.getElementById("userSearchBox").value.toLowerCase();
       this.searchedTweets = this.storeTweets.filter((storeTweets) =>
-        storeTweets.username.toLowerCase().includes(document.getElementById("userSearchBox").value)
+        storeTweets.username.toLowerCase().includes(this.searchValue)
       );
       console.log(this.searchedTweets);
       this.getAllTweets();
     },
     searchTweets: function () {
-      this.searchValue = document.getElementById("searchBox").value;
+      this.searchValue = document.getElementById("searchBox").value.toLowerCase();
       this.searchedTweets = this.storeTweets.filter((storeTweets) =>
-        storeTweets.content.includes(document.getElementById("searchBox").value)
+        storeTweets.content.toLowerCase().includes(this.searchValue)
       );
       console.log(this.searchedTweets);
       this.getAllTweets();

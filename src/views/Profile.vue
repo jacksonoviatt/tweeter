@@ -4,7 +4,7 @@
         <side-bar></side-bar>
         <user-tweets></user-tweets>
         <edit-profile></edit-profile>
-      
+
     </div>
 </template>
 
@@ -20,6 +20,7 @@ export default {
     SideBar,
     EditProfile,
     UserTweets,
+ 
     // CreateTweet   
   },
   computed: {
