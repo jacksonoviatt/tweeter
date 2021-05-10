@@ -1,11 +1,13 @@
 <template>
   <div>
-    <img
-      class="idea"
-      src="../assets/create.png"
-      alt="create tweet"
-      @click="createAnewTweet = true"
-    />
+    <div id="ideaBox">
+      <img
+        class="idea"
+        src="../assets/create.png"
+        alt="create tweet"
+        @click="createAnewTweet = true"
+      />
+    </div>
     <section v-if="createAnewTweet === true">
       <div class="goBack" @click="createAnewTweet = false">
         <img src="../assets/backArrow.svg" alt="back arrow" />
@@ -13,7 +15,12 @@
       <form action="javascript:void(0)" autocomplete="off">
         <input type="text" id="tweetContent" placeholder="tweet content" />
         <input type="text" id="userImage" placeholder="image url" />
-        <input id="submitNewTweet" type="submit" value="Post tweet!" @click="createTweet" />
+        <input
+          id="submitNewTweet"
+          type="submit"
+          value="Post tweet!"
+          @click="createTweet"
+        />
       </form>
       <!-- @click="createTweet" -->
     </section>
@@ -95,10 +102,21 @@ export default {
 
 <style lang="scss" scoped>
 .idea {
-  width: 45px;
-  // position: fixed;
-  // bottom: 70px;
-  // right: 10px;
+  width: 40px;
+  // position: absolute;
+  
+}
+#ideaBox {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  background: #d9dfcd;
+  border: #b6c0af solid 2px;
+  border-radius: 50%;
 }
 .goBack {
   margin-top: 10px;
@@ -106,7 +124,7 @@ export default {
   height: 30px;
   margin-left: -5px;
   background: #d9dfcd;
-   border: #b6c0af solid 2px;
+  border: #b6c0af solid 2px;
   img {
     width: 20px;
   }
@@ -142,6 +160,5 @@ section {
 
   display: grid;
   place-items: center;
-  
 }
 </style>

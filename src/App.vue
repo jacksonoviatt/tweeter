@@ -43,7 +43,9 @@ select:-webkit-autofill:focus {
   box-shadow: #88997c 0px 0px 2px, #88997c 0px 0px 4px, #88997c 2px 2px 2px,;
   color: #282e24;
   .tweetImage {
-    width: 100px;
+    width: 60%;
+    margin-bottom: 25px;
+    border: ridge 3px #88997c;
   }
   .createdAt {
     text-align: left;
@@ -70,6 +72,9 @@ select:-webkit-autofill:focus {
 }
 .spacing {
   height: 15px;
+}
+.imgNA {
+  z-index: -1;
 }
 .banner {
   z-index: 5;

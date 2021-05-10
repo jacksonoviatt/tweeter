@@ -2,7 +2,8 @@
   <div id="getTweets">
     <!-- loop through the array of tweet information -->
     <section v-if="seeFollowsTweets === 'explore'">
-      <h3>Explore</h3>
+      <h3 class="exploreTitle">Explore</h3>
+      <div class="underline"></div>
       <div
         class="tweetContainer"
         v-for="object in storeTweets"
@@ -43,7 +44,8 @@
     
     <section v-if="seeFollowsTweets === 'friends'">
       
-      <h3>Friends</h3>
+      <h3 class="exploreTitle">Friends</h3>
+      <div class="underline"></div>
       <div class="tweetContainer" v-for="tweet in storeTweets" :key="tweet.id">
         <div v-for="object in userFollows" :key="object.id">
           <div v-if="object.userId === tweet.userId">
@@ -212,6 +214,7 @@ export default {
   place-items: center;
   margin-top: 30px;
   gap: 20px;
+  min-height: 100vh;
 }
 section {
   margin-bottom: 100px;
@@ -219,4 +222,9 @@ section {
 .tweetContainer {
   margin: 30px 0;
 }
+.exploreTitle {
+  margin: 55px 0 30px;
+}
+
+
 </style>
