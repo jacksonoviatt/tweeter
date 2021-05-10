@@ -134,7 +134,7 @@ export default {
   font-size: 18px;
 }
 .profileBody {
-  margin-top: 300px;
+  margin-top: 320px;
 }
 
 

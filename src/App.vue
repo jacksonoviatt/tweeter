@@ -1,14 +1,21 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style lang="scss">
-body {
-  background-color: #F4F5F6;
+@media screen and (max-width: 330px) {
+  .bio {
+    p {
+      width: 100px;
+    }
+  }
 }
- 
+body {
+  background-color: #f4f5f6;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -20,28 +27,25 @@ body {
   text-align: center;
   color: #001b2e;
   input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-
-  transition: background-color 5000s ease-in-out 0s;
-  
-}
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }
 
 .tweetContainer {
-  
   margin: 20px 10px;
 
   height: 100%;
   width: 250px;
   background: #f6f7f3;
-  box-shadow: #88997c 0px 0px 2px, #88997c 0px 0px 4px, #88997c 2px 2px 2px,;
+  box-shadow: #88997c 0px 0px 2px, #88997c 0px 0px 4px, #88997c 2px 2px 2px;
   color: #282e24;
   .tweetImage {
     width: 60%;
@@ -160,7 +164,7 @@ select:-webkit-autofill:focus {
   // width: 200px;
   position: absolute;
   top: 210px;
-  height: 50px;
+
   p {
     z-index: 3;
     width: 140px;
@@ -169,7 +173,6 @@ select:-webkit-autofill:focus {
   }
   img {
     width: 35px;
-
   }
 }
 .goBack {
@@ -184,8 +187,8 @@ select:-webkit-autofill:focus {
   place-items: center;
   box-shadow: #97a58d 2px 2px 0px, #97a58d -2px 2px 0px, #97a58d 2px -2px 0px,
     #97a58d -2px -2px 0px;
- img {
-   width: 15px;
- } 
+  img {
+    width: 15px;
+  }
 }
 </style>
