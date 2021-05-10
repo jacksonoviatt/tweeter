@@ -14,12 +14,12 @@
           type="text"
           placeholder="Make a comment"
           autocomplete="null"
-          id="makeAComment"
+          :id="commentTweetId"
           class="commentInput"
         >
      
         <img src="../assets/send.png"  alt="send comment" class="sendComment">
-        <input type="submit" value="send" @click="postComment" id="submitAComment" class="submitAComment"/>
+        <input type="submit" value="send" @click="postComment" class="submitAComment" />
       </form>
       <div class="aComment" v-for="object in tweetComments" :key="object.id">
         <like-comment :commentId="object.commentId">
@@ -86,14 +86,14 @@ export default {
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
-            content: document.getElementById("makeAComment").value,
+            content: document.getElementById(this.commentTweetId).value,
             loginToken: this.storeCurrentUser.loginToken,
             tweetId: this.commentTweetId,
           },
         })
         .then((res) => {
           console.log(res.data + "comment succesfully posted");
-          document.getElementById('makeAComment').value = null;
+          document.getElementById(this.commentTweetId).value = null;
         })
         .catch((err) => {
           console.log(err);

@@ -86,7 +86,7 @@ form {
 }
 #loginButton {
   border: #ADB6C4 3px;
-  border-radius: 10%;
+  border-radius: 10px;
   width: 100px;
  
 }
@@ -99,5 +99,13 @@ form {
  ::placeholder {
    color: #E8EEE3;
  }
+}
+@media screen and (min-width: 600px) {
+  .loginInput {
+    width: 170px;
+  }
+}
+@media screen and (min-width: 1000px) {
+ 
 }
 </style>
