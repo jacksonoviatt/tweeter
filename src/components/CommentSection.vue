@@ -27,7 +27,7 @@
           :otherUserId="object.userId"
           :otherUserName="object.username"
           :getTweetsFunction="getComments"
-     
+          :getUserFollowsFunction="getUserFollows"
         ></friend-profile>
         <div class="line"></div>
         <p class="commentContent">{{ object.content }}</p>
@@ -52,6 +52,7 @@ export default {
       isCommentsOpen: false,
       tweetComments: [],
       showMakeComment: false,
+      userFollows: [],
     };
   },
   computed: {
@@ -66,6 +67,7 @@ export default {
     commentTweetId: Number,
   },
   methods: {
+    
     viewComments: function () {
 
       if (this.isCommentsOpen === false) {
@@ -120,6 +122,28 @@ export default {
           console.log(err);
         });
     },
+      getUserFollows() {
+      axios
+        .request({
+          method: "GET",
+          url: "https://tweeterest.ml/api/follows",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+          },
+          params: {
+            userId: this.storeCurrentUser.userId,
+          },
+        })
+        .then((res) => {
+         this.userFollows = res.data;
+        this.userFollows.push(this.storeCurrentUser);
+         console.log(this.userFollows);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      },
  },
 };
 </script>

@@ -12,6 +12,7 @@
         <edit-tweet
           v-if="storeCurrentUser.userId === object.userId"
           :editTweetId="object.tweetId"
+          :getTweetsFunction="getAllTweets"
         ></edit-tweet>
         <friend-profile
             :getUserFollowsFunction="getUserFollows"
@@ -41,6 +42,7 @@
     </section>
     
     <section v-if="seeFollowsTweets === 'friends'">
+      
       <h3>Friends</h3>
       <div class="tweetContainer" v-for="tweet in storeTweets" :key="tweet.id">
         <div v-for="object in userFollows" :key="object.id">
@@ -49,6 +51,7 @@
             <edit-tweet
               v-if="storeCurrentUser.userId === tweet.userId"
               :editTweetId="tweet.tweetId"
+               :getTweetsFunction="getAllTweets"
             ></edit-tweet>
             <friend-profile
                 :getUserFollowsFunction="getUserFollows"
@@ -75,6 +78,7 @@
             /><like-tweet :tweetId="tweet.tweetId"></like-tweet>
             <comment-section :commentTweetId="tweet.tweetId"></comment-section>
           </div>
+          
         </div>
       </div>
     </section>

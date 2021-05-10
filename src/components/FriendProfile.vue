@@ -18,14 +18,14 @@
         />
         <img
           class="bannerImg"
-          v-if="otherUserData.bannerUrl === null"
+          v-if="otherUserData.bannerUrl !== true"
           src="https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
           alt="banner not available"
         />
         <div class="userIdentity">
           <img class="profileImage" :src="otherUserData.imageUrl" />
           <img
-            v-if="otherUserData.imageUrl === null"
+            v-if="otherUserData.imageUrl !== true"
             class="imageNotAvailable"
             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
           />
@@ -82,10 +82,7 @@ export default {
   },
 
   methods: {
-    // handleFollowStatus: function (data) {
-    //   this.updateFollows = data;
-    //   this.$emit('updateFollowStatusAgain', this.updateFollows);
-    // },
+    
     getOtherUser: function () {
       window.scrollTo(0, 0);
       this.$store.commit("updateFriendsId", this.otherUserId);

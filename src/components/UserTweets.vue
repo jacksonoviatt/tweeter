@@ -9,29 +9,33 @@
           class="bannerImg"
         />
         <div class="profileHeader">
-         <img class="birdLogo" src="../assets/birdLogo.png" alt="bird logo">
+          <img class="birdLogo" src="../assets/birdLogo.png" alt="bird logo" />
         </div>
+        <!-- <img
+          class="bannerImg"
+          v-if="storeCurrentUser.bannerUrl === undefined"
+          src="https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          alt="banner not available"
+        /> -->
         <img
           class="bannerImg"
-          v-if="storeCurrentUser.bannerUrl === null"
           src="https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
           alt="banner not available"
         />
         <div class="userIdentity">
           <img class="profileImage" :src="storeCurrentUser.imageUrl" />
           <img
-            v-if="storeCurrentUser.imageUrl === null"
+            v-if="storeCurrentUser.imageUrl !== true"
             class="imageNotAvailable"
             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
           />
-
           <div>
             <h3 class="profileName">{{ storeCurrentUser.username }}</h3>
           </div>
         </div>
       </div>
       <div class="bio">
-        <img src="../assets/profile.png" alt="profile icon">
+        <img src="../assets/profile.png" alt="profile icon" />
         <p>{{ storeCurrentUser.bio }}</p>
         <follow-someone
           :getUser="getUserTweets"
@@ -44,17 +48,23 @@
           v-for="object in storeCurrentUserTweets"
           :key="object.string"
         >
-        <!-- <div class="userTweetName"> -->
-          <h4 class="usersname">@{{storeCurrentUser.username}}</h4>
+          <!-- <div class="userTweetName"> -->
+          <div class="spacing"></div>
+          <edit-tweet
+            :editTweetId="object.tweetId"
+            :getTweetsFunction="getUserTweets"
+          ></edit-tweet>
+
+          <h4 class="usersname">@{{ storeCurrentUser.username }}</h4>
           <div class="line"></div>
-          <edit-tweet :editTweetId="object.tweetId"></edit-tweet>
+
           <!-- <h4>{{ object.username }}</h4> -->
           <created-at
-              class="createdAt"
-              :createdAt="object.createdAt"
-            ></created-at>
+            class="createdAt"
+            :createdAt="object.createdAt"
+          ></created-at>
           <p class="content">{{ object.content }}</p>
-        <!-- </div> -->
+          <!-- </div> -->
           <img
             class="tweetImage"
             v-if="object.tweetImageUrl"
@@ -76,7 +86,7 @@ import EditTweet from "./EditTweet.vue";
 import CreatedAt from "./CreatedAt.vue";
 
 export default {
-  components: { EditTweet, CommentSection, CreatedAt, FollowSomeone},
+  components: { EditTweet, CommentSection, CreatedAt, FollowSomeone },
   name: "user-tweets",
   computed: {
     storeCurrentUser() {
@@ -132,8 +142,9 @@ export default {
 }
 .usersname {
   text-align: left;
-  margin: 15px 20px 0;
+  margin: 0px 20px;
 }
+
 // .userTweetName {
 //   text-align: left;
 //   margin: 20px 20px 0;
