@@ -62,6 +62,7 @@ export default {
           console.log(res.data);
           this.loginStatus = "you have logged in";
           cookies.set("currentUser", res.data);
+           cookies.set("seeTweets", "friends");
           this.$store.commit("updateCurrentUser", res.data)
           this.$router.push("/");
 

@@ -3,7 +3,7 @@
     <!-- loop through the array of tweet information -->
     <section v-if="seeFollowsTweets === 'explore'">
       <h3 class="exploreTitle">Explore</h3>
-      <div class="underline"></div>
+
       <div
         class="tweetContainer"
         v-for="object in storeTweets"
@@ -16,7 +16,7 @@
           :getTweetsFunction="getAllTweets"
         ></edit-tweet>
         <friend-profile
-            :getUserFollowsFunction="getUserFollows"
+          :getUserFollowsFunction="getUserFollows"
           :otherUserId="object.userId"
           :otherUserName="object.username"
           :getTweetsFunction="getAllTweets"
@@ -41,9 +41,8 @@
         <comment-section :commentTweetId="object.tweetId"></comment-section>
       </div>
     </section>
-    
+
     <section v-if="seeFollowsTweets === 'friends'">
-      
       <h3 class="exploreTitle">Friends</h3>
       <div class="underline"></div>
       <div class="tweetContainer" v-for="tweet in storeTweets" :key="tweet.id">
@@ -53,10 +52,10 @@
             <edit-tweet
               v-if="storeCurrentUser.userId === tweet.userId"
               :editTweetId="tweet.tweetId"
-               :getTweetsFunction="getAllTweets"
+              :getTweetsFunction="getAllTweets"
             ></edit-tweet>
             <friend-profile
-                :getUserFollowsFunction="getUserFollows"
+              :getUserFollowsFunction="getUserFollows"
               :otherUserId="tweet.userId"
               :otherUserName="tweet.username"
               :getTweetsFunction="getAllTweets"
@@ -80,13 +79,68 @@
             /><like-tweet :tweetId="tweet.tweetId"></like-tweet>
             <comment-section :commentTweetId="tweet.tweetId"></comment-section>
           </div>
-          
         </div>
       </div>
     </section>
+    <section v-if="seeFollowsTweets === 'search'">
+      <h3 class="exploreTitle">Search</h3> 
+      <a href="#" @click="searchType = 'users'">Users</a> |
+      <a href="#" @click="searchType = 'tweets'">Tweets</a>
+      <div v-if="searchType === 'tweets'">
+        <form action="javascript:void(0)" autocomplete="off">
+          <input name="search" id="searchBox" placeholder="search tweets" />
+          <input type="submit" @click="searchTweets" />
+        </form>
+      </div>
+       <div v-if="searchType === 'users'">
+        <form action="javascript:void(0)" autocomplete="off">
+          <input name="search" id="userSearchBox" placeholder="search users" />
+          <input type="submit" @click="searchUsers" />
+        </form>
+      </div>
+      <p v-if="searchValue !== undefined">
+        Showing Results for: <a href="#">{{ searchValue }}</a>
+      </p>
+      <div
+        class="tweetContainer"
+        v-for="object in searchedTweets"
+        :key="object.string"
+      >
+        <div class="spacing"></div>
+        <edit-tweet
+          v-if="storeCurrentUser.userId === object.userId"
+          :editTweetId="object.tweetId"
+          :getTweetsFunction="getAllTweets"
+        ></edit-tweet>
+        <friend-profile
+          :getUserFollowsFunction="getUserFollows"
+          :otherUserId="object.userId"
+          :otherUserName="object.username"
+          :getTweetsFunction="getAllTweets"
+        ></friend-profile>
+        <div class="line"></div>
+
+        <created-at
+          class="createdAt"
+          :createdAt="object.createdAt"
+        ></created-at>
+        <!-- <p>{{ object.createdAt }}</p> -->
+
+        <p class="content">{{ object.content }}</p>
+
+        <!-- <friend-profile v-if="openProfile === true"></friend-profile> -->
+        <img
+          class="tweetImage"
+          v-if="object.tweetImageUrl"
+          :src="object.tweetImageUrl"
+          :alt="object.content"
+        /><like-tweet :tweetId="object.tweetId"></like-tweet>
+        <comment-section :commentTweetId="object.tweetId"></comment-section>
+      </div>
+    </section>
     <feed-footer
-    :getTweetsFunction="getAllTweets"
-    :getUserFollowsFunction="getUserFollows"
+      :getTweetsFunction="getAllTweets"
+      :getUserFollowsFunction="getUserFollows"
       @openExploreFeed="handleOpenExploreFeed"
       @openFriendFeed="handleOpenFriendsFeed"
     ></feed-footer>
@@ -94,6 +148,7 @@
 </template>
 
 <script>
+import cookies from "vue-cookies";
 import axios from "axios";
 import EditTweet from "./EditTweet.vue";
 import FriendProfile from "./FriendProfile.vue";
@@ -114,9 +169,12 @@ export default {
   data() {
     return {
       // tweets: [],
-      seeFollowsTweets: "friends",
+      seeFollowsTweets: cookies.get("seeTweets"),
       userFollow: [],
       userFollows: [],
+      searchedTweets: [],
+      searchValue: undefined,
+      searchType: "tweets"
     };
   },
   computed: {
@@ -130,8 +188,25 @@ export default {
   mounted: function () {
     this.getAllTweets();
     this.getUserFollows();
+
   },
   methods: {
+    searchUsers: function () {
+      this.searchValue = document.getElementById("userSearchBox").value.toLowerCase();
+      this.searchedTweets = this.storeTweets.filter((storeTweets) =>
+        storeTweets.username.toLowerCase().includes(document.getElementById("userSearchBox").value)
+      );
+      console.log(this.searchedTweets);
+      this.getAllTweets();
+    },
+    searchTweets: function () {
+      this.searchValue = document.getElementById("searchBox").value;
+      this.searchedTweets = this.storeTweets.filter((storeTweets) =>
+        storeTweets.content.includes(document.getElementById("searchBox").value)
+      );
+      console.log(this.searchedTweets);
+      this.getAllTweets();
+    },
     handleOpenExploreFeed: function (data) {
       this.seeFollowsTweets = data;
     },
@@ -191,10 +266,10 @@ export default {
           },
         })
         .then((res) => {
-         this.userFollows = res.data;
-        this.userFollows.push(this.storeCurrentUser);
-         console.log(this.userFollows);
-      
+          this.userFollows = res.data;
+          this.userFollows.push(this.storeCurrentUser);
+          console.log(this.userFollows);
+
           //  this.userFollow = res.data;
           //     console.log(this.userFollow[0] + "userFollow");
 
@@ -225,6 +300,4 @@ section {
 .exploreTitle {
   margin: 55px 0 30px;
 }
-
-
 </style>

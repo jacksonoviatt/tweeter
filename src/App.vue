@@ -30,6 +30,7 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
 
   transition: background-color 5000s ease-in-out 0s;
+  
 }
 }
 
@@ -124,6 +125,7 @@ select:-webkit-autofill:focus {
   position: absolute;
   top: 100px;
   left: 20px;
+  object-fit: cover;
 }
 .imageNotAvailable {
   z-index: 15;
