@@ -161,4 +161,26 @@ section {
   display: grid;
   place-items: center;
 }
+@media screen and (min-width: 600px) {
+#ideaBox {
+right: 18vw;
+}
+}
+@media screen and (min-width: 1100px) {
+#ideaBox {
+  
+  bottom: 100px;
+  right: 25vw;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  background: #d9dfcd;
+  border: #b6c0af solid 2px;
+  border-radius: 50%;
+  img {
+    width: 50px;
+  }
+}
+}
 </style>

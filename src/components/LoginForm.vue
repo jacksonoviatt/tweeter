@@ -85,7 +85,7 @@ form {
   margin-top: -70px;
 }
 #loginButton {
-  border: #ADB6C4 3px;
+
   border-radius: 10px;
   width: 100px;
  
@@ -102,10 +102,10 @@ form {
 }
 @media screen and (min-width: 600px) {
   .loginInput {
-    width: 170px;
+    width: 140px;
   }
 }
-@media screen and (min-width: 1000px) {
+// @media screen and (min-width: 1000px) {
  
-}
+// }
 </style>

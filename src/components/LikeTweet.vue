@@ -2,7 +2,7 @@
   <div>
     <div v-for="object in thisTweetsLikes" :key="object.id">
       <img
-      class="unlikeTweet"
+        class="unlikeTweet"
         @click="unlikeTweet"
         v-if="object.userId === storeCurrentUser.userId"
         src="../assets/liked.png"
@@ -36,7 +36,6 @@ export default {
       liked: false,
       thisTweetsLikes: [],
       showWhoLiked: false,
-
     };
   },
   computed: {
@@ -96,17 +95,17 @@ export default {
         })
         .then((res) => {
           this.thisTweetsLikes = res.data;
-          
-        //   this.thisTweetsLikes = resultData.filter(
-        //     (resultData) => resultData.tweetId === this.tweetId
-        //   );
-        //   console.log(this.thisTweetsLikes);
+
+          //   this.thisTweetsLikes = resultData.filter(
+          //     (resultData) => resultData.tweetId === this.tweetId
+          //   );
+          //   console.log(this.thisTweetsLikes);
           // this.userLiked = this.thisTweetsLikes.userId.filter(thisTweetsLikes => thisTweetsLikes.userId === this.storeCurrentUser.userId);
-        //   for (this.i = 0; this.i < this.thisTweetsLikes; this.i++) {
-            // if (this.thisTweetsLikes[this.i].userId ===) {
-            // console.log(this.thisTweetsLikes[this.i].userId);
-            // }
-        //   }
+          //   for (this.i = 0; this.i < this.thisTweetsLikes; this.i++) {
+          // if (this.thisTweetsLikes[this.i].userId ===) {
+          // console.log(this.thisTweetsLikes[this.i].userId);
+          // }
+          //   }
         })
         .catch((err) => {
           console.log(err);
@@ -148,18 +147,26 @@ img {
   position: absolute;
 
   margin-left: -90px;
-//   margin-top: -45px;
-margin-top: -10px;
+  //   margin-top: -45px;
+  margin-top: -10px;
 }
 .unlikeTweet {
-    z-index: 2;
+  z-index: 2;
 }
 
 .showWhoLiked {
-    margin-top: -10px;
-    margin-right: -100px;
-    position: absolute;
-    margin-left: 18px;
-    margin-top: -10px;
+  margin-top: -10px;
+  margin-right: -100px;
+  position: absolute;
+  margin-left: 18px;
+  margin-top: -10px;
+}
+@media screen and (min-width: 600px) {
+  img {
+    margin-left: -160px;
+    margin-top: -9px;
+  }
+}
+@media screen and (min-width: 1000px) {
 }
 </style>

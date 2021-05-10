@@ -1,5 +1,6 @@
 <template>
-  <div>
+<div>
+  <div id="footerFeed">
     <div id="feedFooter">
       <img  @click="openSearchFeed"
       class="searchImg" src="../assets/search.png" alt="Search Page" />
@@ -16,6 +17,7 @@
       />
     </div>
     <create-tweet></create-tweet>
+  </div>
   </div>
 </template>
 
@@ -71,5 +73,29 @@ export default {
 }
 .searchImg {
   transform: scaleX(-1);
+}
+@media screen and (min-width: 600px) {
+
+
+}
+@media screen and (min-width: 1000px) {
+#feedFooter {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  
+}
+#footerFeed {
+
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 60px;
+  background: #a1ae98ee;
+   width: 100%;
+  display: grid;
+  place-items: center;
+}
 }
 </style>

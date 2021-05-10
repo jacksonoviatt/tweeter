@@ -143,4 +143,34 @@ nav {
     color: #282e24;
   }
 }
+@media screen and (min-width: 600px) {
+  #sideBarLogo {
+    width: 40%;
+  }
+  #sideBarContainer {
+    width: 50vw;
+  }
+  #xBars {
+    left: 40vw;
+  }
+
+}
+@media screen and (min-width: 1000px) {
+ #sideBarContainer {
+   padding: 40px 0;
+    left: 0;
+    position: fixed;
+    width: 28vw;
+    z-index: 1;
+  }
+  // #fafaBars {
+  //   display: none;
+  // }
+  #xBars {
+    display: none;
+  }
+  nav {
+    margin-top: -250px;
+  }
+}
 </style>

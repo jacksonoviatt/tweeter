@@ -162,4 +162,17 @@ img {
   right: 31vw;
   margin-top: -5px;
 }
+@media screen and (min-width: 600px) {
+  img {
+    right: 28vw;
+  }
+}
+@media screen and (min-width: 1000px) {
+   img {
+    right: 38.5vw;
+  }
+  .showWhoLiked {
+    right: 40vw;
+  }
+}
 </style>

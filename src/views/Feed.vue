@@ -8,6 +8,8 @@
       <create-tweet></create-tweet>
       <explore-page></explore-page>
       <side-bar></side-bar>
+      <img class="treeImg" src="../assets/tree.svg" alt="tree">
+      <img class="flyingBirds" src="../assets/flyingBirds.svg" alt="birds flying">
     </section>
   </div>
 </template>
@@ -46,4 +48,31 @@ export default {
 * {
   background: #E0E8D9;
 }
+@media screen and (max-width: 1100px) {
+
+.treeImg {
+  display: none;
+}
+.flyingBirds {
+  display: none;
+}
+}
+.treeImg {
+  background: #ffffff00;
+  height: 60vh;
+  position: fixed;
+  bottom: 56px;
+  right: -30px;
+}
+.flyingBirds {
+  width: 100px;
+  position: fixed;
+  bottom: 72vh;
+  right: 20vw;
+}
+// @media screen and (min-width: 1100px) { 
+//   header {
+//     height: 60px;
+//   }
+// }
 </style>

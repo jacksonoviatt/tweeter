@@ -207,4 +207,24 @@ form {
   opacity: 0;
   height: 35px;
 }
+
+
+@media screen and (min-width: 600px) {
+ .comments {
+  margin-left: 320px;
+
+  padding-bottom: 20px;
+  img {
+    width: 20px;
+    z-index: 5;
+  }
+  .numberofcomments {
+    margin-top: -23px;
+    font-size: 10px;
+  }
+}
+}
+@media screen and (min-width: 1000px) {
+ 
+}
 </style>

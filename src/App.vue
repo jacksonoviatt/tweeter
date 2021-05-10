@@ -191,4 +191,12 @@ body {
     width: 15px;
   }
 }
+@media screen and (min-width: 600px) {
+  .tweetContainer {
+    width: 400px;
+  }
+}
+@media screen and (min-width: 1000px) {
+ 
+}
 </style>
