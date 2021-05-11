@@ -38,6 +38,7 @@ mounted () {
 </script>
 
 <style lang="scss" scoped>
+
 .container {
   margin-top: 60px;
 }

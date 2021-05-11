@@ -59,7 +59,9 @@ export default {
 }
 .treeImg {
   background: #ffffff00;
-  height: 60vh;
+  // height: 60vh;
+  width: 40vw;
+  max-height: 60vh;
   position: fixed;
   bottom: 56px;
   right: -30px;
@@ -69,6 +71,7 @@ export default {
   position: fixed;
   bottom: 72vh;
   right: 20vw;
+  transform: scaleX(-1);
 }
 // @media screen and (min-width: 1100px) { 
 //   header {

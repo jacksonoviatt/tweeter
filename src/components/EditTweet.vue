@@ -2,7 +2,7 @@
   <div>
     <img
       class="editTweet"
-      @click=" openEditTweet"
+      @click="openEditTweet"
       src="https://www.flaticon.com/svg/vstatic/svg/1159/1159876.svg?token=exp=1619905929~hmac=877dd4d104f6474015cf5d003e8eb352"
       alt="edit tweet icons"
     />
@@ -66,15 +66,15 @@ export default {
     check: function () {
       console.log("this button works");
     },
-    openEditTweet: function(){
-      this.editTweetClicked = !this.editTweetClicked
-      if(this.yesDeleteTweet === true) {
+    openEditTweet: function () {
+      this.editTweetClicked = !this.editTweetClicked;
+      if (this.yesDeleteTweet === true) {
         this.yesDeleteTweet = false;
       }
     },
-     openDeleteTweet: function(){
-      this.yesDeleteTweet = !this.yesDeleteTweet
-      this.editTweetClicked = false
+    openDeleteTweet: function () {
+      this.yesDeleteTweet = !this.yesDeleteTweet;
+      this.editTweetClicked = false;
     },
     patchTweet: function () {
       axios
@@ -161,7 +161,7 @@ export default {
 #editTweet {
   padding: 5px;
   margin: 5px;
-  // margin-bottom: 20px; 
+  // margin-bottom: 20px;
 }
 
 .deleteComment {
@@ -182,5 +182,23 @@ export default {
   border-radius: 10px;
   position: absolute;
   margin-bottom: 20px;
+}
+@media screen and (min-width: 600px) {
+  .editTweet {
+    margin-left: 140px;
+  }
+
+  .deleteComment {
+    margin-left: 140px;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .editTweet {
+    margin-left: 170px;
+  }
+
+  .deleteComment {
+    margin-left: 170px;
+  }
 }
 </style>

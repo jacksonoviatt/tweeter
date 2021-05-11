@@ -1,54 +1,61 @@
 <template>
   <div>
     <!-- the form will patch only the fields that the user inputs -->
-    <button class="openEditor" @click="seeEditProfile = true" >
+    <button class="openEditor" @click="seeEditProfile = true">
       Edit Profile
     </button>
     <section class="editor" v-if="seeEditProfile === true">
-        <div class="goBack" @click="seeEditProfile = false">
-          <img src="../assets/backArrow.svg" alt="back arrow" />
-        </div>
+      <div class="goBack" @click="seeEditProfile = false">
+        <img src="../assets/backArrow.svg" alt="back arrow" />
+      </div>
+
       <form action="javascript:void(0)" autocomplete="off">
+        <h3>Edit Profile</h3>
+
+        Update Username:
         <input
           type="text"
           placeholder="New Username"
           autocomplete="null"
           id="updateUsername"
         />
-        <br />
+        Update Bio:
         <input type="text" placeholder="New Bio" id="updateBio" />
-        <br />
+        Update Profile Image
         <input
           type="text"
           placeholder="New Profile Image"
           id="updateImageUrl"
         />
-        <br />
+        Update Banner Image:
         <input
           type="text"
           placeholder="New Banner Image"
           id="updateBannerUrl"
         />
 
-        <br />
-        <input type="text" placeholder="New Birthday" id="updateBirthdate" />
-        <br />
-        <input type="text" placeholder="New Email" id="updateEmail" />
-        <br />
+        Update Birthday:
+        <input type="date" placeholder="New Birthday" id="updateBirthdate" />
+        Update Email Address
+        <input type="email" placeholder="New Email" id="updateEmail" />
+        Update Password:
         <input type="password" placeholder="New Password" id="updatePassword" />
-        <br />
-        <input type="submit" value="Save My Changes" @click="updateUserInfo" />
+        <input
+          class="saveMyChanges"
+          type="submit"
+          value="Save My Changes"
+          @click="updateUserInfo"
+        />
       </form>
       <delete-account></delete-account>
     </section>
-
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import cookies from "vue-cookies";
-import DeleteAccount from './DeleteAccount.vue';
+import DeleteAccount from "./DeleteAccount.vue";
 // import DeleteAccount from './DeleteAccount.vue';
 export default {
   components: { DeleteAccount },
@@ -56,7 +63,7 @@ export default {
   // components: { DeleteAccount },
   data() {
     return {
-     seeEditProfile: false,
+      seeEditProfile: false,
     };
   },
   computed: {
@@ -89,9 +96,11 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res);
+          res.data.loginToken = this.storeCurrentUser.loginToken;
           this.$store.commit("updateCurrentUser", res.data);
           cookies.set("currentUser", res.data);
+
+          this.seeEditProfile = false;
         })
         .catch((err) => {
           console.log(err);
@@ -116,13 +125,41 @@ export default {
   z-index: 5;
 }
 .editor {
+  padding: 20px 0;
   background: #829376;
   width: 100%;
   height: 100vh;
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 10;
   display: grid;
   place-items: center;
+  form {
+    display: grid;
+    place-items: center;
+    background: #d9dfcd;
+    width: 250px;
+    padding: 20px;
+  }
+  input {
+    margin: 5px;
+  }
+}
+.saveMyChanges {
+  width: 180px;
+  height: 30px;
+  margin-top: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #829376;
+  background: #d9dfcd;
+  border-radius: 20px;
+}
+@media screen and (min-width: 1100px) {
+  .openEditor {
+    top: 140px;
+    left: 39vw;
+  }
 }
 </style>

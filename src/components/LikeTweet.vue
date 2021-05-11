@@ -167,6 +167,6 @@ img {
     margin-top: -9px;
   }
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1100px) {
 }
 </style>

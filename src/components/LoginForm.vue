@@ -105,7 +105,5 @@ form {
     width: 140px;
   }
 }
-// @media screen and (min-width: 1000px) {
- 
-// }
+
 </style>

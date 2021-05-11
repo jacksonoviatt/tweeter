@@ -189,4 +189,10 @@ button {
   // top: 175px;
   // right: 40px;
 }
+@media screen and (min-width: 1100px) {
+  button {
+  top: 140px;
+  left: 200px;
+  }
+}
 </style>

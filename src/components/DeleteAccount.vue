@@ -93,6 +93,16 @@ export default {
 //   height: 100vh;
 //   background: floralwhite;
 // }
+.openDelete {
+  width: 180px;
+  height: 30px;
+
+  font-size: 12px;
+  font-weight: 600;
+  color: #829376;
+  background: #d9dfcd;
+  border-radius: 20px;
+}
 .delete {
   background: #829376;
   position: absolute;

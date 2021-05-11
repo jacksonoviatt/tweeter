@@ -78,7 +78,7 @@ export default {
 
 
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1100px) {
 #feedFooter {
   width: 50%;
   margin-left: 25%;

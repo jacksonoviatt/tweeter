@@ -13,7 +13,7 @@
   }
 }
 body {
-  background-color: #f4f5f6;
+  background: #e0e8d9;
 }
 
 * {
@@ -195,8 +195,63 @@ body {
   .tweetContainer {
     width: 400px;
   }
+  .bio {
+    top: 290px;
+    margin-left: 120px;
+    // width: 45vw;
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+
+  .banner {
+    width: 100%;
+    height: 250px;
+    .bannerImg {
+      height: 250px;
+    }
+  }
+  // .container {
+  //   width: 52vw;
+  //   margin-left: 28vw;
+  //   margin-right: 20vw;
+  // }
+  .profileHeader {
+    position: fixed;
+    left: 0px;
+    
+  }
 }
-@media screen and (min-width: 1000px) {
- 
+@media screen and (min-width: 1100px) {
+  .profileImage {
+    width: 120px;
+    height: 120px;
+    margin-left: 40px;
+  }
+   .userIdentity {
+     h3 {
+       margin-left: 90px;
+     }
+   }
+  .tweetContainer {
+    width: 400px;
+  }
+  .bio {
+    top: 270px;
+    margin-left: 500px;
+    width: 45vw;
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+
+  .banner {
+    width: 100%;
+    height: 250px;
+    .bannerImg {
+      height: 250px;
+    }
+  }
+  .container {
+    width: 52vw;
+    margin-left: 28vw;
+    margin-right: 20vw;
+  }
 }
 </style>

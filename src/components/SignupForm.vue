@@ -135,7 +135,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1100px) {
    .formContainer {
     width: 40vw;
   }

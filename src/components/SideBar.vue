@@ -150,12 +150,16 @@ nav {
   #sideBarContainer {
     width: 50vw;
   }
+  #fafaBars {
+    position: absolute;
+  
+  }
   #xBars {
     left: 40vw;
   }
 
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1100px) {
  #sideBarContainer {
    padding: 40px 0;
     left: 0;
@@ -163,9 +167,6 @@ nav {
     width: 28vw;
     z-index: 1;
   }
-  // #fafaBars {
-  //   display: none;
-  // }
   #xBars {
     display: none;
   }

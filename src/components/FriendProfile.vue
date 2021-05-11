@@ -3,47 +3,51 @@
     <h3 class="username" @click="getOtherUser">@{{ otherUserName }}</h3>
 
     <section class="otherProfiles" v-if="openOtherProfile === true">
-      <div class="profileHeader">
-             <div class="goBack" @click="getAllTweetsOnGoBack">
-          <img src="../assets/backArrow.svg" alt="back arrow" />
-        </div>
-      <img class="birdLogo" src="../assets/birdLogo.png" alt="bird logo" />
+      <div class="desktopFill">
+        <img class="friendTree" src="../assets/tree.svg" alt="young tree" />
+       
       </div>
-      <div class="banner">
-        <img
-          v-if="otherUserData.bannerUrl"
-          :src="otherUserData.bannerUrl"
-          alt="imageBanner"
-          class="bannerImg "
-        />
-        <img
-          class="bannerImg imgNA"  
-          src="https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          
-        />
-        <div class="userIdentity">
-          <img class="profileImage" :src="otherUserData.imageUrl" />
+      <div class="desktopFriend">
+        <div class="profileHeader">
+          <div class="goBack" @click="getAllTweetsOnGoBack">
+            <img src="../assets/backArrow.svg" alt="back arrow" />
+          </div>
+          <img class="birdLogo" src="../assets/birdLogo.png" alt="bird logo" />
+        </div>
+        <div class="banner">
           <img
-            
-            class="profileImage imgNA"
-            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            v-if="otherUserData.bannerUrl"
+            :src="otherUserData.bannerUrl"
+            alt="imageBanner"
+            class="bannerImg"
           />
-          <div>
-            <h3 class="profileName">{{ otherUserData.username }}</h3>
+          <img
+            class="bannerImg imgNA"
+            src="https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          />
+          <div class="userIdentity">
+            <img class="profileImage" :src="otherUserData.imageUrl" />
+            <img
+              class="profileImage imgNA"
+              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            />
+            <div>
+              <h3 class="profileName">{{ otherUserData.username }}</h3>
+            </div>
           </div>
         </div>
+        <div class="bio">
+          <img src="../assets/profile.png" alt="profile icon" />
+          <p>{{ otherUserData.bio }}</p>
+          <follow-someone
+            :getUser="getOtherUser"
+            :followId="otherUserId"
+          ></follow-someone>
+        </div>
+        <section class="profileBody">
+          <friends-tweets :openOtherProfile="openOtherProfile"></friends-tweets>
+        </section>
       </div>
-      <div class="bio">
-        <img src="../assets/profile.png" alt="profile icon" />
-        <p>{{ otherUserData.bio }}</p>
-        <follow-someone
-          :getUser="getOtherUser"
-          :followId="otherUserId"
-        ></follow-someone>
-      </div>
-      <section class="profileBody">
-        <friends-tweets :openOtherProfile="openOtherProfile"></friends-tweets>
-      </section>
     </section>
   </div>
 </template>
@@ -77,11 +81,10 @@ export default {
     otherUserId: Number,
     otherUserName: String,
     getTweetsFunction: Function,
-    getUserFollowsFunction: Function
+    getUserFollowsFunction: Function,
   },
 
   methods: {
-    
     getOtherUser: function () {
       window.scrollTo(0, 0);
       this.$store.commit("updateFriendsId", this.otherUserId);
@@ -122,7 +125,6 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-
   background: #ecefe6;
   // color: #adb6c4;
   z-index: 8;
@@ -134,9 +136,45 @@ export default {
   font-size: 18px;
 }
 .profileBody {
-  margin-top: 320px;
+  margin-top: 400px;
 }
+// .youngTree {
+//   display: none;
+// }
+.goBack {
+  z-index: 20;
+}
+.friendTree {
+  display: none;
+}
+@media screen and (min-width: 1100px) {
+  .profileBody {
+    margin-top: 400px;
+  }
 
+  .otherProfiles {
+    // padding-left: 28vw;
+    width: 100%;
+    left: 0;
+  }
+  // .desktopFill {
+  //   width: 28vw;
+  //   height: 100vh;
+  //   position: fixed;
+  //   bottom: 0;
+  //   left: 0;
+  //   background: #d9dfcd;
+  // }
+ 
+  .friendTree {
+    display: inline-block;
+    position: fixed;
+    bottom: -10px;
+    left: 10px;
+    width: 33vw;
+  }
+  
+}
 
 // .banner {
 //   position: fixed;

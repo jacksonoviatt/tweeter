@@ -180,7 +180,7 @@ padding: 20px 15px;
   font-size: 14px;
   text-align: left;
   padding: 0px 0px 15px 30px;
-  width: 33vw;
+  width: 70%;
 }
 
 .aComment {
@@ -224,7 +224,7 @@ form {
   }
 }
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1100px) {
  
 }
 </style>

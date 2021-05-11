@@ -134,12 +134,12 @@ export default {
 
 <style lang="scss" scoped>
 .profileBody {
-  margin-top: 300px;
+  margin-top: 400px;
+  margin-bottom: 100px;
   display: grid;
   place-items: center;
-  // margin-top: 30px;
   gap: 20px;
-  // z-index: ;
+
 }
 .usersname {
   text-align: left;

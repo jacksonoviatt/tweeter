@@ -96,6 +96,11 @@ export default {
   text-align: left;
   margin: 15px 20px 0;
 }
+@media screen and (min-width: 1100px) {
+  .tweetContainer {
+    margin-left: 200px;
+  }
+}
 // .friendsTweetContainer {
 //   margin: 10px;
 //   // border: cornflowerblue 2px solid;
