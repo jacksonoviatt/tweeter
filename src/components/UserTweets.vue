@@ -146,6 +146,11 @@ export default {
   margin: 0px 20px;
 }
 
+@media screen and (min-width: 600px) {
+.bio {
+  margin-left: 100px;
+}
+}
 // .userTweetName {
 //   text-align: left;
 //   margin: 20px 20px 0;

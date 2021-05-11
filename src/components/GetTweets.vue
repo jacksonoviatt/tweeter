@@ -1,6 +1,5 @@
 <template>
   <div id="getTweets">
-    <!-- loop through the array of tweet information -->
     <section v-if="seeFollowsTweets === 'explore'">
       <h3 class="exploreTitle">Explore</h3>
 
@@ -66,11 +65,8 @@
               class="createdAt"
               :createdAt="tweet.createdAt"
             ></created-at>
-            <!-- <p>{{ object.createdAt }}</p> -->
 
             <p class="content">{{ tweet.content }}</p>
-
-            <!-- <friend-profile v-if="openProfile === true"></friend-profile> -->
             <img
               class="tweetImage"
               v-if="tweet.tweetImageUrl"
@@ -83,19 +79,19 @@
       </div>
     </section>
     <section v-if="seeFollowsTweets === 'search'">
-      <h3 class="exploreTitle">Search</h3> 
-      <a href="#" @click="searchType = 'users'">Users</a> |
-      <a href="#" @click="searchType = 'tweets'">Tweets</a>
-      <div v-if="searchType === 'tweets'">
+      <h3 class="exploreTitle">Search</h3>
+      <a  class="searchLink" href="#" @click="searchType = 'users'">Users</a> |
+      <a class="searchLink" href="#" @click="searchType = 'tweets'">Tweets</a>
+      <div v-if="searchType === 'tweets'" class="searchForm">
         <form action="javascript:void(0)" autocomplete="off">
-          <input name="search" id="searchBox" placeholder="search tweets" />
-          <input type="submit" @click="searchTweets" />
+          <input name="search" id="searchBox" placeholder="Search tweets" />
+          <input class="searchButton" type="submit" value="Search!" @click="searchTweets" />
         </form>
       </div>
-       <div v-if="searchType === 'users'">
-        <form action="javascript:void(0)" autocomplete="off">
-          <input name="search" id="userSearchBox" placeholder="search users" />
-          <input type="submit" @click="searchUsers" />
+      <div v-if="searchType === 'users'" class="searchForm">
+        <form action="javascript:void(0)" autocomplete="off" >
+          <input  name="search" id="userSearchBox" placeholder="Search users" />
+          <input class="searchButton" type="submit" @click="searchUsers" />
         </form>
       </div>
       <p v-if="searchValue !== undefined">
@@ -124,11 +120,8 @@
           class="createdAt"
           :createdAt="object.createdAt"
         ></created-at>
-        <!-- <p>{{ object.createdAt }}</p> -->
 
         <p class="content">{{ object.content }}</p>
-
-        <!-- <friend-profile v-if="openProfile === true"></friend-profile> -->
         <img
           class="tweetImage"
           v-if="object.tweetImageUrl"
@@ -168,13 +161,12 @@ export default {
   },
   data() {
     return {
-      // tweets: [],
       seeFollowsTweets: cookies.get("seeTweets"),
       userFollow: [],
       userFollows: [],
       searchedTweets: [],
       searchValue: undefined,
-      searchType: "tweets"
+      searchType: "tweets",
     };
   },
   computed: {
@@ -188,11 +180,12 @@ export default {
   mounted: function () {
     this.getAllTweets();
     this.getUserFollows();
-
   },
   methods: {
     searchUsers: function () {
-      this.searchValue = document.getElementById("userSearchBox").value.toLowerCase();
+      this.searchValue = document
+        .getElementById("userSearchBox")
+        .value.toLowerCase();
       this.searchedTweets = this.storeTweets.filter((storeTweets) =>
         storeTweets.username.toLowerCase().includes(this.searchValue)
       );
@@ -200,7 +193,9 @@ export default {
       this.getAllTweets();
     },
     searchTweets: function () {
-      this.searchValue = document.getElementById("searchBox").value.toLowerCase();
+      this.searchValue = document
+        .getElementById("searchBox")
+        .value.toLowerCase();
       this.searchedTweets = this.storeTweets.filter((storeTweets) =>
         storeTweets.content.toLowerCase().includes(this.searchValue)
       );
@@ -230,23 +225,9 @@ export default {
             })
             .slice()
             .reverse();
-          // if (this.seeFollowsTweets === false) {
+  
           this.$store.commit("updateTweets", orderedTweets);
-          // this.tweets = orderedTweets;
-          // console.log(this.tweets);
-          // } else if (this.seeFollowsTweets === true) {
-          //   let friendsTweets = this.userFollows.filter(
-          //     (userFollows) =>
-          //       userFollows.userId === this.storeCurrentUser.userId
-          //   );
-          //   console.log(friendsTweets);
-
-          //   for (this.i = 0; this.i < this.userFollow.length; this.i++) {
-          //     this.tweets = orderedTweets.filter(
-          //       (orderedTweets) => orderedTweets.username === this.userFollow[this.i].username
-          //     );
-          // }
-          // }
+       
         })
         .catch((err) => {
           console.log(err);
@@ -270,11 +251,7 @@ export default {
           this.userFollows.push(this.storeCurrentUser);
           console.log(this.userFollows);
 
-          //  this.userFollow = res.data;
-          //     console.log(this.userFollow[0] + "userFollow");
-
-          //   console.log(this.thisTweetsLikes.userId);
-        })
+      })
         .catch((err) => {
           console.log(err);
         });
@@ -299,5 +276,33 @@ section {
 }
 .exploreTitle {
   margin: 55px 0 30px;
+}
+.searchLink {
+  color: #829376;
+  font-weight: 700;
+  margin: 15px 2px;
+}
+.searchButton {
+  width: 60%;
+  margin: 10px 20%;
+  height: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #829376;
+  background: #d9dfcd;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+}
+.searchForm {
+  form {
+    display: grid;
+    place-items: center;
+    margin: 15px;
+  }
+  input {
+    padding: 5px;
+    margin: 5px;
+  }
 }
 </style>

@@ -4,14 +4,15 @@
       @click="editCommentClicked = !editCommentClicked"
       src="https://www.flaticon.com/svg/vstatic/svg/1159/1159876.svg?token=exp=1619905929~hmac=877dd4d104f6474015cf5d003e8eb352"
       alt="edit comment"
+      class="editComment"
     />
-     <img
-
-        class="deleteComment"
-         v-if="editCommentClicked === true" @click="deleteTheComment"
-        src="https://image.flaticon.com/icons/png/128/109/109602.png"
-        alt="delete comment"
-      />
+    <img
+      class="deleteComment"
+      v-if="editCommentClicked === true"
+      @click="deleteTheComment"
+      src="https://image.flaticon.com/icons/png/128/109/109602.png"
+      alt="delete comment"
+    />
     <!-- <button v-if="editCommentClicked === true" @click="deleteTheComment">
       Delete Comment
     </button> -->
@@ -22,12 +23,15 @@
     >
       <input
         type="text"
-        placeholder="edit your tweet"
+        placeholder="edit your comment"
         autocomplete="null"
-        id="editComment"
+        :id="editCommentId"
+        class="editCommentInput"
       />
       <br />
-      <input type="submit" value="Save My Changes" @click="postEditedComment" />
+      <input 
+      class="saveEdit"
+      type="submit" value="Save My Changes" @click="postEditedComment" />
     </form>
   </div>
 </template>
@@ -69,7 +73,7 @@ export default {
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
-            content: document.getElementById("editComment").value,
+            content: document.getElementById(this.editCommentId).value,
             loginToken: this.storeCurrentUser.loginToken,
             commentId: this.editCommentId,
           },
@@ -77,6 +81,7 @@ export default {
         .then((res) => {
           console.log(res);
           this.getTheComments();
+
         })
         .catch((err) => {
           console.log(err);
@@ -130,6 +135,43 @@ button {
   border-radius: 10px;
   input {
     opacity: 0;
-  }  
+  }
+}
+.editComment {
+  margin-left: 160px;
+}
+.saveEdit {
+  // margin-top: 3px;
+  // padding-top: 2px;
+  width: 180px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #829376;
+  background: #d9dfcd;
+  border-radius: 10px;
+  // position: absolute;
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 600px) {
+  .editComment {
+    margin-left: 210px;
+    margin-top: -10px;
+  }
+  .deleteComment {
+    left: 27vw;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .editComment {
+    margin-left: 260px;
+    margin-top: -10px;
+  }
+  .editCommentInput {
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 70%;
+  }
+
 }
 </style>

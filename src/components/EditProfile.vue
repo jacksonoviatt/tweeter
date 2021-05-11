@@ -116,7 +116,7 @@ export default {
   height: 20px;
   position: fixed;
   top: 140px;
-  left: 110px;
+  left: 120px;
   font-size: 12px;
   font-weight: 600;
   color: #829376;
@@ -159,7 +159,7 @@ export default {
 @media screen and (min-width: 1100px) {
   .openEditor {
     top: 140px;
-    left: 39vw;
+    left: 40vw;
   }
 }
 </style>

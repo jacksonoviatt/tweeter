@@ -55,16 +55,10 @@ export default {
       this.isMenuOpen = false;
     },
 
-    // mutateDeleteOptions() {
-    //   console.log(this.storeDeleteAccountOptions);
-    //   this.$store.commit("updateDeleteAccountOptions", true);
-    // },
-
     logOut: function () {
       cookies.remove("currentUser");
       this.$store.commit("updateCurrentUser", [{}]);
       location.reload();
-    //   this.$router.push("/welcome");
     },
   },
 };
@@ -151,7 +145,7 @@ nav {
     width: 50vw;
   }
   #fafaBars {
-    position: absolute;
+    position: fixed;
   
   }
   #xBars {

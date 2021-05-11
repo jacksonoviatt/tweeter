@@ -15,7 +15,8 @@
             <button @click="openDeleteAccount = false">Nevermind</button>
           </div>
           <form action="javascript:void(0)" v-if="inputPassword">
-            <input type="password" id="confirmPassword" />
+            <input type="password" id="confirmPassword" placeholder="Please enter your password" />
+           <br> 
             <input type="submit" @click="deleteAccount" />
           </form>
         </div>
@@ -43,11 +44,7 @@ export default {
   },
 
   methods: {
-    redirectAfterDelete() {
-      cookies.remove("currentUser");
-      this.$store.commit("updateCurrentUser", null);
-      this.$router.push("/welcome");
-    },
+   
     mutateDeleteAccountOptions() {
       console.log(this.storeDeleteAccountOptions);
 
@@ -70,9 +67,9 @@ export default {
         .then((res) => {
           console.log(res);
           this.accountDeleted = !this.accountDeleted;
-          setTimeout(function () {
-            cookies.remove("currentUser");
-          }, 5000);
+         cookies.remove("currentUser");
+      this.$store.commit("updateCurrentUser", null);
+      this.$router.push("/welcome");
         })
         .catch((err) => {
           console.log(err);
@@ -135,5 +132,8 @@ export default {
 color: #829376;
     background: #d9dfcd;
   } 
+}
+#confirmPassword {
+  width: 170px;
 }
 </style>
