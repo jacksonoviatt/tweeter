@@ -133,6 +133,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .profileBody {
   margin-top: 400px;
   margin-bottom: 100px;
