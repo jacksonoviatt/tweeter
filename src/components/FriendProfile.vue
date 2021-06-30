@@ -92,9 +92,9 @@ export default {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/users",
+          url: `${process.env.VUE_APP_API_KEY}/api/users`,
           headers: {
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           params: {
             userId: this.otherUserId,

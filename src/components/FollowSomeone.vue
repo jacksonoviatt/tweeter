@@ -64,10 +64,10 @@ export default {
       axios
         .request({
           method: "POST",
-          url: "https://tweeterest.ml/api/follows",
+          url: `${process.env.VUE_APP_API_KEY}/api/follows`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             loginToken: this.storeCurrentUser.loginToken,
@@ -90,10 +90,10 @@ export default {
       axios
         .request({
           method: "DELETE",
-          url: "https://tweeterest.ml/api/follows",
+          url: `${process.env.VUE_APP_API_KEY}/api/follows`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             loginToken: this.storeCurrentUser.loginToken,
@@ -115,10 +115,10 @@ export default {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/followers",
+          url: `${process.env.VUE_APP_API_KEY}/api/followers`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           params: {
             userId: this.followId,
@@ -136,7 +136,7 @@ export default {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/follows",
+          url: `${process.env.VUE_APP_API_KEY}/api/follows`,
           headers: {
             "Content-Type": "application/json",
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,

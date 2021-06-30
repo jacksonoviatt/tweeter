@@ -2,7 +2,7 @@
   <div>
     <div @click="viewComments" class="comments">
       <img
-        src="https://www.flaticon.com/svg/vstatic/svg/2462/2462719.svg?token=exp=1620082665~hmac=5b881cf16d9bb9369b3bd07b771ceaa8"
+        src="../assets/comments.svg"
         alt="comments"
       />
       <p class="numberofcomments">{{ tweetComments.length }}</p>
@@ -80,10 +80,10 @@ export default {
       axios
         .request({
           method: "POST",
-          url: "https://tweeterest.ml/api/comments",
+          url: `${process.env.VUE_APP_API_KEY}/api/comments`,
           headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            "Content-Type": "application/json"
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             content: document.getElementById(this.commentTweetId).value,
@@ -94,6 +94,7 @@ export default {
         .then((res) => {
           console.log(res.data + "comment succesfully posted");
           document.getElementById(this.commentTweetId).value = null;
+          this.getComments()
         })
         .catch((err) => {
           console.log(err);
@@ -105,10 +106,10 @@ export default {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/comments",
+          url: `${process.env.VUE_APP_API_KEY}/api/comments`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           params: {
             tweetId: this.commentTweetId,
@@ -126,10 +127,10 @@ export default {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/follows",
+          url: `${process.env.VUE_APP_API_KEY}/api/follows`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           params: {
             userId: this.storeCurrentUser.userId,

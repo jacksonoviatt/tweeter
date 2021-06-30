@@ -54,10 +54,10 @@ export default {
       axios
         .request({
           method: "DELETE",
-          url: "https://tweeterest.ml/api/users",
+          url: `${process.env.VUE_APP_API_KEY}/api/users`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": "xRlx789MAteFEj8KWmCnfcr2KIRY0ZvfoXENuAX6vrnqV",
+            // "X-Api-Key": "xRlx789MAteFEj8KWmCnfcr2KIRY0ZvfoXENuAX6vrnqV",
           },
           data: {
             loginToken: this.storeCurrentUser.loginToken,

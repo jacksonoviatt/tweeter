@@ -52,10 +52,10 @@ export default {
       axios
         .request({
           method: "POST",
-          url: "https://tweeterest.ml/api/tweets",
+          url: `${process.env.VUE_APP_API_KEY}/api/tweets`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             content: document.getElementById("tweetContent").value,
@@ -76,10 +76,10 @@ export default {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/tweets",
+          url: `${process.env.VUE_APP_API_KEY}/api/tweets`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
         })
         .then((res) => {

@@ -212,10 +212,10 @@ export default {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/tweets",
+          url: `${process.env.VUE_APP_API_KEY}/api/tweets`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
         })
         .then((res) => {
@@ -237,10 +237,10 @@ export default {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/follows",
+          url: `${process.env.VUE_APP_API_KEY}/api/follows`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           params: {
             userId: this.storeCurrentUser.userId,

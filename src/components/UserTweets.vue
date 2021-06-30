@@ -105,10 +105,10 @@ export default {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/tweets",
+          url: `${process.env.VUE_APP_API_KEY}/api/tweets`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           params: {
             userId: this.storeCurrentUser.userId,
@@ -152,112 +152,7 @@ export default {
   margin-left: 100px;
 }
 }
-// .userTweetName {
-//   text-align: left;
-//   margin: 20px 20px 0;
-// }
-// .banner {
-//   z-index: 5;
-//   position: fixed;
-//   top: 0;
-//   display: grid;
-//   place-items: center;
-//   background: #ecefe6;
-//   height: 200px;
-//   width: 100%;
-//   .bannerImg {
-//     object-fit: cover;
-//     height: 200px;
-//     width: 100%;
-//     position: absolute;
-//     top: 0;
-//   }
-//   p {
-//     position: absolute;
-//     z-index: -1;
-//   }
-//   .userIdentity {
-//     z-index: 6;
-//     // margin: -105px 0 0 -190px;
-//     // display: grid;
-//     // align-items: center;
-//     // gap: 10px;
-//     // grid-template-columns: 1fr 1fr;
-//     h3 {
-//       position: absolute;
-//       top: 95px;
-//       left: 110px;
-//       font-size: 32px;
-//       color: #ffffff;
-//       text-shadow: #97a58d 2px 2px 0px, #97a58d -2px 2px 0px,
-//         #97a58d 2px -2px 0px, #97a58d -2px -2px 0px;
-//       padding-bottom: 10px;
-//       margin-bottom: -20px;
-//     }
-//   }
-// }
 
-// .profileImage {
-//   height: 70px;
-//   width: 70px;
-//   border: #b6c0af 3px solid;
-//   position: absolute;
-//   top: 100px;
-//   left: 20px;
-// }
-// .imageNotAvailable {
-//   z-index: 15;
-//   height: 70px;
-//   width: 70px;
-//   border: #b6c0af 3px solid;
-//   position: absolute;
-//   top: 55px;
-//   left: 20px;
-// }
-
-// .goBack {
-//   width: 20px;
-//   height: 20px;
-//   background: #cbd2c699;
-//   border-radius: 50%;
-//   display: grid;
-//   place-items: center;
-//   position: absolute;
-//   top: 170px;
-//   left: 40px;
-//   box-shadow: #97a58d 2px 2px 0px, #97a58d -2px 2px 0px, #97a58d 2px -2px 0px,
-//     #97a58d -2px -2px 0px;
-
-//   img {
-//     width: 15px;
-//   }
-// }
-// .profileHeader {
-//   background: #d9dfcdee;
-//   width: 100%;
-//   height: 50px;
-//   position: absolute;
-//   top: 0;
-// }
-// .bio {
-//   padding: 10px 20px;
-//   display: grid;
-//   grid-template-columns: 1fr 1fr 1fr;
-//   // background: #d9dfcdcc;
-//   // width: 200px;
-//   position: absolute;
-//   top: 210px;
-//   height: 50px;
-//   p {
-//     z-index: 3;
-//     width: 140px;
-//     margin-right: 20px;
-//   }
-//   img {
-//     width: 35px;
-
-//   }
-// }
 .tweetContainer {
   .content {
     margin-left: 30px;

@@ -62,10 +62,10 @@ export default {
       axios
         .request({
           method: "POST",
-          url: "https://tweeterest.ml/api/comment-likes",
+          url: `${process.env.VUE_APP_API_KEY}/api/comment-likes`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             loginToken: this.storeCurrentUser.loginToken,
@@ -84,10 +84,10 @@ export default {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/comment-likes",
+          url: `${process.env.VUE_APP_API_KEY}/api/comment-likes`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           params: {
             commentId: this.commentId,
@@ -96,16 +96,7 @@ export default {
         .then((res) => {
           this.thisCommentsLikes = res.data;
           
-        //   this.thisCommentsLikes = resultData.filter(
-        //     (resultData) => resultData.CommentId === this.CommentId
-        //   );
-        //   console.log(this.thisCommentsLikes);
-          // this.userLiked = this.thisCommentsLikes.userId.filter(thisCommentsLikes => thisCommentsLikes.userId === this.storeCurrentUser.userId);
-        //   for (this.i = 0; this.i < this.thisCommentsLikes; this.i++) {
-            // if (this.thisCommentsLikes[this.i].userId ===) {
-            // console.log(this.thisCommentsLikes[this.i].userId);
-            // }
-        //   }
+
         })
         .catch((err) => {
           console.log(err);
@@ -116,7 +107,7 @@ export default {
       axios
         .request({
           method: "DELETE",
-          url: "https://tweeterest.ml/api/comment-likes",
+          url: `${process.env.VUE_APP_API_KEY}/api/comment-likes`,
           headers: {
             "Content-Type": "application/json",
             "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,

@@ -79,10 +79,10 @@ export default {
       axios
         .request({
           method: "PATCH",
-          url: "https://tweeterest.ml/api/users",
+          url: `${process.env.VUE_APP_API_KEY}/api/users`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             username: document.getElementById("updateUsername").value,

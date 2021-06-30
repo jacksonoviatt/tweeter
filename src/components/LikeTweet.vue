@@ -62,10 +62,10 @@ export default {
       axios
         .request({
           method: "POST",
-          url: "https://tweeterest.ml/api/tweet-likes",
+          url: `${process.env.VUE_APP_API_KEY}/api/tweet-likes`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             loginToken: this.storeCurrentUser.loginToken,
@@ -84,10 +84,10 @@ export default {
       axios
         .request({
           method: "GET",
-          url: "https://tweeterest.ml/api/tweet-likes",
+          url: `${process.env.VUE_APP_API_KEY}/api/tweet-likes`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           params: {
             tweetId: this.tweetId,
@@ -95,7 +95,7 @@ export default {
         })
         .then((res) => {
           this.thisTweetsLikes = res.data;
-
+          console.log(res.data);
           //   this.thisTweetsLikes = resultData.filter(
           //     (resultData) => resultData.tweetId === this.tweetId
           //   );
@@ -116,10 +116,10 @@ export default {
       axios
         .request({
           method: "DELETE",
-          url: "https://tweeterest.ml/api/tweet-likes",
+          url: `${process.env.VUE_APP_API_KEY}/api/tweet-likes`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             loginToken: this.storeCurrentUser.loginToken,

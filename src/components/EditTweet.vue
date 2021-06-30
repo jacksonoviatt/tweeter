@@ -3,13 +3,13 @@
     <img
       class="editTweet"
       @click="openEditTweet"
-      src="https://www.flaticon.com/svg/vstatic/svg/1159/1159876.svg?token=exp=1619905929~hmac=877dd4d104f6474015cf5d003e8eb352"
+      src="../assets/edit.svg"
       alt="edit tweet icons"
     />
     <img
       class="deleteComment"
       @click="openDeleteTweet"
-      src="https://image.flaticon.com/icons/png/128/109/109602.png"
+      src="../assets/x.svg"
       alt="delete comment"
     />
     <button
@@ -80,10 +80,10 @@ export default {
       axios
         .request({
           method: "PATCH",
-          url: "https://tweeterest.ml/api/tweets",
+          url: `${process.env.VUE_APP_API_KEY}/api/tweets`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             content: document.getElementById("editTweet").value,
@@ -104,10 +104,10 @@ export default {
       axios
         .request({
           method: "DELETE",
-          url: "https://tweeterest.ml/api/tweets",
+          url: `${process.env.VUE_APP_API_KEY}/api/tweets`,
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
             loginToken: this.storeCurrentUser.loginToken,
@@ -124,30 +124,7 @@ export default {
           console.log(err);
         });
     },
-    // getAllTweets: function () {
-    //   axios
-    //     .request({
-    //       method: "GET",
-    //       url: "https://tweeterest.ml/api/tweets",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
-    //       },
-    //     })
-    //     .then((res) => {
-    //       // console.log(res);
-    //       let orderedTweets = res.data
-    //         .sort(function (a, b) {
-    //           return new Date(a.createdAt) - new Date(b.createdAt);
-    //         })
-    //         .slice()
-    //         .reverse();
-    //       this.$store.commit("updateTweets", orderedTweets);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // },
+    
   },
 };
 </script>

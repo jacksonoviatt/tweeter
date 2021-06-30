@@ -2,7 +2,7 @@
   <div>
     <form action="javascript:void(0)">
       
-      <input type="email" placeholder="email" id="loginEmail" autocomplete="" class="loginInput"/>
+      <input type="username" placeholder="username" id="enterUsername" autocomplete="" class="loginInput"/>
 
       <input
         type="password"
@@ -46,14 +46,14 @@ export default {
     attemptLogin: function () {
       axios
         .request({
-          url: "https://tweeterest.ml/api/login",
+          url: `${process.env.VUE_APP_API_KEY}/api/login`,
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
-            email: document.getElementById("loginEmail").value,
+            username: document.getElementById("enterUsername").value,
             password: document.getElementById("loginPassword").value,
           },
         })
@@ -62,7 +62,7 @@ export default {
           console.log(res.data);
           this.loginStatus = "you have logged in";
           cookies.set("currentUser", res.data);
-           cookies.set("seeTweets", "friends");
+          cookies.set("seeTweets", "friends");
           this.$store.commit("updateCurrentUser", res.data)
           this.$router.push("/");
 
