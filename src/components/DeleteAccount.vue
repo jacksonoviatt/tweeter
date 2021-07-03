@@ -56,8 +56,7 @@ export default {
           method: "DELETE",
           url: `${process.env.VUE_APP_API_KEY}/api/users`,
           headers: {
-            "Content-Type": "application/json",
-            // "X-Api-Key": "xRlx789MAteFEj8KWmCnfcr2KIRY0ZvfoXENuAX6vrnqV",
+            "Content-Type": "application/json"
           },
           data: {
             loginToken: this.storeCurrentUser.loginToken,

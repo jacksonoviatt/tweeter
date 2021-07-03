@@ -85,6 +85,7 @@ export default {
             // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
           },
           data: {
+            loginToken: this.storeCurrentUser.loginToken,
             username: document.getElementById("updateUsername").value,
             bio: document.getElementById("updateBio").value,
             password: document.getElementById("updatePassword").value,
@@ -92,14 +93,12 @@ export default {
             email: document.getElementById("updateEmail").value,
             bannerUrl: document.getElementById("updateBannerUrl").value,
             imageUrl: document.getElementById("updateImageUrl").value,
-            loginToken: this.storeCurrentUser.loginToken,
+            
           },
         })
         .then((res) => {
-          res.data.loginToken = this.storeCurrentUser.loginToken;
           this.$store.commit("updateCurrentUser", res.data);
           cookies.set("currentUser", res.data);
-
           this.seeEditProfile = false;
         })
         .catch((err) => {

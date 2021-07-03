@@ -28,7 +28,7 @@
 
 <script>
 import cookies from "vue-cookies";
-
+import axios from "axios";
 export default {
   name: "side-bar",
   data() {
@@ -55,11 +55,37 @@ export default {
       this.isMenuOpen = false;
     },
 
-    logOut: function () {
-      cookies.remove("currentUser");
-      this.$store.commit("updateCurrentUser", [{}]);
-      location.reload();
+    logOut() {
+      axios
+        .request({
+          method: "DELETE",
+          url: `${process.env.VUE_APP_API_KEY}/api/login`,
+          headers: {
+            "Content-Type": "application/json",
+            // "X-Api-Key": `${process.env.VUE_APP_API_KEY}`,
+          },
+          data: {
+            loginToken: this.storeCurrentUser.loginToken
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          // this.getAllTweets();
+          cookies.remove("currentUser");
+          this.$store.commit("updateCurrentUser", [{}]);
+          this.$router.push("/welcome");
+          location.reload();
+          
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
+    // logOut: function () {
+    //   cookies.remove("currentUser");
+    //   this.$store.commit("updateCurrentUser", [{}]);
+    //   location.reload();
+    // },
   },
 };
 </script>
