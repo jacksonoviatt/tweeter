@@ -165,8 +165,18 @@ section {
 #ideaBox {
 right: 18vw;
 }
+section {
+  border: #b6c0af solid 5px;
+  margin: 25vh 20vw;
+  width: 60vw;
+}
 }
 @media screen and (min-width: 1100px) {
+section {
+
+  margin: 30vh 30vw;
+  width: 40vw;
+}
 #ideaBox {
   
   bottom: 100px;
@@ -181,6 +191,7 @@ right: 18vw;
   img {
     width: 50px;
   }
+
 }
 }
 </style>

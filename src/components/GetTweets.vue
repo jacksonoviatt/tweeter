@@ -80,17 +80,22 @@
     </section>
     <section v-if="seeFollowsTweets === 'search'">
       <h3 class="exploreTitle">Search</h3>
-      <a  class="searchLink" href="#" @click="searchType = 'users'">Users</a> |
+      <a class="searchLink" href="#" @click="searchType = 'users'">Users</a> |
       <a class="searchLink" href="#" @click="searchType = 'tweets'">Tweets</a>
       <div v-if="searchType === 'tweets'" class="searchForm">
         <form action="javascript:void(0)" autocomplete="off">
           <input name="search" id="searchBox" placeholder="Search tweets" />
-          <input class="searchButton" type="submit" value="Search!" @click="searchTweets" />
+          <input
+            class="searchButton"
+            type="submit"
+            value="Search!"
+            @click="searchTweets"
+          />
         </form>
       </div>
       <div v-if="searchType === 'users'" class="searchForm">
-        <form action="javascript:void(0)" autocomplete="off" >
-          <input  name="search" id="userSearchBox" placeholder="Search users" />
+        <form action="javascript:void(0)" autocomplete="off">
+          <input name="search" id="userSearchBox" placeholder="Search users" />
           <input class="searchButton" type="submit" @click="searchUsers" />
         </form>
       </div>
@@ -225,9 +230,8 @@ export default {
             })
             .slice()
             .reverse();
-  
+
           this.$store.commit("updateTweets", orderedTweets);
-       
         })
         .catch((err) => {
           console.log(err);
@@ -250,8 +254,7 @@ export default {
           this.userFollows = res.data;
           this.userFollows.push(this.storeCurrentUser);
           console.log(this.userFollows);
-
-      })
+        })
         .catch((err) => {
           console.log(err);
         });
