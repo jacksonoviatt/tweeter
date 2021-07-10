@@ -8,6 +8,7 @@
         v-for="object in storeTweets"
         :key="object.string"
       >
+
         <div class="spacing"></div>
         <edit-tweet
           v-if="storeCurrentUser.userId === object.userId"
@@ -293,7 +294,7 @@ section {
   font-weight: 600;
   color: #829376;
   background: #d9dfcd;
-  border-radius: 20px;
+  border-radius: 18px;
   display: grid;
   place-items: center;
 }
